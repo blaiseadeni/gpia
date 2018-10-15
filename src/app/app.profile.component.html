@@ -1,0 +1,37 @@
+<div class="layout-profile" [ngClass]="{'layout-profile-active':active}">
+    <a href="#" (click)="onClick($event)" class="layout-profile-button">
+        <img src="assets/layout/images/avatar.png" alt="babylon-layout"/>
+        <div class="layout-profile-userinfo">
+            <span class="layout-profile-name">Arlene Welch</span>
+            <span class="layout-profile-role">Design Ops</span>
+        </div>
+        <i class="layout-profile-icon fa fa-angle-down"></i>
+    </a>
+    <ul class="layout-profile-menu" [@menu]="active ? 'visible' : 'hidden'">
+        <li role="menuitem">
+            <a href="#" [attr.tabindex]="!active ? '-1' : null">
+                <i class="fa fa-fw fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li role="menuitem">
+            <a href="#" [attr.tabindex]="!active ? '-1' : null">
+                <i class="fa fa-fw fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </li>
+        <li role="menuitem">
+            <a href="#" [attr.tabindex]="!active ? '-1' : null">
+                <i class="fa fa-fw fa-envelope-o"></i>
+                <span>Messages</span>
+            </a>
+        </li>
+        <li role="menuitem">
+            <a href="#" [attr.tabindex]="!active ? '-1' : null">
+                <i class="fa fa-fw fa-bell-o"></i>
+                <span>Notifications</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

@@ -1,0 +1,409 @@
+<div class="layout-dashboard">
+    <div class="ui-g">
+        <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="overview-box sales">
+                <i class="overview-icon fa fa-usd"></i>
+                <span class="overview-title">Sales</span>
+                <i class="overview-arrow fa fa-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    $ 92,440
+                </div>
+                <div class="overview-subinfo">
+                    21% more than yesterday
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="overview-box views">
+                <i class="overview-icon fa fa-search"></i>
+                <span class="overview-title">Views</span>
+                <i class="overview-arrow fa fa-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    7029
+                </div>
+                <div class="overview-subinfo">
+                    2% more than yesterday
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="overview-box users">
+                <i class="overview-icon fa fa-users"></i>
+                <span class="overview-title">Users</span>
+                <i class="overview-arrow fa fa-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    9522
+                </div>
+                <div class="overview-subinfo">
+                    7% more than yesterday
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-lg-3">
+            <div class="overview-box checkin">
+                <i class="overview-icon fa fa-map-pin"></i>
+                <span class="overview-title">Check-Ins</span>
+                <i class="overview-arrow fa fa-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    4211
+                </div>
+                <div class="overview-subinfo">
+                    18% more than yesterday
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-lg-8">
+            <div class="card card-w-title statistics">
+                <h1>Statistics</h1>
+                <p-chart type="line" [data]="chartData"></p-chart>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-lg-4">
+            <div class="user-card card">
+                <div class="user-card-header">
+                    <img src="assets/layout/images/dashboard/bg-header.png" alt="babylon-layout" class="profile-image" />
+                </div>
+                <div class="user-card-content">
+                    <img src="assets/layout/images/avatar.png" alt="apollo-layout" />
+                    <p-menu #menu popup="popup" [model]="items" appendTo="body"></p-menu>
+                    <button pButton id="user-button" type="button" icon="fa fa-cog" class="secondary-btn" (click)="menu.toggle($event)"></button>
+
+                    <div class="user-card-name">
+                        <span>Sarah Miller</span>
+                    </div>
+
+                    <div class="user-detail">
+                        <ul>
+                            <li class="clearfix">
+                                <i class="fa fa-tasks fa-fw"></i>
+                                <span class="project-title">Tasks</span>
+                                <span class="project-detail">3 open</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 50%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="fa fa-usd fa-fw"></i>
+                                <span class="project-title">Revenue</span>
+                                <span class="project-detail">+20%</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 20%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="fa fa-credit-card fa-fw"></i>
+                                <span class="project-title">Payments</span>
+                                <span class="project-detail">24 new</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 65%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="fa fa-users fa-fw"></i>
+                                <span class="project-title">Clients</span>
+                                <span class="project-detail">+80%</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 80%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="fa fa-users fa-fw"></i>
+                                <span class="project-title">Turnover</span>
+                                <span class="project-detail">+40%</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 40%"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-lg-4">
+            <div class="card card-w-title tasks">
+                <h1>Tasks</h1>
+                <ul>
+                    <li>
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>Sales Reports</span>
+                        <span class="task-badge red"></span>
+                    </li>
+                    <li>
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>Pay Invoices</span>
+                        <span class="task-badge orange"></span>
+                    </li>
+                    <li>
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>Kate's Birthday</span>
+                        <span class="task-badge orange"></span>
+                    </li>
+                    <li>
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>Client Meeting</span>
+                        <span class="task-badge green"></span>
+                    </li>
+                    <li>
+                        <p-checkbox binary="true"></p-checkbox>
+                        <span>New Themes</span>
+                        <span class="task-badge green"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-lg-4">
+            <div class="card card-w-title resolution-center ui-fluid">
+                <h1>Support Request</h1>
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <label for="resolution-username">Username</label>
+                        <input id="resolution-username" type="text" pInputText placeholder="Name">
+                    </div>
+                    <div class="ui-g-12">
+                        <label for="resolution-message">Message</label>
+                        <textarea id="resolution-message" type="text" pInputTextarea placeholder="Message"></textarea>
+                    </div>
+                    <div class="ui-g-6">
+                        <button type="button" label="Save Craft" pButton class="secondary-button" icon="fa fa-plus"></button>
+                    </div>
+                    <div class="ui-g-6">
+                        <button type="button" label="Send" pButton icon="fa fa-send"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-lg-4">
+            <div class="card card-w-title team">
+                <h1>Team</h1>
+                <ul>
+                    <li>
+                        <img src="assets/layout/images/avatar.png" alt="babylon-layout" />
+                        <div class="team-box">
+                            <span class="team-member">Arlene Welch</span>
+                            <span class="team-member-role">Design</span>
+                        </div>
+                        <a href="#">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
+                        <div class="team-box">
+                            <span class="team-member">John Swisher</span>
+                            <span class="team-member-role">Development</span>
+                        </div>
+                        <a href="#">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <img src="assets/layout/images/avatar-julia.png" alt="babylon-layout" />
+                        <div class="team-box">
+                            <span class="team-member">Warren Shaw</span>
+                            <span class="team-member-role">Sales</span>
+                        </div>
+                        <a href="#">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <img src="assets/layout/images/avatar-kevin.png" alt="babylon-layout" />
+                        <div class="team-box">
+                            <span class="team-member">Kevin Lane</span>
+                            <span class="team-member-role">Marketing</span>
+                        </div>
+                        <a href="#">
+                            <i class="fa fa-github"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-xl-6">
+            <div class="card card-w-title timeline">
+                <h1>Timeline</h1>
+                <ul>
+                    <li>
+                        <div class="activity-link"></div>
+                        <div class="timeline-icon">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Notes Added</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit tortor a ipsum vehicula,
+                                in semper sapien auctor.</p>
+                            <div class="timeline-footer">
+                                <i class="fa fa-clock-o"></i>
+                                <span>3 Sep 2018 at 10:41</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="activity-link"></div>
+                        <div class="timeline-icon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>Reminder Scheduled</h3>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                                totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                            <div class="timeline-footer">
+                                <i class="fa fa-clock-o"></i>
+                                <span>4 Sep 2018 at 11:30</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="activity-link"></div>
+                        <div class="timeline-icon">
+                            <i class="fa fa-picture-o"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="child">
+                                <div>
+                                    <span>3 Photos Added to</span>
+                                    <span class="colorful">Album-23</span>
+                                </div>
+                                <img src="assets/layout/images/dashboard/image-1.png" alt="babylon-layout" />
+                                <img src="assets/layout/images/dashboard/image-2.png" alt="babylon-layout" />
+                                <img src="assets/layout/images/dashboard/image-3.png" alt="babylon-layout" />
+                                <div class="timeline-footer">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>9 Sep 2018 at 00:44</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="activity-link"></div>
+                        <div class="timeline-icon">
+                            <i class="fa fa-picture-o"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="child">
+                                <h3>Location Update</h3>
+                                <img src="assets/layout/images/dashboard/antalya.png" alt="babylon-layout" style="width:100%"/>
+                                <div class="timeline-footer">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span>16 Sep 2018 at 20:02</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-xl-6">
+            <div class="card card-w-title global-sales ui-fluid">
+                <h1>Global Sales</h1>
+                <p-table [columns]="cols" [value]="cars" selectionMode="single" dataKey="vin" [(selection)]="selectedCar" [responsive]="true"
+                         [paginator]="true" [rows]="5">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th>
+                                Logo
+                            </th>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field"></p-sortIcon>
+                            </th>
+                            <th>
+                                View
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr [pSelectableRow]="rowData">
+                            <td>
+                                <img src="assets/demo/images/car/{{rowData.brand}}.png" width="50">
+                            </td>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                            <td>
+                                <p-button icon="fa fa-search" type="button"></p-button>
+                                <p-button icon="fa fa-close" type="button"></p-button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <div class="card card-w-title live-support">
+                <h1>Live Support</h1>
+                <ul>
+                    <li>
+                        <div class="ui-g">
+                            <div class="ui-g-fixed">
+                                <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
+                            </div>
+                            <div class="ui-g">
+                                <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nam ac euismod justo, eget blandit purus.</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-g">
+                            <div class="ui-g">
+                                <div class="chat-message">Mauris malesuada quis risus ut consequat.
+                                    Maecenas ornare nunc risus, pulvinar euismod mi pellentesque eget.</div>
+                            </div>
+                            <div class="ui-g-fixed">
+                                <img src="assets/layout/images/avatar-julia.png" alt="babylon-layout" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-g">
+                            <div class="ui-g-fixed">
+                                <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
+                            </div>
+                            <div class="ui-g">
+                                <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Nam ac euismod justo, eget blandit purus.</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="new-message">
+                    <div class="ui-g p-nogutter">
+                        <div class="ui-g">
+                            <input type="text" placeholder="Write a message.." />
+                        </div>
+                        <div class="ui-g-fixed">
+                            <p-button type="button" label="Send"></p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-lg-12">
+            <div class="card card-w-title">
+                <h1>Schedule</h1>
+                <p-schedule [events]="events" defaultDate="2016-01-12"></p-schedule>
+            </div>
+        </div>
+    </div>
+</div>
