@@ -113,6 +113,10 @@
                     @include border-radius($borderRadius);
                     @include transition(background-color $transitionDuration);
 
+                    &:focus {
+                        outline: 0 none;
+                    }
+
                     .layout-menuitem-icon {
                         margin-right: 6px;
                     }
