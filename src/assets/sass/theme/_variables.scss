@@ -44,9 +44,7 @@ $inputListItemHighlightBgColor:$highlightBgColor;
 $inputListItemHighlightTextColor:$highlightColorText;
 $inputListItemBorder:0 none;
 $inputListItemMargin:0;
-//?
-$inputListItemDividerColor:#d8dae2;
-
+$inputListItemDividerColor:#E0E0E0;
 $inputListHeaderPaddingTop:0.429em;
 $inputListHeaderPaddingLeft:0.857em;
 $inputListHeaderPaddingRight:0.857em;
@@ -54,9 +52,7 @@ $inputListHeaderPaddingBottom:0.429em;
 $inputListHeaderBgColor:#eeeeee;
 $inputListHeaderTextColor:$textColor;
 $inputListHeaderBorder:1px solid #E0E0E0;
-//?
 $inputListHeaderMargin:0;
-
 $inputListHeaderSearchIconColor:$textSecondaryColor;
 $inputListHeaderCloseIconColor:$primaryColor;
 $inputListHeaderCloseIconHoverColor:$primaryDarkerColor;
@@ -95,8 +91,6 @@ $buttonActiveBorderColor:$primaryDarkestColor;
 
 $buttonFocusOutline:2px dotted $primaryColor;
 $buttonFocusOutlineOffset:1px;
-//?
-$buttonFocusBorderColor:$primaryColor;
 $buttonTransition:background-color $transitionDuration,box-shadow $transitionDuration;
 $raisedButtonShadow:0 3px 2px 0 rgba(0, 0, 0, 0.2);
 $roundedButtonBorderRadius:1em;
@@ -207,7 +201,6 @@ $toggleButtonFocusBgColor:$primaryLighterColor;
 $toggleButtonFocusBorderColor:$primaryLighterColor;
 $toggleButtonFocusTextColor:$primaryDarkestColor;
 $toggleButtonFocusIconColor:$primaryColor;
-//?
 $toggleButtonActiveFocusBgColor:$primaryColor;
 $toggleButtonActiveFocusBorderColor:$primaryColor;
 $toggleButtonActiveFocusTextColor:$primaryColorText;
@@ -230,7 +223,6 @@ $ratingStarActiveIconColor:$primaryColor;
 
 //slider
 $sliderBgColor:#e0e0e0;
-//?
 $sliderBorder:0 none;
 $sliderHeight:.286em;
 $sliderWidth:.286em;
@@ -243,13 +235,14 @@ $sliderHandleHoverBgColor:$primaryLighterColor;
 $sliderHandleBorderRadius:50%;
 $sliderHandleTransition:background-color $transitionDuration;
 $sliderRangeBgColor:$primaryColor;
+$sliderHandleFocusBorder:2px solid $primaryColor;
+$sliderHandleFocusBgColor:$primaryColor;
 
 //calendar
 $calendarWidth:18.571em;
 $calendarNavIconColor:$textSecondaryColor;
 $calendarNavIconHoverColor:$primaryColor;
 $calendarNavIconTransition:color $transitionDuration;
-//?
 $calendarHeaderCellPadding:0.286em;
 $calendarButtonBarDivider:$inputBorder;
 $calendarMultipleMonthDivider:$inputBorder;
@@ -257,16 +250,12 @@ $calendarPadding:0.857em;
 $calendarTableMargin:0.857em 0 0 0;
 $calendarCellPadding:0.286em;
 $calendarCellDatePadding:0.286em;
-//?
-$calendarCellDateWidth:1.714em;
-$calendarCellDateHeight:1.714em;
 $calendarCellDateHoverBgColor:$primaryLighterColor;
 $calendarCellDateBorderRadius:$borderRadius;
 $calendarCellDateSelectedBgColor:$highlightBgColor;
 $calendarCellDateSelectedTextColor:$highlightColorText;
 $calendarCellDateTodayBgColor:#ffffff;
 $calendarCellDateTodayTextColor:$textColor;
-//?
 $calendarTimePickerDivider: 1px solid #d8dae2;
 $calendarTimePickerPadding:0.857em;
 $calendarTimePickerIconColor:$textColor;
@@ -278,7 +267,6 @@ $calendarTimePickerIconHoverColor:$primaryColor;
 $spinnerButtonWidth:1.429em;
 
 //input switch
-//?
 $inputSwitchSliderOffBgColor:$inputBgColor;
 $inputSwitchHandleOffBgColor:darken($inputBgColor, 10%);
 $inputSwitchBorderRadius:8px;
@@ -347,7 +335,6 @@ $paginatorBgColor:#ffffff;
 $paginatorBorder:$panelContentBorder;
 $paginatorIconColor:$textSecondaryColor;
 $paginatorPadding:0;
-//?
 $paginatorElementPadding:0;
 $paginatorElementWidth:2.286em;
 $paginatorElementHeight:2.286em;
@@ -387,23 +374,19 @@ $scheduleEventTextColor:$primaryColorText;
 //tree
 $treeNodePadding:0.143em 0;
 $treeNodeLabelPadding:0.286em;
-//?
 $treeNodeContentSpacing:0.143em;
 
 //lightbox
-//?
 $lightBoxNavIconFontSize:2em;
 $lightBoxNavIconColor:#ffffff;
 
 //org chart
-//?
 $organizationChartConnectorColor:#c8c8c8;
 
 //messages
 $messagesMargin:1em 0;
 $messagesPadding:1em;
 $messagesIconFontSize:1.714em;
-//?
 $messageCloseIconFontSize:1.5em;
 
 $infoMessageBgColor:#64B5F6;
@@ -484,7 +467,6 @@ $menuitemIconColor:$textColor;
 $menuitemHoverTextColor:$primaryDarkestColor;
 $menuitemHoverIconColor:$primaryDarkestColor;
 $menuitemHoverBgColor:$primaryLighterColor;
-//?
 $menuitemActiveTextColor:$primaryDarkestColor;
 $menuitemActiveIconColor:$primaryDarkestColor;
 $menuitemActiveBgColor:$primaryLighterColor;
@@ -502,7 +484,6 @@ $dataIconHoverColor:$textColor;
 $cardShadow:0 3px 6px 0 rgba(0, 0, 0, 0.16);
 
 //dialog
-//?
 $dialogHeaderPadding:.5em;
 $confirmDialogPadding:1.5em;
 

@@ -863,6 +863,16 @@ body {
                 background-color: $sliderHandleHoverBgColor;
                 border: $sliderHandleHoverBorder;
             }
+            .ui-slider-handle:focus{
+                border: $sliderHandleFocusBorder;
+                background-color: $sliderHandleFocusBgColor;
+                outline: 0 none;
+            }
+            .ui-slider-handle:active{
+                border: $sliderHandleFocusBorder;
+                background-color: $sliderHandleFocusBgColor;
+                outline: 0 none;
+            }
         }
     }
 
@@ -1189,6 +1199,10 @@ body {
                 }
             }
         }
+    }
+
+    .ui-calendar .ui-datepicker {
+        min-width: $calendarWidth;
     }
 
     ::-webkit-input-placeholder {color:$inputPlaceholderTextColor}
