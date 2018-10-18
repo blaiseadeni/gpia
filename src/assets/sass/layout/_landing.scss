@@ -106,10 +106,10 @@
                 margin: 0;
             }
 
-            .p-grid {
+            .ui-g {
                 margin-top: 42px;
 
-                .p-col-12 {
+                .ui-g-12 {
                     padding: 1em;
                 }
 
@@ -177,10 +177,10 @@
                 margin: 0;
             }
 
-            .p-grid {
+            .ui-g {
                 margin-top: 42px;
 
-                .p-col-12 {
+                .ui-g-12 {
                     padding: 28px;
                 }
             }
@@ -200,7 +200,6 @@
 
                 .pricing-intro {
                     color: #8b8b90;
-                    color: 17px;
                 }
 
                 p {
@@ -306,7 +305,7 @@
         .landing-wrapper {
             #header {
                 .header-content {
-                    background: url("\#{resource['babylon-layout:images/landing/asset-mackup-big.png']}") no-repeat;
+                    background: url("../images/landing/asset-mackup-big.png") no-repeat;
                     background-position: right 50%;
                     background-size: 35%;
                 }
@@ -362,7 +361,7 @@
 
                 .header-content {
                     padding-left: 20px;
-                    background: url("\#{resource['babylon-layout:images/landing/asset-mackup.png']}") no-repeat;
+                    background: url("../images/landing/asset-mackup.png") no-repeat;
                     background-position: right 50%;
                 }
             }
