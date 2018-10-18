@@ -14,6 +14,7 @@ body {
                 &.ui-breadcrumb-chevron {
                     margin: 0 $inlineSpacing 0 $inlineSpacing;
                     color: $textSecondaryColor;
+                    font-size: .75em;
                 }
 
                 &:first-child {
@@ -36,6 +37,7 @@ body {
         .ui-steps-item {
             background-color: transparent;
             text-align: center;
+            @include opacity(1);
                         
             .ui-menuitem-link {
                 display: inline-block;
@@ -44,18 +46,18 @@ body {
                 overflow: hidden;
                 
                 .ui-steps-number {
-                    @include border-radius(50%);
+                    @include border-radius($stepsItemBorderRadius);
                     display: inline-block;
                     color: $stepsItemNumberColor;
                     background-color: $stepsItemBgColor;
                     border: $stepsItemBorder;
                     position: relative;
-                    top: $fontSize + 2;
+                    top: $fontSize;
                     margin-bottom: $fontSize;
                     width: $stepsItemWidth;
                     height: $stepsItemHeight;
                     font-size: $fontSize + 2;
-                    line-height: $stepsItemHeight - 4;
+                    padding-top: 0.429em;
                     text-align: center;
                 }
                 
@@ -150,6 +152,7 @@ body {
             background-color: $panelHeaderBgColor;
             font-weight: $panelHeaderFontWeight;
             border: 0 none;
+            @include border-radius(0);
         }
 
         .ui-menu-separator {
@@ -174,7 +177,6 @@ body {
         .ui-submenu-list {
             padding: $submenuPadding;
             background-color: $menuBgColor;
-            border: $overlayMenuBorder;
             @include shadow($overlayMenuShadow);
 
             .ui-menuitem {
@@ -215,7 +217,6 @@ body {
         .ui-submenu-list {
             padding: $submenuPadding;
             background-color: $menuBgColor;
-            border: $overlayMenuBorder;
             @include shadow($overlayMenuShadow);
         }
 
@@ -257,7 +258,6 @@ body {
         .ui-submenu-list {
             padding: $submenuPadding;
             background-color: $menuBgColor;
-            border: $overlayMenuBorder;
             @include shadow($overlayMenuShadow);
         }
 
@@ -333,10 +333,12 @@ body {
             background-color: $panelHeaderBgColor;
             font-weight: $panelHeaderFontWeight;
             border: 0 none;
+            @include border-radius(0);
+            margin-bottom: $inlineSpacing;
 
             &:hover {
-                background-color: $panelHeaderHoverBgColor;
-                color: $panelHeaderTextColor;
+                background-color: $clickablePanelHeaderHoverBgColor;
+                color: $clickablePanelHeaderHoverTextColor;
             }
         }
 
@@ -356,53 +358,53 @@ body {
            
             .ui-tabmenuitem {
                 position: static;
-                border: $panelHeaderBorder;
-                background-color: $panelHeaderBgColor;
+                border: $clickablePanelHeaderBorder;
+                background-color: $clickablePanelHeaderBgColor;
                 margin-right: $tabHeaderSpacing;
                 margin-bottom: -1px;
-                @include transition($panelHeaderTransition);
+                @include transition($clickablePanelHeaderTransition);
 
                 .ui-menuitem-link {
-                    color: $panelHeaderTextColor;
-                    padding: $panelHeaderPadding;
+                    color: $clickablePanelHeaderTextColor;
+                    padding: $clickablePanelHeaderPadding;
 
                     .ui-menuitem-text {
-                        color: $panelHeaderTextColor;
+                        color: $clickablePanelHeaderTextColor;
                         margin-right: $inlineSpacing;
                     }
 
                     .ui-menuitem-icon {
-                        color: $panelHeaderIconColor;
+                        color: $clickablePanelHeaderIconColor;
                         margin-right: $inlineSpacing;
                     }
                 }
 
                 &:not(.ui-state-active):not(.ui-state-disabled):hover {
-                    background-color: $panelHeaderHoverBgColor;
-                    border: $panelHeaderHoverBorder;
+                    background-color: $clickablePanelHeaderHoverBgColor;
+                    border: $clickablePanelHeaderHoverBorder;
 
                     .ui-menuitem-link {
                         .ui-menuitem-text {
-                            color: $panelHeaderHoverTextColor;
+                            color: $clickablePanelHeaderHoverTextColor;
                         }
 
                         .ui-menuitem-icon {
-                            color: $panelHeaderIconHoverColor;
+                            color: $clickablePanelHeaderHoverIconColor;
                         }
                     }
                 }
 
                 &.ui-state-active {
-                    background-color: $panelHeaderActiveBgColor;
-                    border: $panelHeaderActiveBorder;
+                    background-color: $clickablePanelHeaderActiveBgColor;
+                    border: $clickablePanelHeaderActiveBorder;
 
                     .ui-menuitem-link {
                         .ui-menuitem-text {
-                            color: $panelHeaderActiveTextColor;
+                            color: $clickablePanelHeaderActiveTextColor;
                         }
 
                         .ui-menuitem-icon {
-                            color: $panelHeaderActiveIconColor;
+                            color: $clickablePanelHeaderActiveIconColor;
                         }
                     }
                 }
@@ -427,7 +429,6 @@ body {
         .ui-megamenu-panel {
             padding: $submenuPadding;
             background-color: $menuBgColor;
-            border: $overlayMenuBorder;
             @include shadow($overlayMenuShadow);
         }
 
@@ -477,17 +478,18 @@ body {
             padding: 0;
 
             > a {
-                border: $panelHeaderBorder;
-                background-color: $panelHeaderBgColor;
-                color: $panelHeaderTextColor;
-                padding: $menuitemPadding;
-                font-weight: $panelHeaderFontWeight;
+                border: $clickablePanelHeaderBorder;
+                background-color: $clickablePanelHeaderBgColor;
+                color: $clickablePanelHeaderTextColor;
+                padding: $clickablePanelHeaderPadding;
+                font-weight: $clickablePanelHeaderFontWeight;
                 position: static;
                 font-size: $fontSize;
-                @include transition($panelHeaderTransition);
+                @include transition($clickablePanelHeaderTransition);
+                @include border-radius($borderRadius);
 
                 .ui-panelmenu-icon {
-                    color: $panelHeaderIconColor;
+                    color: $clickablePanelHeaderIconColor;
 
                     &.pi-caret-right {
                         @include icon_override("\e901");
@@ -502,34 +504,35 @@ body {
             &:not(.ui-state-active) {                
                 > a:hover {
                     outline: 0 none;
-                    border: $panelHeaderHoverBorder;
-                    background-color: $panelHeaderHoverBgColor;
-                    color: $panelHeaderHoverTextColor;
+                    border: $clickablePanelHeaderHoverBorder;
+                    background-color: $clickablePanelHeaderHoverBgColor;
+                    color: $clickablePanelHeaderHoverTextColor;
 
                     .ui-panelmenu-icon {
-                        color: $panelHeaderHoverIconColor;
+                        color: $clickablePanelHeaderHoverIconColor;
                     }
                 }
             }
 
             &.ui-state-active {
                 > a {
-                    border: $panelHeaderActiveBorder;
-                    background-color: $panelHeaderActiveBgColor;
-                    color: $panelHeaderActiveTextColor;
+                    border: $clickablePanelHeaderActiveBorder;
+                    background-color: $clickablePanelHeaderActiveBgColor;
+                    color: $clickablePanelHeaderActiveTextColor;
+                    @include border-radius-bottom(0);
 
                     .ui-panelmenu-icon {
-                        color: $panelHeaderActiveIconColor;
+                        color: $clickablePanelHeaderActiveIconColor;
                     }
 
                     &:hover {
                         outline: 0 none;
-                        border: $panelHeaderActiveHoverBorder;
-                        background-color: $panelHeaderActiveHoverBgColor;
-                        color: $panelHeaderActiveHoverTextColor;
+                        border: $clickablePanelHeaderActiveHoverBorder;
+                        background-color: $clickablePanelHeaderActiveHoverBgColor;
+                        color: $clickablePanelHeaderActiveHoverTextColor;
         
                         .ui-panelmenu-icon {
-                            color: $panelHeaderActiveHoverIconColor;
+                            color: $clickablePanelHeaderActiveHoverIconColor;
                         }
                     }
                 }

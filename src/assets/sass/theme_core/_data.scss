@@ -22,6 +22,10 @@ body {
                 background-color: $paginatorElementHoverBgColor;
                 color: $paginatorElementHoverIconColor;
             }
+
+            &:focus {
+                outline: 0 none;
+            }
         }
 
         .ui-dropdown {
@@ -112,12 +116,14 @@ body {
 
         .ui-table-caption {
             border-bottom: 0 none;
-            font-weight: $tableCaptionFontWeight;
+            font-weight: $panelHeaderFontWeight;
+            @include border-radius-top(3px);
         }
 
         .ui-table-summary {
             border-top: 0 none;
-            font-weight: $tableSummaryFontWeight;
+            font-weight: $panelHeaderFontWeight;
+            @include border-radius-bottom(3px);
         }
 
         .ui-table-thead > tr > th {
@@ -142,7 +148,7 @@ body {
 
         .ui-sortable-column {
             a, a:hover {
-                color: $tableHeaderCellIconColor;
+                color: $tableHeaderCellTextColor;
             }
 
             &:not(.ui-state-highlight):hover {
@@ -150,7 +156,7 @@ body {
                 color: $tableHeaderCellHoverTextColor;
 
                 a, a:hover {
-                    color: $tableHeaderCellHoverIconColor;
+                    color: $tableHeaderCellHoverTextColor;
                 }
             }
 
@@ -343,7 +349,6 @@ body {
             border: $panelContentBorder;
             background-color: $panelContentBgColor;
             color: $panelContentTextColor;
-            padding: $panelContentPadding;
         }
 
         .ui-dataview-footer {
@@ -436,7 +441,6 @@ body {
 
         .ui-picklist-filter-container {
             padding: $inputListHeaderPaddingTop $inputListHeaderPaddingRight $inputListHeaderPaddingBottom $inputListHeaderPaddingLeft;
-            border: $panelHeaderBorder;
             color: $inputListHeaderTextColor;
             background-color: $inputListHeaderBgColor;
             margin: $inputListHeaderMargin;
@@ -516,7 +520,6 @@ body {
 
         .ui-orderlist-filter-container {
             padding: $inputListHeaderPaddingTop $inputListHeaderPaddingRight $inputListHeaderPaddingBottom $inputListHeaderPaddingLeft;
-            border: $panelHeaderBorder;
             color: $inputListHeaderTextColor;
             background-color: $inputListHeaderBgColor;
             margin: $inputListHeaderMargin;
@@ -803,12 +806,12 @@ body {
 
         .ui-treetable-caption {
             border-bottom: 0 none;
-            font-weight: $tableCaptionFontWeight;
+            font-weight: $panelHeaderFontWeight;
         }
 
         .ui-treetable-summary {
             border-top: 0 none;
-            font-weight: $tableSummaryFontWeight;
+            font-weight: $panelHeaderFontWeight;
         }
 
         .ui-treetable-thead > tr > th {
@@ -833,7 +836,7 @@ body {
 
         .ui-sortable-column {
             a, a:hover {
-                color: $tableHeaderCellIconColor;
+                color: $tableHeaderCellTextColor;
             }
 
             &:not(.ui-state-highlight):hover {
@@ -841,7 +844,7 @@ body {
                 color: $tableHeaderCellHoverTextColor;
 
                 a, a:hover {
-                    color: $tableHeaderCellHoverIconColor;
+                    color: $tableHeaderCellHoverTextColor;
                 }
             }
 

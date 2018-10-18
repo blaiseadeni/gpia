@@ -120,6 +120,7 @@ body {
                 background-color: $toggleButtonActiveFocusBgColor;
                 border-color: $toggleButtonActiveFocusBorderColor;
                 color: $toggleButtonActiveFocusTextColor;
+                outline: $toggleButtonFocusOutline;
     
                 .ui-button-icon-left {
                     color: $toggleButtonActiveFocusIconColor;
@@ -183,6 +184,7 @@ body {
                     background-color: $toggleButtonActiveFocusBgColor;
                     border-color: $toggleButtonActiveFocusBorderColor;
                     color: $toggleButtonActiveFocusTextColor;
+                    outline: $toggleButtonFocusOutline;
         
                     .ui-button-icon-left {
                         color: $toggleButtonActiveFocusIconColor;
@@ -238,6 +240,7 @@ body {
 
         &:enabled:focus {
             background-color: lighten($secondaryButtonBgColor, 5%);
+            outline-color: $secondaryButtonTextColor;
         }
 
         &:enabled:active {
@@ -260,6 +263,7 @@ body {
 
         &:enabled:focus {
             background-color: lighten($infoButtonBgColor, 5%);
+            outline-color: $infoButtonBgColor;
         }
 
         &:enabled:active {
@@ -282,6 +286,7 @@ body {
 
         &:enabled:focus {
             background-color: lighten($successButtonBgColor, 5%);
+            outline-color: $successButtonBgColor;
         }
 
         &:enabled:active {
@@ -304,6 +309,7 @@ body {
 
         &:enabled:focus {
             background-color: lighten($warningButtonBgColor, 10%);
+            outline-color: $warningButtonBgColor;
         }
 
         &:enabled:active {
@@ -326,6 +332,7 @@ body {
 
         &:enabled:focus {
             background-color: lighten($dangerButtonBgColor, 15%);
+            outline-color: $dangerButtonBgColor;
         }
 
         &:enabled:active  {

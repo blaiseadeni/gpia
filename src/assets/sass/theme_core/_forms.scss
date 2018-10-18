@@ -147,20 +147,21 @@ body {
     }
 
     .ui-inputswitch {
-        width: $inputSwitchWidth;
-        height: $inputSwitchHeight;
+        width: 34px;
+        height: 14px;
 
         .ui-inputswitch-slider {
             @include transition($inputSwitchTransition);
             border-radius: $inputSwitchBorderRadius;
             background: $inputSwitchSliderOffBgColor;
+            border: $inputBorder;
 
             &:before {
                 background-color: $inputSwitchHandleOffBgColor;
                 height: 1.250em;
                 width: 1.250em;
-                left: .25em;
-                bottom: .25em;
+                left: 0;
+                bottom: -.2em;
                 border-radius: 50%;
                 -webkit-transition: $transitionDuration;
                 transition: $transitionDuration;
@@ -178,6 +179,9 @@ body {
         &.ui-inputswitch-focus {
             .ui-inputswitch-slider {
                 background: $inputSwitchSliderOffFocusBgColor;
+                &:before {
+                    background-color: $inputSwitchHandleOffFocusBgColor;
+                }
             }
         }
 
@@ -190,6 +194,10 @@ body {
         &.ui-inputswitch-checked {
             .ui-inputswitch-slider {
                 background-color: $inputSwitchSliderOnBgColor;
+                border-color: $inputSwitchSliderOnBgColor;
+                &:before {
+                    background-color: $inputSwitchHandleOnBgColor;
+                }
             }
 
             &:not(.ui-state-disabled):hover {
@@ -902,7 +910,6 @@ body {
 
         .ui-datepicker-header {
             padding: $inputListHeaderPaddingTop $inputListHeaderPaddingRight $inputListHeaderPaddingBottom $inputListHeaderPaddingLeft;
-            background-color: $inputListHeaderBgColor;
             color: $inputListHeaderTextColor;
             @include border-radius(0);
 
@@ -975,6 +982,7 @@ body {
                     a {
                         background-color: $calendarCellDateTodayBgColor;
                         color: $calendarCellDateTodayTextColor;
+                        font-weight: 600;
                     }
                 }
             }
@@ -1203,6 +1211,6 @@ body {
     p-spinner.ng-dirty.ng-invalid > .ui-inputtext,
     p-selectbutton.ng-dirty.ng-invalid .ui-button,
     p-togglebutton.ng-dirty.ng-invalid .ui-button {
-        border: $inputErrorBorder;
+        border: 1px solid $inputErrorBorderColor;
     }
 }

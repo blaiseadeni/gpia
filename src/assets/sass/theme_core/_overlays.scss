@@ -38,31 +38,33 @@ body {
     }
 
     .ui-dialog {
-        padding: 0;
+        padding: 1em 2em;
+        background-color: $panelContentBgColor;
         @include shadow($overlayContainerShadow);
         
         .ui-dialog-titlebar {
-            border: $panelHeaderBorder;
-            background-color: $panelHeaderBgColor;
-            color: $panelHeaderTextColor;
+            border: 0 none;
+            background-color: $panelContentBgColor;
+            color: $panelContentTextColor;
             padding: $dialogHeaderPadding;
             font-weight: $panelHeaderFontWeight;
-            border-bottom: 0 none;
             
             .ui-dialog-title {
                 margin: 0;
                 float: none;
+                font-size: 1.286em;
+                font-weight: $panelHeaderFontWeight;
             }
             
             .ui-dialog-titlebar-icon {
-                color: $panelHeaderIconColor;
+                color: $textSecondaryColor;
                 border: 0 none;
                 padding: 0;
                 margin-left: $inlineSpacing;
                 @include transition(color $transitionDuration);
                 
                 &:hover {
-                    color: $panelHeaderIconHoverColor;
+                    color: $textColor;
                 }
             }
         }
@@ -71,11 +73,10 @@ body {
             background-color: $panelContentBgColor;
             color: $panelContentTextColor;
             border: $overlayContentBorder;
-            padding: $panelContentPadding;
+            padding: .5em;
         }
         
         .ui-dialog-footer {
-            border: $panelFooterBorder;
             background-color: $panelFooterBgColor;
             color: $panelFooterTextColor;
             padding: $panelFooterPadding;
