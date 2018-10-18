@@ -54,17 +54,14 @@
 
                 #landing-menu-button {
                     display: none;
-                    width: 28px;
-                    height: 28px;
-                    line-height: 28px;
                     color: #000000;
                     float: right;
                     margin-top: 8px;
                     text-align: center;
                     
-                    i {
-                        line-height: inherit;
-                        font-size: 28px;
+                    img {
+                        width: 6px;
+                        margin-right: 10px;
                     }
                 }
             }
