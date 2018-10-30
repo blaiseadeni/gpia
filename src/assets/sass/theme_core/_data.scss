@@ -506,6 +506,10 @@ body {
             button {
                 font-size: $fontSize + 2;
             }
+
+            .ui-button.ui-button-icon-only {
+                width: auto;
+            }
         }
 
         .ui-orderlist-caption {

@@ -153,6 +153,7 @@
         }
 
         .ui-inputtext {
+            width: 100%;
             margin-bottom: 16px;
         }
 
@@ -703,8 +704,8 @@
             .p-col-fixed {
                 width: 100px;
                 
-                button {
-                    width :100%;
+                .ui-button {
+                    width :100px;
                     @include border-radius(0);
                 }
             }

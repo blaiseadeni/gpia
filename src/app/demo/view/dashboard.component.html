@@ -1,6 +1,6 @@
 <div class="layout-dashboard">
-    <div class="ui-g">
-        <div class="ui-g-12 ui-md-6 ui-lg-3">
+    <div class="p-grid">
+        <div class="p-col-12 p-lg-6 p-xl-3">
             <div class="overview-box sales">
                 <i class="overview-icon fa fa-usd"></i>
                 <span class="overview-title">Sales</span>
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-3">
+        <div class="p-col-12 p-lg-6 p-xl-3">
             <div class="overview-box views">
                 <i class="overview-icon fa fa-search"></i>
                 <span class="overview-title">Views</span>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-3">
+        <div class="p-col-12 p-lg-6 p-xl-3">
             <div class="overview-box users">
                 <i class="overview-icon fa fa-users"></i>
                 <span class="overview-title">Users</span>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-3">
+        <div class="p-col-12 p-lg-6 p-xl-3">
             <div class="overview-box checkin">
                 <i class="overview-icon fa fa-map-pin"></i>
                 <span class="overview-title">Check-Ins</span>
@@ -53,14 +53,14 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-lg-8">
+        <div class="p-col-12 p-lg-8">
             <div class="card card-w-title statistics">
                 <h1>Statistics</h1>
                 <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
             </div>
         </div>
 
-        <div class="ui-g-12 ui-lg-4">
+        <div class="p-col-12 p-lg-4">
             <div class="user-card card">
                 <div class="user-card-header">
                     <img src="assets/layout/images/dashboard/bg-header.png" alt="babylon-layout" class="profile-image" />
@@ -71,7 +71,7 @@
                     <button pButton id="user-button" type="button" icon="fa fa-cog" class="secondary-btn" (click)="menu.toggle($event)"></button>
 
                     <div class="user-card-name">
-                        <span>Sarah Miller</span>
+                        <span>Arlene Welch</span>
                     </div>
 
                     <div class="user-detail">
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-12 ui-lg-4">
+        <div class="p-col-12 p-md-12 p-lg-4">
             <div class="card card-w-title tasks">
                 <h1>Tasks</h1>
                 <ul>
@@ -163,8 +163,8 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-12 ui-lg-4">
-            <div class="card card-w-title resolution-center ui-fluid">
+        <div class="p-col-12 p-md-12 p-lg-4">
+            <div class="card card-w-title resolution-center p-fluid">
                 <h1>Support Request</h1>
 
                 <label for="resolution-username">Username</label>
@@ -180,7 +180,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-12 ui-lg-4">
+        <div class="p-col-12 p-md-12 p-lg-4">
             <div class="card card-w-title team">
                 <h1>Team</h1>
                 <ul>
@@ -240,7 +240,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-xl-6">
+        <div class="p-col-12 p-xl-6">
             <div class="card card-w-title timeline">
                 <h1>Timeline</h1>
                 <ul>
@@ -315,8 +315,8 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-xl-6">
-            <div class="card card-w-title global-sales ui-fluid">
+        <div class="p-col-12 p-xl-6">
+            <div class="card card-w-title global-sales p-fluid">
                 <h1>Global Sales</h1>
                 <p-table [columns]="cols" [value]="cars" selectionMode="single" dataKey="vin" [(selection)]="selectedCar" [responsive]="true"
                          [paginator]="true" [rows]="5">
@@ -357,33 +357,33 @@
                 <h1>Live Support</h1>
                 <ul>
                     <li>
-                        <div class="ui-g">
-                            <div class="ui-g-fixed">
+                        <div class="p-grid">
+                            <div class="p-col-fixed">
                                 <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
                             </div>
-                            <div class="ui-g">
+                            <div class="p-col">
                                 <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Nam ac euismod justo, eget blandit purus.</div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div class="ui-g">
-                            <div class="ui-g">
+                        <div class="p-grid">
+                            <div class="p-col">
                                 <div class="chat-message">Mauris malesuada quis risus ut consequat.
                                     Maecenas ornare nunc risus, pulvinar euismod mi pellentesque eget.</div>
                             </div>
-                            <div class="ui-g-fixed">
+                            <div class="p-col-fixed">
                                 <img src="assets/layout/images/avatar-julia.png" alt="babylon-layout" />
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div class="ui-g">
-                            <div class="ui-g-fixed">
+                        <div class="p-grid">
+                            <div class="p-col-fixed">
                                 <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
                             </div>
-                            <div class="ui-g">
+                            <div class="p-col">
                                 <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Nam ac euismod justo, eget blandit purus.</div>
                             </div>
@@ -392,11 +392,11 @@
                 </ul>
 
                 <div class="new-message">
-                    <div class="ui-g p-nogutter">
-                        <div class="ui-g">
+                    <div class="p-grid p-nogutter">
+                        <div class="p-col">
                             <input type="text" placeholder="Write a message.." />
                         </div>
-                        <div class="ui-g-fixed">
+                        <div class="p-col-fixed">
                             <p-button type="button" label="Send"></p-button>
                         </div>
                     </div>
@@ -404,7 +404,7 @@
             </div>
         </div>
 
-        <div class="ui-g-12 ui-md-12 ui-lg-12">
+        <div class="p-col-12 p-md-12 p-lg-12">
             <div class="card card-w-title">
                 <h1>Schedule</h1>
                 <p-fullCalendar [events]="events" [options]="fullCalendarOptions"></p-fullCalendar>
