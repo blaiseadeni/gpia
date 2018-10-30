@@ -6,15 +6,16 @@ import { BreadcrumbService } from '../../breadcrumb.service';
     styles: [`
         .docs pre.doc-command {
             font-family: monospace;
-            background-color: #EFEFEF;
-            color: #333333;
+            background-color: #E0E0E0;
+            color: #212121;
             padding: 1em;
             font-size: 14px;
-            border-radius: 0;
+            border-radius: 3px;
             overflow: auto;
         }
 
-        .docs p {
+        .docs p,
+        .docs li {
             line-height: 1.5;
         }`
     ]
