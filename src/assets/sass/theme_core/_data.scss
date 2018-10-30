@@ -223,7 +223,7 @@ body {
         }
 
         &.ui-table-hoverable-rows {
-            .ui-table-tbody > tr:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover {
+            .ui-table-tbody > tr.ui-selectable-row:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover {
                 cursor: pointer;
                 background-color: $tableBodyRowHoverBgColor;
                 color: $tableBodyRowHoverTextColor;
