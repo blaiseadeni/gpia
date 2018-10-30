@@ -366,10 +366,6 @@ body {
             border-color: $inputHoverBorderColor;
         }
 
-        &:not(.ui-state-disabled):focus {
-            @include focused-input();
-        }
-
         .ui-dropdown-label {
             padding-right: 2em;
         }
@@ -455,7 +451,7 @@ body {
             border-color: $inputHoverBorderColor;
         }
 
-        &:not(.ui-state-disabled):focus {
+        &:not(.ui-state-disabled).ui-state-focus {
             @include focused-input();
         }
 
@@ -526,11 +522,6 @@ body {
                 @include transition($inputListHeaderCloseIconTransition);
 
                 &:hover {
-                    color: $inputListHeaderCloseIconHoverColor;
-                }
-
-                &:focus {
-                    outline: 0 none;
                     color: $inputListHeaderCloseIconHoverColor;
                 }
             }
@@ -893,11 +884,6 @@ body {
                 .ui-datepicker-prev,
                 .ui-datepicker-next {
                     &:hover {
-                        color: $calendarNavIconHoverColor;
-                    }
-
-                    &:focus {
-                        outline: 0 none;
                         color: $calendarNavIconHoverColor;
                     }
                 }

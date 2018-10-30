@@ -159,7 +159,7 @@ $checkboxActiveFocusTextColor:$primaryColorText;
 $checkboxActiveFocusBorderColor:$primaryDarkerColor;
 $checkboxFocusBgColor:$inputBgColor;
 $checkboxFocusTextColor:$primaryColor;
-$checkboxFocusBorderColor:$inputHoverBorderColor;
+$checkboxFocusBorderColor:$inputFocusBorderColor;
 $checkboxTransition:background-color $transitionDuration, border-color $transitionDuration;
 
 //radiobutton
