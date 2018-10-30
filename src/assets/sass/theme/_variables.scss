@@ -390,7 +390,7 @@ $messagesIconFontSize:1.714em;
 $messageCloseIconFontSize:1.5em;
 
 $infoMessageBgColor:#64B5F6;
-$infoMessageBorder:1px solid #64B5F6;
+$infoMessageBorder:0 none;
 $infoMessageTextColor:#000000;
 $infoMessageIconColor:#000000;
 
@@ -400,12 +400,12 @@ $successMessageTextColor:#ffffff;
 $successMessageIconColor:#ffffff;
 
 $warnMessageBgColor:#FFD54F;
-$warnMessageBorder:1px solid #FFD54F;
+$warnMessageBorder:0 none;
 $warnMessageTextColor:#000000;
 $warnMessageIconColor:#000000;
 
 $errorMessageBgColor:#EF5350;
-$errorMessageBorder:1px solid #EF5350;
+$errorMessageBorder:0 none;
 $errorMessageTextColor:#ffffff;
 $errorMessageIconColor:#ffffff;
 

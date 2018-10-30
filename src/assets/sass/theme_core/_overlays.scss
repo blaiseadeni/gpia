@@ -160,6 +160,10 @@ body {
         }
     }
 
+    p-lightbox img {
+        margin-right: $inlineSpacing;
+    }
+
     .ui-lightbox {
         @include shadow($overlayContainerShadow);
         

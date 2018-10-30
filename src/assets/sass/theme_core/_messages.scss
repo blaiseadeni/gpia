@@ -114,8 +114,8 @@ body {
             }
         }
 
-        .ui-message-icon {
-            font-size: $messagesIconFontSize;
+        .ui-message-icon + .ui-message-text {
+            margin-left: $inputPadding;
         }
     }
         
