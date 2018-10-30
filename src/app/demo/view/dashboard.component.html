@@ -56,7 +56,7 @@
         <div class="ui-g-12 ui-lg-8">
             <div class="card card-w-title statistics">
                 <h1>Statistics</h1>
-                <p-chart type="line" [data]="chartData"></p-chart>
+                <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
             </div>
         </div>
 
@@ -109,11 +109,19 @@
                                 </div>
                             </li>
                             <li class="clearfix">
-                                <i class="fa fa-users fa-fw"></i>
-                                <span class="project-title">Turnover</span>
-                                <span class="project-detail">+40%</span>
+                                <i class="fa fa-credit-card fa-fw"></i>
+                                <span class="project-title">Sales</span>
+                                <span class="project-detail">+45</span>
                                 <div class="project-progressbar">
-                                    <div class="project-progressbar-value" style="width: 40%"></div>
+                                    <div class="project-progressbar-value" style="width: 45%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="fa fa-line-chart fa-fw"></i>
+                                <span class="project-title">Performance</span>
+                                <span class="project-detail">+75</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 75%"></div>
                                 </div>
                             </li>
                         </ul>
@@ -158,21 +166,16 @@
         <div class="ui-g-12 ui-md-12 ui-lg-4">
             <div class="card card-w-title resolution-center ui-fluid">
                 <h1>Support Request</h1>
-                <div class="ui-g">
-                    <div class="ui-g-12">
-                        <label for="resolution-username">Username</label>
-                        <input id="resolution-username" type="text" pInputText placeholder="Name">
-                    </div>
-                    <div class="ui-g-12">
-                        <label for="resolution-message">Message</label>
-                        <textarea id="resolution-message" type="text" pInputTextarea placeholder="Message"></textarea>
-                    </div>
-                    <div class="ui-g-6">
-                        <button type="button" label="Save Craft" pButton class="secondary-button" icon="fa fa-plus"></button>
-                    </div>
-                    <div class="ui-g-6">
-                        <button type="button" label="Send" pButton icon="fa fa-send"></button>
-                    </div>
+
+                <label for="resolution-username">Username</label>
+                <input id="resolution-username" type="text" pInputText placeholder="Name">
+
+                <label for="resolution-message">Message</label>
+                <textarea id="resolution-message" type="text" pInputTextarea placeholder="Message"></textarea>
+                
+                <div class="resolution-button-bar">
+                    <button type="button" label="Save Draft" pButton class="ui-button-secondary" icon="fa fa-plus"></button>
+                    <button type="button" label="Send" pButton icon="fa fa-send"></button>
                 </div>
             </div>
         </div>
@@ -340,8 +343,10 @@
                                 {{rowData[col.field]}}
                             </td>
                             <td>
-                                <p-button icon="fa fa-search" type="button"></p-button>
-                                <p-button icon="fa fa-close" type="button"></p-button>
+                                <div class="ui-g">
+                                    <div class="ui-g-6"><p-button icon="fa fa-search" type="button"></p-button></div>
+                                    <div class="ui-g-6"><p-button icon="fa fa-close" type="button" styleClass="ui-button-danger"></p-button></div>
+                                </div>
                             </td>
                         </tr>
                     </ng-template>
@@ -402,7 +407,7 @@
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <div class="card card-w-title">
                 <h1>Schedule</h1>
-                <p-schedule [events]="events" defaultDate="2016-01-12"></p-schedule>
+                <p-fullCalendar [events]="events" [options]="fullCalendarOptions"></p-fullCalendar>
             </div>
         </div>
     </div>

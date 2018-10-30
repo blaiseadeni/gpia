@@ -16,11 +16,15 @@ export class DashboardDemoComponent implements OnInit {
 
     chartData: any;
 
+    chartOptions: any;
+
     events: any[];
 
     selectedCar: Car;
 
     items: MenuItem[];
+
+    fullCalendarOptions: any;
 
     constructor(private carService: CarService, private eventService: EventService, private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
@@ -42,26 +46,70 @@ export class DashboardDemoComponent implements OnInit {
 
         this.chartData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'First Dataset',
-                    data: [65, 59, 80, 81, 56, 55, 40],
-                    fill: false,
-                    borderColor: '#FFC107'
-                },
-                {
-                    label: 'Second Dataset',
-                    data: [28, 48, 40, 19, 86, 27, 90],
-                    fill: false,
-                    borderColor: '#03A9F4'
-                },
-                {
-                    label: 'Third Dataset',
-                    data: [37, 67, 17, 47, 20, 55, 60],
-                    fill: false,
-                    borderColor: '#62bb65'
-                }
-            ]
+            datasets: [{
+                label: 'Sales',
+                data: [12, 19, 3, 5, 2, 3, 9],
+                borderColor: [
+                    '#7E57C2',
+                ],
+                borderWidth: 3,
+                borderDash:[5, 5],
+                fill: false,
+                pointRadius: 3
+            }, {
+                label: 'Income',
+                data: [1, 2, 5, 3, 12, 7, 15],
+                backgroundColor: [
+                    'rgba(187,222,251,0.2)',
+                ],
+                borderColor: [
+                    '#42A5F5',
+                ],
+                borderWidth: 3,
+                fill: true
+            },
+            {
+                label: 'Expenses',
+                data: [7, 12, 15, 5, 3, 13, 21],
+                borderColor: [
+                    '#FFB300',
+                ],
+                borderWidth: 3,
+                fill: false,
+                pointRadius: [4, 6, 4, 12, 8, 0, 4]
+            },
+            {
+                label: 'New Users',
+                data: [3, 7, 2, 17, 15, 13, 19],
+                borderColor: [
+                    '#66BB6A',
+                ],
+                borderWidth: 3,
+                fill: false
+            }]
+        };
+
+        this.chartOptions = {
+            responsive: true,
+            hover: {
+                mode: 'index'
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Month'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Value'
+                    }
+                }]
+            }
         };
 
         this.items = [
@@ -69,5 +117,9 @@ export class DashboardDemoComponent implements OnInit {
             { label: 'Update', icon: 'fa fa-fw fa-refresh' },
             { label: 'Delete', icon: 'fa fa-fw fa-trash' }
         ];
+
+        this.fullCalendarOptions = {
+            defaultDate: '2016-01-12'
+        };
     }
 }

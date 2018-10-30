@@ -163,6 +163,7 @@
 
         .resolution-button-bar {
             text-align: right;
+            margin-top: 16px;
 
             .ui-button {
                 width: auto;
@@ -559,7 +560,7 @@
 
     .global-sales {
         
-        .ui-datatable {
+        .ui-table {
             th {
                 border: 0 none;
                 text-align: left;
