@@ -128,11 +128,6 @@ body {
                         @include icon_override("\e902");
                     }
                 }
-
-                &:not(.ui-state-disabled):focus {
-                    outline-offset: 1px;
-                    outline: 2px dotted $clickablePanelHeaderBgColor;
-                }
             }
 
             &:not(.ui-state-active):not(.ui-state-disabled):hover {
@@ -203,6 +198,7 @@ body {
                         color: $clickablePanelHeaderTextColor;
                         padding: $clickablePanelHeaderPadding;
                         font-weight: $clickablePanelHeaderFontWeight;
+                        outline: 0 none;
 
                         .ui-tabview-left-icon {
                             margin-right: $inlineSpacing;
@@ -210,11 +206,6 @@ body {
 
                         .ui-tabview-right-icon {
                             margin-left: $inlineSpacing;
-                        }
-
-                        &:not(.ui-state-disabled):focus {
-                            outline-offset: 1px;
-                            outline: 2px dotted $clickablePanelHeaderBgColor;
                         }
                     }
 
