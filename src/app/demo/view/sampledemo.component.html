@@ -2,9 +2,9 @@
     <div class="p-grid">
         <div class="p-col-12">
             <div class="ui-messages ui-widget ui-corner-all ui-messages-success" style="margin: 0 0 1em 0; display: block">
-                <span class="ui-messages-icon fa fa-fw fa-2x fa-check"></span>
                 <ul>
                     <li>
+                        <span class="ui-messages-icon pi pi-check"></span>
                         <span class="ui-messages-summary" style="font-size:16px">Babylon provides a theme for all 80+ PrimeNG Components. This page contains samples of the commonly
                             used components for demo purposes.</span>
                     </li>
@@ -60,14 +60,14 @@
                             Button
                         </div>
                         <div class="p-col-12 p-md-4">
-                            <button pButton type="button" label="Edit" icon="fa fa-edit"></button>
+                            <button pButton type="button" label="Edit" icon="pi pi-pencil"></button>
                         </div>
 
                         <div class="p-col-12 p-md-2">
                             SplitButton
                         </div>
                         <div class="p-col-12 p-md-4">
-                            <p-splitButton label="Save" icon="fa fa-save" [model]="splitButtonItems"></p-splitButton>
+                            <p-splitButton label="Save" icon="pi pi-save" [model]="splitButtonItems"></p-splitButton>
                         </div>
 
                         <div class="p-col-12 p-md-2">
@@ -149,7 +149,7 @@
                             Dialog
                         </div>
                         <div class="p-col-12 p-md-4">
-                            <button type="button" label="Login" icon="fa fa-external-link" (click)="dialogVisible=true" pButton></button>
+                            <button type="button" label="Login" icon="pi pi-external-link" (click)="dialogVisible=true" pButton></button>
                         </div>
 
                         <div class="p-col-12 p-md-2">
@@ -172,7 +172,7 @@
 
                     <p-footer>
                         <div class="ui-dialog-buttonpane ui-helper-clearfix">
-                            <button type="button" label="Login" icon="fa fa-user" (click)="dialogVisible=false" pButton></button>
+                            <button type="button" label="Login" icon="pi pi-user" (click)="dialogVisible=false" pButton></button>
                         </div>
                     </p-footer>
                 </p-dialog>
@@ -253,7 +253,7 @@
                                 </div>
                             </div>
                             <div class="p-col-12 p-md-1 search-icon">
-                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)"></button>
+                                <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)"></button>
                             </div>
                         </div>
                     </ng-template>
@@ -263,7 +263,7 @@
                                 <img src="assets/demo/images/car/{{car.brand}}.png">
                                 <div class="car-detail">{{car.year}} - {{car.color}}</div>
                                 <hr class="ui-widget-content" style="border-top:0">
-                                <button pButton type="button" icon="fa fa-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
+                                <button pButton type="button" icon="pi pi-search" (click)="selectCar($event, car)" style="margin-top:0"></button>
                             </p-panel>
                         </div>
                     </ng-template>

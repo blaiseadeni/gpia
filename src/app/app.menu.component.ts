@@ -882,7 +882,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                    [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
                     <i class="layout-menuitem-icon" [ngClass]="child.icon"></i>
                     <span class="layout-menuitem-text">{{child.label}}</span>
-                    <i class="fa fa-fw fa-angle-down layout-submenu-toggler" *ngIf="child.items"></i>
+                    <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                 </a>
 
@@ -891,7 +891,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                    [routerLinkActiveOptions]="{exact: true}" [attr.tabindex]="!visible ? '-1' : null" [attr.target]="child.target">
                     <i class="layout-menuitem-icon" [ngClass]="child.icon"></i>
                     <span class="layout-menuitem-text">{{child.label}}</span>
-                    <i class="fa fa-fw fa-angle-down layout-menuitem-toggler" *ngIf="child.items"></i>
+                    <i class="pi pi-fw pi-angle-down layout-menuitem-toggler" *ngIf="child.items"></i>
                     <span class="menuitem-badge" *ngIf="child.badge">{{child.badge}}</span>
                 </a>
                 <div class="layout-menu-tooltip">

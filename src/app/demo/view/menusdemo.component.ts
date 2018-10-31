@@ -46,20 +46,20 @@ export class MenusDemoComponent implements OnInit {
         this.breadcrumbItems.push({ label: 'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi' });
 
         this.tabMenuItems = [
-            { label: 'Stats', icon: 'fa fa-fw fa-bar-chart' },
-            { label: 'Calendar', icon: 'fa fa-fw fa-calendar' },
-            { label: 'Documentation', icon: 'fa fa-fw fa-book' },
-            { label: 'Support', icon: 'fa fa-fw fa-support' },
-            { label: 'Social', icon: 'fa fa-fw fa-twitter' }
+            { label: 'Stats', icon: 'pi pi-fw pi-chart-bar' },
+            { label: 'Calendar', icon: 'pi pi-fw pi-calendar' },
+            { label: 'Documentation', icon: 'pi pi-fw pi-file' },
+            { label: 'Support', icon: 'pi pi-fw pi-cog' },
+            { label: 'Social', icon: 'pi pi-fw pi-share-alt' }
         ];
 
         this.tieredItems = [
             {
                 label: 'File',
-                icon: 'fa fa-fw fa-file-o',
+                icon: 'pi pi-fw pi-file',
                 items: [{
                     label: 'New',
-                    icon: 'fa fa-fw fa-plus',
+                    icon: 'pi pi-fw pi-plus',
                     items: [
                         { label: 'Project' },
                         { label: 'Other' },
@@ -71,22 +71,22 @@ export class MenusDemoComponent implements OnInit {
             },
             {
                 label: 'Edit',
-                icon: 'fa fa-fw fa-edit',
+                icon: 'pi pi-fw pi-pencil',
                 items: [
-                    { label: 'Undo', icon: 'fa fa-fw fa-mail-forward' },
-                    { label: 'Redo', icon: 'fa fa-fw fa-mail-reply' }
+                    { label: 'Undo', icon: 'pi pi-fw pi-step-backward' },
+                    { label: 'Redo', icon: 'pi pi-fw pi-step-forward' }
                 ]
             },
             {
                 label: 'Help',
-                icon: 'fa fa-fw fa-question',
+                icon: 'pi pi-fw pi-question',
                 items: [
                     {
                         label: 'Contents'
                     },
                     {
                         label: 'Search',
-                        icon: 'fa fa-fw fa-search',
+                        icon: 'pi pi-fw pi-search',
                         items: [
                             {
                                 label: 'Text',
@@ -105,48 +105,48 @@ export class MenusDemoComponent implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'fa fa-fw fa-gear',
+                icon: 'pi pi-fw pi-cog',
                 items: [
                     {
                         label: 'Edit',
-                        icon: 'fa fa-fw fa-refresh',
+                        icon: 'pi pi-fw pi-refresh',
                         items: [
-                            { label: 'Save', icon: 'fa fa-fw fa-save' },
-                            { label: 'Update', icon: 'fa fa-fw fa-save' },
+                            { label: 'Save', icon: 'pi pi-fw pi-save' },
+                            { label: 'Update', icon: 'pi pi-fw pi-save' },
                         ]
                     },
                     {
                         label: 'Other',
-                        icon: 'fa fa-fw fa-phone',
+                        icon: 'pi pi-fw pi-phone',
                         items: [
-                            { label: 'Delete', icon: 'fa fa-fw fa-minus' }
+                            { label: 'Delete', icon: 'pi pi-fw pi-minus' }
                         ]
                     }
                 ]
             },
             {
-                label: 'Quit', icon: 'fa fa-fw fa-minus'
+                label: 'Quit', icon: 'pi pi-fw pi-minus'
             }
         ];
 
         this.items = [{
             label: 'File',
             items: [
-                { label: 'New', icon: 'fa fa-fw fa-plus' },
-                { label: 'Open', icon: 'fa fa-fw fa-download' }
+                { label: 'New', icon: 'pi pi-fw pi-plus' },
+                { label: 'Open', icon: 'pi pi-fw pi-download' }
             ]
         },
         {
             label: 'Edit',
             items: [
-                { label: 'Undo', icon: 'fa fa-fw fa-refresh' },
-                { label: 'Redo', icon: 'fa fa-fw fa-repeat' }
+                { label: 'Undo', icon: 'pi pi-fw pi-refresh' },
+                { label: 'Redo', icon: 'pi pi-fw pi-refresh' }
             ]
         }];
 
         this.megaMenuItems = [
             {
-                label: 'TV', icon: 'fa fa-fw fa-check',
+                label: 'TV', icon: 'pi pi-fw pi-check',
                 items: [
                     [
                         {
@@ -171,7 +171,7 @@ export class MenusDemoComponent implements OnInit {
                 ]
             },
             {
-                label: 'Sports', icon: 'fa fa-fw fa-soccer-ball-o',
+                label: 'Sports', icon: 'pi pi-fw pi-globe',
                 items: [
                     [
                         {
@@ -207,7 +207,7 @@ export class MenusDemoComponent implements OnInit {
                 ]
             },
             {
-                label: 'Entertainment', icon: 'fa fa-fw fa-child',
+                label: 'Entertainment', icon: 'pi pi-fw pi-users',
                 items: [
                     [
                         {
@@ -232,7 +232,7 @@ export class MenusDemoComponent implements OnInit {
                 ]
             },
             {
-                label: 'Technology', icon: 'fa fa-fw fa-gears',
+                label: 'Technology', icon: 'pi pi-fw pi-cog',
                 items: [
                     [
                         {
@@ -261,37 +261,37 @@ export class MenusDemoComponent implements OnInit {
         this.panelMenuItems = [
             {
                 label: 'File',
-                icon: 'fa fa-fw fa-file-o',
+                icon: 'pi pi-fw pi-file',
                 items: [{
                     label: 'New',
-                    icon: 'fa fa-fw fa-plus',
+                    icon: 'pi pi-fw pi-plus',
                     items: [
                         { label: 'Project' },
                         { label: 'Other' },
                     ]
                 },
-                { label: 'Open' },
-                { label: 'Quit' }
+                    { label: 'Open' },
+                    { label: 'Quit' }
                 ]
             },
             {
                 label: 'Edit',
-                icon: 'fa fa-fw fa-edit',
+                icon: 'pi pi-fw pi-pencil',
                 items: [
-                    { label: 'Undo', icon: 'fa fa-fw fa-mail-forward' },
-                    { label: 'Redo', icon: 'fa fa-fw fa-mail-reply' }
+                    { label: 'Undo', icon: 'pi pi-fw pi-step-backward' },
+                    { label: 'Redo', icon: 'pi pi-fw pi-step-forward' }
                 ]
             },
             {
                 label: 'Help',
-                icon: 'fa fa-fw fa-question',
+                icon: 'pi pi-fw pi-question',
                 items: [
                     {
                         label: 'Contents'
                     },
                     {
                         label: 'Search',
-                        icon: 'fa fa-fw fa-search',
+                        icon: 'pi pi-fw pi-search',
                         items: [
                             {
                                 label: 'Text',
@@ -310,21 +310,21 @@ export class MenusDemoComponent implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'fa fa-fw fa-gear',
+                icon: 'pi pi-fw pi-cog',
                 items: [
                     {
                         label: 'Edit',
-                        icon: 'fa fa-fw fa-refresh',
+                        icon: 'pi pi-fw pi-refresh',
                         items: [
-                            { label: 'Save', icon: 'fa fa-fw fa-save' },
-                            { label: 'Update', icon: 'fa fa-fw fa-save' },
+                            { label: 'Save', icon: 'pi pi-fw pi-save' },
+                            { label: 'Update', icon: 'pi pi-fw pi-save' },
                         ]
                     },
                     {
                         label: 'Other',
-                        icon: 'fa fa-fw fa-phone',
+                        icon: 'pi pi-fw pi-phone',
                         items: [
-                            { label: 'Delete', icon: 'fa fa-fw fa-minus' }
+                            { label: 'Delete', icon: 'pi pi-fw pi-minus' }
                         ]
                     }
                 ]

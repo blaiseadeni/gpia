@@ -113,9 +113,9 @@ export class DashboardDemoComponent implements OnInit {
         };
 
         this.items = [
-            { label: 'Save', icon: 'fa fa-fw fa-check' },
-            { label: 'Update', icon: 'fa fa-fw fa-refresh' },
-            { label: 'Delete', icon: 'fa fa-fw fa-trash' }
+            { label: 'Save', icon: 'pi pi-fw pi-check' },
+            { label: 'Update', icon: 'pi pi-fw pi-refresh' },
+            { label: 'Delete', icon: 'pi pi-fw pi-trash' }
         ];
 
         this.fullCalendarOptions = {

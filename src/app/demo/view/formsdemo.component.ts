@@ -92,9 +92,9 @@ export class FormsDemoComponent implements OnInit {
         this.types.push({ label: 'Wii U', value: 'Wii U' });
 
         this.splitButtonItems = [
-            { label: 'Update', icon: 'fa fa-fw fa-refresh' },
-            { label: 'Delete', icon: 'fa fa-fw fa-close' },
-            { label: 'Home', icon: 'fa fa-fw fa-home', url: 'http://www.primefaces.org/primeng' }
+            { label: 'Update', icon: 'pi pi-fw pi-refresh' },
+            { label: 'Delete', icon: 'pi pi-fw pi-times' },
+            { label: 'Home', icon: 'pi pi-fw pi-home', url: 'http://www.primefaces.org/primeng' }
         ];
     }
 

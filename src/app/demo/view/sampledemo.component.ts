@@ -98,9 +98,9 @@ export class SampleDemoComponent implements OnInit {
         this.cities2 = this.cities1.slice(1, 6);
 
         this.splitButtonItems = [
-            { label: 'Update', icon: 'fa fa-fw fa-refresh' },
-            { label: 'Delete', icon: 'fa fa-fw fa-close' },
-            { label: 'Home', icon: 'fa fa-fw fa-home', url: 'http://www.primefaces.org/primeng' }
+            { label: 'Update', icon: 'pi pi-fw pi-refresh' },
+            { label: 'Delete', icon: 'pi pi-fw pi-times' },
+            { label: 'Home', icon: 'pi pi-fw pi-home', url: 'http://www.primefaces.org/primeng' }
         ];
 
         this.carOptions = [];
@@ -123,52 +123,52 @@ export class SampleDemoComponent implements OnInit {
         this.menuItems = [{
             label: 'File',
             items: [
-                { label: 'New', icon: 'fa fa-fw fa-plus' },
-                { label: 'Open', icon: 'fa fa-fw fa-download' }
+                { label: 'New', icon: 'pi pi-fw pi-plus' },
+                { label: 'Open', icon: 'pi pi-fw pi-download' }
             ]
         },
         {
             label: 'Edit',
             items: [
-                { label: 'Undo', icon: 'fa fa-fw fa-refresh' },
-                { label: 'Redo', icon: 'fa fa-fw fa-repeat' }
+                { label: 'Undo', icon: 'pi pi-fw pi-refresh' },
+                { label: 'Redo', icon: 'pi pi-fw pi-refresh' }
             ]
         }];
 
         this.panelMenuItems = [
             {
                 label: 'File',
-                icon: 'fa fa-fw fa-file-o',
+                icon: 'pi pi-fw pi-file',
                 items: [{
                     label: 'New',
-                    icon: 'fa fa-fw fa-plus',
+                    icon: 'pi pi-fw pi-plus',
                     items: [
                         { label: 'Project' },
                         { label: 'Other' },
                     ]
                 },
-                { label: 'Open' },
-                { label: 'Quit' }
+                    { label: 'Open' },
+                    { label: 'Quit' }
                 ]
             },
             {
                 label: 'Edit',
-                icon: 'fa fa-fw fa-edit',
+                icon: 'pi pi-fw pi-pencil',
                 items: [
-                    { label: 'Undo', icon: 'fa fa-fw fa-mail-forward' },
-                    { label: 'Redo', icon: 'fa fa-fw fa-mail-reply' }
+                    { label: 'Undo', icon: 'pi pi-fw pi-step-backward' },
+                    { label: 'Redo', icon: 'pi pi-fw pi-step-forward' }
                 ]
             },
             {
                 label: 'Help',
-                icon: 'fa fa-fw fa-question',
+                icon: 'pi pi-fw pi-question',
                 items: [
                     {
                         label: 'Contents'
                     },
                     {
                         label: 'Search',
-                        icon: 'fa fa-fw fa-search',
+                        icon: 'pi pi-fw pi-search',
                         items: [
                             {
                                 label: 'Text',
@@ -187,21 +187,21 @@ export class SampleDemoComponent implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'fa fa-fw fa-gear',
+                icon: 'pi pi-fw pi-cog',
                 items: [
                     {
                         label: 'Edit',
-                        icon: 'fa fa-fw fa-refresh',
+                        icon: 'pi pi-fw pi-refresh',
                         items: [
-                            { label: 'Save', icon: 'fa fa-fw fa-save' },
-                            { label: 'Update', icon: 'fa fa-fw fa-save' },
+                            { label: 'Save', icon: 'pi pi-fw pi-save' },
+                            { label: 'Update', icon: 'pi pi-fw pi-save' },
                         ]
                     },
                     {
                         label: 'Other',
-                        icon: 'fa fa-fw fa-phone',
+                        icon: 'pi pi-fw pi-phone',
                         items: [
-                            { label: 'Delete', icon: 'fa fa-fw fa-minus' }
+                            { label: 'Delete', icon: 'pi pi-fw pi-minus' }
                         ]
                     }
                 ]
