@@ -59,73 +59,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                         label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 17,
                         items: [
                             {
-                                label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('pink', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('pink', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('indigo', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('indigo', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Green', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('green', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('green', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('amber', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('amber', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('deeppurple', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('deeppurple', 'dark')
-                                    }
-                                ]
-                            },
-                            {
                                 label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
                                 items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('blue', 'accent')
+                                    },
                                     {
                                         label: 'Light', icon: 'fa fa-fw fa-paint-brush',
                                         command: (event) => this.changeTheme('blue', 'light')
@@ -137,86 +76,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                                 ]
                             },
                             {
-                                label: 'Dark Blue Grey', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('darkblue', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('darkblue', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('cyan', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('cyan', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('purple', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('purple', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('deeporange', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('deeporange', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('lime', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('lime', 'dark')
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
-                                items: [
-                                    {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('yellow', 'light')
-                                    },
-                                    {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('yellow', 'dark')
-                                    }
-                                ]
-                            },
-                            {
                                 label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
                                 items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('bluegrey', 'accent')
+                                    },
                                     {
                                         label: 'Light', icon: 'fa fa-fw fa-paint-brush',
                                         command: (event) => this.changeTheme('bluegrey', 'light')
@@ -228,28 +93,257 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                                 ]
                             },
                             {
-                                label: 'Mojito', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush',
                                 items: [
                                     {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lightblue', 'accent')
+                                    },
+                                    {
                                         label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('mojito', 'light')
+                                        command: (event) => this.changeTheme('lightblue', 'light')
                                     },
                                     {
                                         label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('mojito', 'dark')
+                                        command: (event) => this.changeTheme('lightblue', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Grey', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
                                 items: [
                                     {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('indigo', 'accent')
+                                    },
+                                    {
                                         label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('grey', 'light')
+                                        command: (event) => this.changeTheme('indigo', 'light')
                                     },
                                     {
                                         label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                        command: (event) => this.changeTheme('grey', 'dark')
+                                        command: (event) => this.changeTheme('indigo', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('pink', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('pink', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('pink', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Green', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('green', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('green', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('green', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Light Green', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lightgreen', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lightgreen', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lightgreen', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Teal', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('teal', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('teal', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('teal', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('cyan', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('cyan', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('cyan', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lime', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lime', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('lime', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('amber', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('amber', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('amber', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Orange', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('orange', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('orange', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('orange', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeporange', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeporange', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeporange', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('yellow', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('yellow', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('yellow', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('purple', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('purple', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('purple', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeppurple', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeppurple', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('deeppurple', 'dark')
+                                    }
+                                ]
+                            },
+                            {
+                                label: 'Brown', icon: 'fa fa-fw fa-paint-brush',
+                                items: [
+                                    {
+                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('brown', 'accent')
+                                    },
+                                    {
+                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('brown', 'light')
+                                    },
+                                    {
+                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        command: (event) => this.changeTheme('brown', 'dark')
                                     }
                                 ]
                             }
@@ -377,73 +471,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                                 label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 17,
                                 items: [
                                     {
-                                        label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('pink', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('pink', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('indigo', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('indigo', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Green', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('green', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('green', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('amber', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('amber', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('deeppurple', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('deeppurple', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
                                         label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
                                         items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('blue', 'accent')
+                                            },
                                             {
                                                 label: 'Light', icon: 'fa fa-fw fa-paint-brush',
                                                 command: (event) => this.changeTheme('blue', 'light')
@@ -455,86 +488,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                                         ]
                                     },
                                     {
-                                        label: 'Dark Blue Grey', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('darkblue', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('darkblue', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('cyan', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('cyan', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('purple', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('purple', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('deeporange', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('deeporange', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('lime', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('lime', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
-                                        items: [
-                                            {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('yellow', 'light')
-                                            },
-                                            {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('yellow', 'dark')
-                                            }
-                                        ]
-                                    },
-                                    {
                                         label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
                                         items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('bluegrey', 'accent')
+                                            },
                                             {
                                                 label: 'Light', icon: 'fa fa-fw fa-paint-brush',
                                                 command: (event) => this.changeTheme('bluegrey', 'light')
@@ -546,28 +505,257 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                                         ]
                                     },
                                     {
-                                        label: 'Mojito', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush',
                                         items: [
                                             {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lightblue', 'accent')
+                                            },
+                                            {
                                                 label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('mojito', 'light')
+                                                command: (event) => this.changeTheme('lightblue', 'light')
                                             },
                                             {
                                                 label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('mojito', 'dark')
+                                                command: (event) => this.changeTheme('lightblue', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Grey', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
                                         items: [
                                             {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('indigo', 'accent')
+                                            },
+                                            {
                                                 label: 'Light', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('grey', 'light')
+                                                command: (event) => this.changeTheme('indigo', 'light')
                                             },
                                             {
                                                 label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
-                                                command: (event) => this.changeTheme('grey', 'dark')
+                                                command: (event) => this.changeTheme('indigo', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('pink', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('pink', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('pink', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Green', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('green', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('green', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('green', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Light Green', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lightgreen', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lightgreen', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lightgreen', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Teal', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('teal', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('teal', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('teal', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('cyan', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('cyan', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('cyan', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lime', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lime', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('lime', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('amber', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('amber', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('amber', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Orange', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('orange', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('orange', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('orange', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeporange', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeporange', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeporange', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('yellow', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('yellow', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('yellow', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('purple', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('purple', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('purple', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeppurple', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeppurple', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('deeppurple', 'dark')
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        label: 'Brown', icon: 'fa fa-fw fa-paint-brush',
+                                        items: [
+                                            {
+                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('brown', 'accent')
+                                            },
+                                            {
+                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('brown', 'light')
+                                            },
+                                            {
+                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                command: (event) => this.changeTheme('brown', 'dark')
                                             }
                                         ]
                                     }
@@ -675,16 +863,6 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
         const themeLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('theme-css');
         themeLink.href = 'assets/theme/' + theme + '/theme-' + scheme + '.css';
-    }
-
-    onMenuClick(event) {
-        if (!this.app.isHorizontal()) {
-            setTimeout(() => {
-                this.app.layoutMenuScrollerViewChild.moveBar();
-            }, 450);
-        }
-
-        this.app.onMenuClick(event);
     }
 }
 
