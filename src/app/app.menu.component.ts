@@ -863,6 +863,21 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
         const themeLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('theme-css');
         themeLink.href = 'assets/theme/' + theme + '/theme-' + scheme + '.css';
+
+        const topbarLogo: HTMLImageElement = <HTMLImageElement>document.getElementById('layout-topbar-logo');
+
+        const menuLogo: HTMLImageElement = <HTMLImageElement>document.getElementById('layout-menu-logo');
+
+        if (theme === 'yellow' || theme === 'lime') {
+            topbarLogo.src = 'assets/layout/images/logo-black.png';
+            menuLogo.src = 'assets/layout/images/logo-black.png';
+        }
+
+        if (scheme === 'dark') {
+            this.app.darkMenu = true;
+        } else if ( scheme === 'light') {
+            this.app.darkMenu = false;
+        }
     }
 }
 
