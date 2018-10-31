@@ -53,7 +53,7 @@ export class DashboardDemoComponent implements OnInit {
                     '#7E57C2',
                 ],
                 borderWidth: 3,
-                borderDash:[5, 5],
+                borderDash: [5, 5],
                 fill: false,
                 pointRadius: 3
             }, {
