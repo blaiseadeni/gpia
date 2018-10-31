@@ -871,6 +871,9 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         if (theme === 'yellow' || theme === 'lime') {
             topbarLogo.src = 'assets/layout/images/logo-black.png';
             menuLogo.src = 'assets/layout/images/logo-black.png';
+        } else {
+            topbarLogo.src = 'assets/layout/images/logo-white.png';
+            menuLogo.src = 'assets/layout/images/logo-white.png';
         }
 
         if (scheme === 'dark') {
