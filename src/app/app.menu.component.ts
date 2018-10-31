@@ -24,325 +24,325 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.modelGrouped = [
-            { label: 'Home Page', icon: 'fa fa-fw fa-home',
+            { label: 'Home Page', icon: 'pi pi-fw pi-home',
                 items: [
-                    {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', routerLink: ['/']}
+                    {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
                 ]
             },
-            { label: 'Customization', icon: 'fa fa-fw fa-magic',
+            { label: 'Customization', icon: 'pi pi-fw pi-cog',
                 items: [
                     {
-                        label: 'Menu Layouts', icon: 'fa fa-fw fa-desktop', badge: 2,
+                        label: 'Menu Layouts', icon: 'pi pi-fw pi-th-large', badge: 2,
                         items: [
-                            { label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'static' },
-                            { label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'overlay' },
-                            { label: 'Slim', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'slim' },
-                            { label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'horizontal' },
-                            { label: 'Grouped Menu', icon: 'fa fa-fw fa-bars', command: event => this.app.grouped = true },
-                            { label: 'Ungrouped Menu', icon: 'fa fa-fw fa-bars', command: event => this.app.grouped = false }
+                            { label: 'Static', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'static' },
+                            { label: 'Overlay', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'overlay' },
+                            { label: 'Slim', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'slim' },
+                            { label: 'Horizontal', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'horizontal' },
+                            { label: 'Grouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = true },
+                            { label: 'Ungrouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = false }
                         ]
                     },
                     {
-                        label: 'Menu Colors', icon: 'fa fa-fw fa-list', badge: 2,
+                        label: 'Menu Colors', icon: 'pi pi-fw pi-list', badge: 2,
                         items: [
-                            { label: 'Light', icon: 'fa fa-fw fa-circle-o', command: event => this.app.darkMenu = false },
-                            { label: 'Dark', icon: 'fa fa-fw fa-circle', command: event => this.app.darkMenu = true }
+                            { label: 'Light', icon: 'pi pi-fw pi-circle-off', command: event => this.app.darkMenu = false },
+                            { label: 'Dark', icon: 'pi pi-fw pi-circle-on', command: event => this.app.darkMenu = true }
                         ]
                     },
-                    {label: 'User Profile', icon: 'fa fa-fw fa-user', badge: 2,
+                    {label: 'User Profile', icon: 'pi pi-fw pi-user', badge: 2,
                         items: [
-                            {label: 'Popup Profile', icon: 'fa fa-fw fa-user',  command: () => this.app.profileMode = 'popup'},
-                            {label: 'Inline Profile', icon: 'fa fa-fw fa-user',  command: () => this.app.profileMode = 'inline'}
+                            {label: 'Popup Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'popup'},
+                            {label: 'Inline Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'inline'}
                         ]
                     },
                     {
-                        label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 17,
+                        label: 'Themes', icon: 'pi pi-fw pi-pencil', badge: 17,
                         items: [
                             {
-                                label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Blue', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('blue', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('blue', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('blue', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Blue Grey', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('bluegrey', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('bluegrey', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('bluegrey', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Light Blue', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightblue', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightblue', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightblue', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Indigo', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('indigo', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('indigo', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('indigo', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Pink', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('pink', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('pink', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('pink', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Green', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Green', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('green', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('green', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('green', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Light Green', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Light Green', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightgreen', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightgreen', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lightgreen', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Teal', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Teal', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('teal', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('teal', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('teal', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Cyan', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('cyan', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('cyan', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('cyan', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Lime', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lime', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lime', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('lime', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Amber', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('amber', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('amber', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('amber', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Orange', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Orange', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('orange', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('orange', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('orange', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Deep Orange', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeporange', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeporange', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeporange', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Yellow', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('yellow', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('yellow', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('yellow', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Purple', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('purple', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('purple', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('purple', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Deep Purple', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeppurple', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeppurple', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('deeppurple', 'dark')
                                     }
                                 ]
                             },
                             {
-                                label: 'Brown', icon: 'fa fa-fw fa-paint-brush',
+                                label: 'Brown', icon: 'pi pi-fw pi-pencil',
                                 items: [
                                     {
-                                        label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('brown', 'accent')
                                     },
                                     {
-                                        label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('brown', 'light')
                                     },
                                     {
-                                        label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                         command: (event) => this.changeTheme('brown', 'dark')
                                     }
                                 ]
@@ -352,409 +352,409 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 ]
             },
             {
-                label: 'Components', icon: 'fa fa-fw fa-bars',
+                label: 'Components', icon: 'pi pi-fw pi-star',
                 items: [
-                    { label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample']  },
-                    { label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms'] },
-                    { label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data'] },
-                    { label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels'] },
-                    { label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/overlays'] },
-                    { label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/menus'] },
-                    { label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/messages'] },
-                    { label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/charts'] },
-                    { label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/file'] },
-                    { label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/misc'] }
+                    { label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/sample']  },
+                    { label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/forms'] },
+                    { label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/data'] },
+                    { label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/panels'] },
+                    { label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/overlays'] },
+                    { label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/menus'] },
+                    { label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/messages'] },
+                    { label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/charts'] },
+                    { label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/file'] },
+                    { label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/misc'] }
                 ]
             },
             {
-                label: 'Pages', icon: 'fa fa-fw fa-cube',
+                label: 'Pages', icon: 'pi pi-fw pi-copy',
                 items: [
-                    { label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty'] },
-                    { label: 'Landing Page', icon: 'fa fa-fw fa-globe', url: 'assets/pages/landing.html', target: '_blank' },
-                    { label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank' },
-                    { label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html', target: '_blank' },
-                    { label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank' },
+                    { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] },
+                    { label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
+                    { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', url: 'assets/pages/login.html', target: '_blank' },
+                    { label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle', url: 'assets/pages/error.html', target: '_blank' },
+                    { label: '404 Page', icon: 'pi pi-fw pi-times', url: 'assets/pages/404.html', target: '_blank' },
                     {
-                        label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle',
+                        label: 'Access Denied', icon: 'pi pi-fw pi-ban',
                         url: 'assets/pages/access.html', target: '_blank'
                     }
                 ]
             },
             {
-                label: 'Hierarchy', icon: 'fa fa-fw fa-sitemap',
+                label: 'Hierarchy', icon: 'pi pi-fw pi-sitemap',
                 items: [
                     {
-                        label: 'Submenu 1', icon: 'fa fa-fw fa-sign-in',
+                        label: 'Submenu 1', icon: 'pi pi-fw pi-sign-in',
                         items: [
                             {
-                                label: 'Submenu 1.1', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 1.1', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 1.1.1', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 1.1.2', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 1.1.3', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-sign-in' },
                                 ]
                             },
                             {
-                                label: 'Submenu 1.2', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 1.2', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 1.2.1', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 1.2.2', icon: 'fa fa-fw fa-sign-in' }
+                                    { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-sign-in' }
                                 ]
                             },
                         ]
                     },
                     {
-                        label: 'Submenu 2', icon: 'fa fa-fw fa-sign-in',
+                        label: 'Submenu 2', icon: 'pi pi-fw pi-sign-in',
                         items: [
                             {
-                                label: 'Submenu 2.1', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 2.1', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 2.1.1', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 2.1.2', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 2.1.3', icon: 'fa fa-fw fa-sign-in' },
+                                    { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-sign-in' },
                                 ]
                             },
                             {
-                                label: 'Submenu 2.2', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 2.2', icon: 'pi pi-fw pi-sign-in',
                                 items: [
-                                    { label: 'Submenu 2.2.1', icon: 'fa fa-fw fa-sign-in' },
-                                    { label: 'Submenu 2.2.2', icon: 'fa fa-fw fa-sign-in' }
+                                    { label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-sign-in' },
+                                    { label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-sign-in' }
                                 ]
                             },
                         ]
                     }
                 ]
             },
-            { label: 'Get Started', icon: 'fa fa-fw fa-download',
+            { label: 'Get Started', icon: 'pi pi-fw pi-download',
                 items: [
                     {
-                        label: 'Documentation', icon: 'fa fa-fw fa-file-code-o', routerLink: ['/documentation']
+                        label: 'Documentation', icon: 'pi pi-fw pi-file', routerLink: ['/documentation']
                     },
                     {
-                        label: 'Buy Now', icon: 'fa fa-fw fa-credit-card-alt', url: ['https://www.primefaces.org/store']
+                        label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
                     }
                 ]
             }
         ];
 
         this.modelUngrouped = [
-            { label: 'Main Menu', icon: 'fa fa-fw fa-home',
+            { label: 'Main Menu', icon: 'pi pi-fw pi-home',
                 items: [
-                    {label: 'Dashboard', icon: 'fa fa-fw fa-dashboard', routerLink: ['/']},
-                    { label: 'Customization', icon: 'fa fa-fw fa-magic',
+                    {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']},
+                    { label: 'Customization', icon: 'pi pi-fw pi-cog',
                         items: [
                             {
-                                label: 'Menu Layouts', icon: 'fa fa-fw fa-desktop', badge: 2,
+                                label: 'Menu Layouts', icon: 'pi pi-fw pi-th-large', badge: 2,
                                 items: [
-                                    { label: 'Static', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'static' },
-                                    { label: 'Overlay', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'overlay' },
-                                    { label: 'Slim', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'slim' },
-                                    { label: 'Horizontal', icon: 'fa fa-fw fa-bars', command: event => this.app.layoutMode = 'horizontal' },
-                                    { label: 'Grouped Menu', icon: 'fa fa-fw fa-bars', command: event => this.app.grouped = true },
-                                    { label: 'Ungrouped Menu', icon: 'fa fa-fw fa-bars', command: event => this.app.grouped = false }
+                                    { label: 'Static', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'static' },
+                                    { label: 'Overlay', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'overlay' },
+                                    { label: 'Slim', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'slim' },
+                                    { label: 'Horizontal', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'horizontal' },
+                                    { label: 'Grouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = true },
+                                    { label: 'Ungrouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = false }
                                 ]
                             },
                             {
-                                label: 'Menu Colors', icon: 'fa fa-fw fa-list', badge: 2,
+                                label: 'Menu Colors', icon: 'pi pi-fw pi-list', badge: 2,
                                 items: [
-                                    { label: 'Light', icon: 'fa fa-fw fa-circle-o', command: event => this.app.darkMenu = false },
-                                    { label: 'Dark', icon: 'fa fa-fw fa-circle', command: event => this.app.darkMenu = true }
+                                    { label: 'Light', icon: 'pi pi-fw pi-circle-off', command: event => this.app.darkMenu = false },
+                                    { label: 'Dark', icon: 'pi pi-fw pi-circle-on', command: event => this.app.darkMenu = true }
                                 ]
                             },
-                            {label: 'User Profile', icon: 'fa fa-fw fa-user', badge: 2,
+                            {label: 'User Profile', icon: 'pi pi-fw pi-user', badge: 2,
                                 items: [
-                                    {label: 'Popup Profile', icon: 'fa fa-fw fa-user',  command: () => this.app.profileMode = 'popup'},
-                                    {label: 'Inline Profile', icon: 'fa fa-fw fa-user',  command: () => this.app.profileMode = 'inline'}
+                                    {label: 'Popup Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'popup'},
+                                    {label: 'Inline Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'inline'}
                                 ]
                             },
                             {
-                                label: 'Themes', icon: 'fa fa-fw fa-paint-brush', badge: 17,
+                                label: 'Themes', icon: 'pi pi-fw pi-pencil', badge: 17,
                                 items: [
                                     {
-                                        label: 'Blue', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Blue', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('blue', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('blue', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('blue', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Blue Grey', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Blue Grey', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('bluegrey', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('bluegrey', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('bluegrey', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Light Blue', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light Blue', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightblue', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightblue', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightblue', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Indigo', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Indigo', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('indigo', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('indigo', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('indigo', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Pink', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Pink', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('pink', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('pink', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('pink', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Green', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Green', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('green', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('green', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('green', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Light Green', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Light Green', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightgreen', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightgreen', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lightgreen', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Teal', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Teal', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('teal', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('teal', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('teal', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Cyan', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Cyan', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('cyan', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('cyan', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('cyan', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Lime', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Lime', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lime', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lime', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('lime', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Amber', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Amber', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('amber', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('amber', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('amber', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Orange', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Orange', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('orange', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('orange', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('orange', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Deep Orange', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Deep Orange', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeporange', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeporange', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeporange', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Yellow', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Yellow', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('yellow', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('yellow', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('yellow', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Purple', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Purple', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('purple', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('purple', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('purple', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Deep Purple', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Deep Purple', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeppurple', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeppurple', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('deeppurple', 'dark')
                                             }
                                         ]
                                     },
                                     {
-                                        label: 'Brown', icon: 'fa fa-fw fa-paint-brush',
+                                        label: 'Brown', icon: 'pi pi-fw pi-pencil',
                                         items: [
                                             {
-                                                label: 'Accent', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('brown', 'accent')
                                             },
                                             {
-                                                label: 'Light', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('brown', 'light')
                                             },
                                             {
-                                                label: 'Dark', icon: 'fa fa-fw fa-paint-brush',
+                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
                                                 command: (event) => this.changeTheme('brown', 'dark')
                                             }
                                         ]
@@ -764,87 +764,87 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                         ]
                     },
                     {
-                        label: 'Components', icon: 'fa fa-fw fa-bars',
+                        label: 'Components', icon: 'pi pi-fw pi-star',
                         items: [
-                            { label: 'Sample Page', icon: 'fa fa-fw fa-columns', routerLink: ['/sample']  },
-                            { label: 'Forms', icon: 'fa fa-fw fa-code', routerLink: ['/forms'] },
-                            { label: 'Data', icon: 'fa fa-fw fa-table', routerLink: ['/data'] },
-                            { label: 'Panels', icon: 'fa fa-fw fa-list-alt', routerLink: ['/panels'] },
-                            { label: 'Overlays', icon: 'fa fa-fw fa-square', routerLink: ['/overlays'] },
-                            { label: 'Menus', icon: 'fa fa-fw fa-minus-square-o', routerLink: ['/menus'] },
-                            { label: 'Messages', icon: 'fa fa-fw fa-circle-o-notch', routerLink: ['/messages'] },
-                            { label: 'Charts', icon: 'fa fa-fw fa-area-chart', routerLink: ['/charts'] },
-                            { label: 'File', icon: 'fa fa-fw fa-arrow-circle-o-up', routerLink: ['/file'] },
-                            { label: 'Misc', icon: 'fa fa-fw fa-user-secret', routerLink: ['/misc'] }
+                            { label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/sample']  },
+                            { label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/forms'] },
+                            { label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/data'] },
+                            { label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/panels'] },
+                            { label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/overlays'] },
+                            { label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/menus'] },
+                            { label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/messages'] },
+                            { label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/charts'] },
+                            { label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/file'] },
+                            { label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/misc'] }
                         ]
                     },
                     {
-                        label: 'Pages', icon: 'fa fa-fw fa-cube',
+                        label: 'Pages', icon: 'pi pi-fw pi-copy',
                         items: [
-                            { label: 'Empty Page', icon: 'fa fa-fw fa-square-o', routerLink: ['/empty'] },
-                            { label: 'Landing Page', icon: 'fa fa-fw fa-globe', url: 'assets/pages/landing.html', target: '_blank' },
-                            { label: 'Login Page', icon: 'fa fa-fw fa-sign-in', url: 'assets/pages/login.html', target: '_blank' },
-                            { label: 'Error Page', icon: 'fa fa-fw fa-exclamation-circle', url: 'assets/pages/error.html',
-                                target: '_blank' },
-                            { label: '404 Page', icon: 'fa fa-fw fa-times', url: 'assets/pages/404.html', target: '_blank' },
+                            { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] },
+                            { label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
+                            { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', url: 'assets/pages/login.html', target: '_blank' },
+                            { label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle',
+                                url: 'assets/pages/error.html', target: '_blank' },
+                            { label: '404 Page', icon: 'pi pi-fw pi-times', url: 'assets/pages/404.html', target: '_blank' },
                             {
-                                label: 'Access Denied', icon: 'fa fa-fw fa-exclamation-triangle',
+                                label: 'Access Denied', icon: 'pi pi-fw pi-ban',
                                 url: 'assets/pages/access.html', target: '_blank'
                             }
                         ]
                     },
                     {
-                        label: 'Hierarchy', icon: 'fa fa-fw fa-sitemap',
+                        label: 'Hierarchy', icon: 'pi pi-fw pi-sitemap',
                         items: [
                             {
-                                label: 'Submenu 1', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 1', icon: 'pi pi-fw pi-sign-in',
                                 items: [
                                     {
-                                        label: 'Submenu 1.1', icon: 'fa fa-fw fa-sign-in',
+                                        label: 'Submenu 1.1', icon: 'pi pi-fw pi-sign-in',
                                         items: [
-                                            { label: 'Submenu 1.1.1', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 1.1.2', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 1.1.3', icon: 'fa fa-fw fa-sign-in' },
+                                            { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-sign-in' },
                                         ]
                                     },
                                     {
-                                        label: 'Submenu 1.2', icon: 'fa fa-fw fa-sign-in',
+                                        label: 'Submenu 1.2', icon: 'pi pi-fw pi-sign-in',
                                         items: [
-                                            { label: 'Submenu 1.2.1', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 1.2.2', icon: 'fa fa-fw fa-sign-in' }
+                                            { label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-sign-in' }
                                         ]
                                     },
                                 ]
                             },
                             {
-                                label: 'Submenu 2', icon: 'fa fa-fw fa-sign-in',
+                                label: 'Submenu 2', icon: 'pi pi-fw pi-sign-in',
                                 items: [
                                     {
-                                        label: 'Submenu 2.1', icon: 'fa fa-fw fa-sign-in',
+                                        label: 'Submenu 2.1', icon: 'pi pi-fw pi-sign-in',
                                         items: [
-                                            { label: 'Submenu 2.1.1', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 2.1.2', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 2.1.3', icon: 'fa fa-fw fa-sign-in' },
+                                            { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-sign-in' },
                                         ]
                                     },
                                     {
-                                        label: 'Submenu 2.2', icon: 'fa fa-fw fa-sign-in',
+                                        label: 'Submenu 2.2', icon: 'pi pi-fw pi-sign-in',
                                         items: [
-                                            { label: 'Submenu 2.2.1', icon: 'fa fa-fw fa-sign-in' },
-                                            { label: 'Submenu 2.2.2', icon: 'fa fa-fw fa-sign-in' }
+                                            { label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-sign-in' },
+                                            { label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-sign-in' }
                                         ]
                                     },
                                 ]
                             }
                         ]
                     },
-                    { label: 'Get Started', icon: 'fa fa-fw fa-download',
+                    { label: 'Get Started', icon: 'pi pi-fw pi-download',
                         items: [
                             {
-                                label: 'Documentation', icon: 'fa fa-fw fa-file-code-o', routerLink: ['/documentation']
+                                label: 'Documentation', icon: 'pi pi-fw pi-file', routerLink: ['/documentation']
                             },
                             {
-                                label: 'Buy Now', icon: 'fa fa-fw fa-credit-card-alt', url: ['https://www.primefaces.org/store']
+                                label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
                             }
                         ]
                     }
