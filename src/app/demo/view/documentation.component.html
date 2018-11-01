@@ -113,8 +113,8 @@ import &#123;AppComponent&#125; from './app.component';
 @Component(&#123;
     selector: 'app-menu',
     template: `
-        <ul app-submenu [item]="app.grouped ? modelGrouped : modelUngrouped" root="true" class="layout-menu"
-            visible="true" [reset]="reset" parentActive="true"></ul>
+        &lt;ul app-submenu [item]="app.grouped ? modelGrouped : modelUngrouped" root="true" class="layout-menu"
+            visible="true" [reset]="reset" parentActive="true"&gt;&lt;/ul&gt;
     `
 &#125;)
 export class AppMenuComponent implements OnInit, AfterViewInit &#123;
@@ -1305,7 +1305,7 @@ export class ControlPanelComponent &#123;
 </pre>
 
             <h1>Grid CSS</h1>
-            <p>Babylon uses PrimeFlex CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Babylon itself does not depend on Grid CSS.</p>
+            <p>Babylon uses PrimeFlex CSS throughout the demos such as Dashboard, however any Grid library can be used with it since Babylon itself does not depend on PrimeFlex except demo pages.</p>
 
             <h1>Migration Guide</h1>
             <p>Most of the time updates are related to styling so sass/layout, sass/theme_core will be the commonly updated folders. For seamless updates and easier maintenance, we suggest avoiding editing sass/layout, sass/theme and sass/theme_core folders and keeping your CSS customizations
