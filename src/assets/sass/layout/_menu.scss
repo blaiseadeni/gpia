@@ -119,10 +119,12 @@
 
                     .layout-menuitem-icon {
                         margin-right: 6px;
+                        vertical-align: middle;
                     }
 
                     .layout-menuitem-text {
                         font-weight: 700;
+                        vertical-align: middle;
                     }
 
                     .layout-submenu-toggler {
@@ -957,6 +959,7 @@
                             i {
                                 position: static;
                                 margin-top: 0;
+                                vertical-align: middle;
                             }
                         }
 

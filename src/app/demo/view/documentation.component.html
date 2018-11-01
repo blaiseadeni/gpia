@@ -107,24 +107,25 @@ Run 'ng help' for more options.
 <code class="language-javascript" pCode>
 import &#123;Component, Input,&#125; from '@angular/core';
 import &#123;trigger, state, style, transition, animate&#125; from '@angular/animations';
-import &#123;Location&#125; from '@angular/common';
-import &#123;Router&#125; from '@angular/router';
-import &#123;MenuItem, ScrollPanel&#125; from 'primeng/primeng';
+import &#123;MenuItem&#125; from 'primeng/api';
 import &#123;AppComponent&#125; from './app.component';
 
 @Component(&#123;
     selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+    template: `
+        <ul app-submenu [item]="app.grouped ? modelGrouped : modelUngrouped" root="true" class="layout-menu"
+            visible="true" [reset]="reset" parentActive="true"></ul>
+    `
 &#125;)
-export class AppMenuComponent &#123;
+export class AppMenuComponent implements OnInit, AfterViewInit &#123;
 
     @Input() reset: boolean;
 
-    model: any[];
+    modelGrouped: any[];
 
-    @ViewChild('layoutMenuScroller') layoutMenuScrollerViewChild: ScrollPanel;
+    modelUngrouped: any[];
 
-    constructor(public app: AppComponent) &#123;&#125;
+    constructor(public app: AppComponent) &#123; &#125;
 
     ngOnInit() &#123;
         this.modelGrouped = [
@@ -138,19 +139,19 @@ export class AppMenuComponent &#123;
                     &#123;
                         label: 'Menu Layouts', icon: 'pi pi-fw pi-th-large', badge: 2,
                         items: [
-                            &#123; label: 'Static', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'static' &#125;,
-                            &#123; label: 'Overlay', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'overlay' &#125;,
-                            &#123; label: 'Slim', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'slim' &#125;,
-                            &#123; label: 'Horizontal', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'horizontal' &#125;,
-                            &#123; label: 'Grouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = true &#125;,
-                            &#123; label: 'Ungrouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = false &#125;
+                            &#123; label: 'Static', icon: 'pi pi-fw pi-bars', command: () => this.app.layoutMode = 'static' &#125;,
+                            &#123; label: 'Overlay', icon: 'pi pi-fw pi-bars', command: () => this.app.layoutMode = 'overlay' &#125;,
+                            &#123; label: 'Slim', icon: 'pi pi-fw pi-bars', command: () => this.app.layoutMode = 'slim' &#125;,
+                            &#123; label: 'Horizontal', icon: 'pi pi-fw pi-bars', command: () => this.app.layoutMode = 'horizontal' &#125;,
+                            &#123; label: 'Grouped Menu', icon: 'pi pi-fw pi-bars', command: () => this.app.grouped = true &#125;,
+                            &#123; label: 'Ungrouped Menu', icon: 'pi pi-fw pi-bars', command: () => this.app.grouped = false &#125;
                         ]
                     &#125;,
                     &#123;
                         label: 'Menu Colors', icon: 'pi pi-fw pi-list', badge: 2,
                         items: [
-                            &#123; label: 'Light', icon: 'pi pi-fw pi-circle-off', command: event => this.app.darkMenu = false &#125;,
-                            &#123; label: 'Dark', icon: 'pi pi-fw pi-circle-on', command: event => this.app.darkMenu = true &#125;
+                            &#123; label: 'Light', icon: 'pi pi-fw pi-circle-off', command: () => this.app.darkMenu = false &#125;,
+                            &#123; label: 'Dark', icon: 'pi pi-fw pi-circle-on', command: () => this.app.darkMenu = true &#125;
                         ]
                     &#125;,
                     &#123;label: 'User Profile', icon: 'pi pi-fw pi-user', badge: 2,
@@ -167,15 +168,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('blue', 'accent')
+                                        command: () => this.changeTheme('blue', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('blue', 'light')
+                                        command: () => this.changeTheme('blue', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('blue', 'dark')
+                                        command: () => this.changeTheme('blue', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -184,15 +185,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('bluegrey', 'accent')
+                                        command: () => this.changeTheme('bluegrey', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('bluegrey', 'light')
+                                        command: () => this.changeTheme('bluegrey', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('bluegrey', 'dark')
+                                        command: () => this.changeTheme('bluegrey', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -201,15 +202,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightblue', 'accent')
+                                        command: () => this.changeTheme('lightblue', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightblue', 'light')
+                                        command: () => this.changeTheme('lightblue', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightblue', 'dark')
+                                        command: () => this.changeTheme('lightblue', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -218,15 +219,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('indigo', 'accent')
+                                        command: () => this.changeTheme('indigo', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('indigo', 'light')
+                                        command: () => this.changeTheme('indigo', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('indigo', 'dark')
+                                        command: () => this.changeTheme('indigo', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -235,15 +236,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('pink', 'accent')
+                                        command: () => this.changeTheme('pink', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('pink', 'light')
+                                        command: () => this.changeTheme('pink', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('pink', 'dark')
+                                        command: () => this.changeTheme('pink', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -252,15 +253,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('green', 'accent')
+                                        command: () => this.changeTheme('green', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('green', 'light')
+                                        command: () => this.changeTheme('green', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('green', 'dark')
+                                        command: () => this.changeTheme('green', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -269,15 +270,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightgreen', 'accent')
+                                        command: () => this.changeTheme('lightgreen', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightgreen', 'light')
+                                        command: () => this.changeTheme('lightgreen', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lightgreen', 'dark')
+                                        command: () => this.changeTheme('lightgreen', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -286,15 +287,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('teal', 'accent')
+                                        command: () => this.changeTheme('teal', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('teal', 'light')
+                                        command: () => this.changeTheme('teal', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('teal', 'dark')
+                                        command: () => this.changeTheme('teal', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -303,15 +304,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('cyan', 'accent')
+                                        command: () => this.changeTheme('cyan', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('cyan', 'light')
+                                        command: () => this.changeTheme('cyan', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('cyan', 'dark')
+                                        command: () => this.changeTheme('cyan', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -320,15 +321,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lime', 'accent')
+                                        command: () => this.changeTheme('lime', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lime', 'light')
+                                        command: () => this.changeTheme('lime', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('lime', 'dark')
+                                        command: () => this.changeTheme('lime', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -337,15 +338,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('amber', 'accent')
+                                        command: () => this.changeTheme('amber', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('amber', 'light')
+                                        command: () => this.changeTheme('amber', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('amber', 'dark')
+                                        command: () => this.changeTheme('amber', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -354,15 +355,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('orange', 'accent')
+                                        command: () => this.changeTheme('orange', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('orange', 'light')
+                                        command: () => this.changeTheme('orange', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('orange', 'dark')
+                                        command: () => this.changeTheme('orange', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -371,15 +372,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeporange', 'accent')
+                                        command: () => this.changeTheme('deeporange', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeporange', 'light')
+                                        command: () => this.changeTheme('deeporange', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeporange', 'dark')
+                                        command: () => this.changeTheme('deeporange', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -388,15 +389,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('yellow', 'accent')
+                                        command: () => this.changeTheme('yellow', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('yellow', 'light')
+                                        command: () => this.changeTheme('yellow', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('yellow', 'dark')
+                                        command: () => this.changeTheme('yellow', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -405,15 +406,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('purple', 'accent')
+                                        command: () => this.changeTheme('purple', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('purple', 'light')
+                                        command: () => this.changeTheme('purple', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('purple', 'dark')
+                                        command: () => this.changeTheme('purple', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -422,15 +423,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeppurple', 'accent')
+                                        command: () => this.changeTheme('deeppurple', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeppurple', 'light')
+                                        command: () => this.changeTheme('deeppurple', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('deeppurple', 'dark')
+                                        command: () => this.changeTheme('deeppurple', 'dark')
                                     &#125;
                                 ]
                             &#125;,
@@ -439,15 +440,15 @@ export class AppMenuComponent &#123;
                                 items: [
                                     &#123;
                                         label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('brown', 'accent')
+                                        command: () => this.changeTheme('brown', 'accent')
                                     &#125;,
                                     &#123;
                                         label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('brown', 'light')
+                                        command: () => this.changeTheme('brown', 'light')
                                     &#125;,
                                     &#123;
                                         label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                        command: (event) => this.changeTheme('brown', 'dark')
+                                        command: () => this.changeTheme('brown', 'dark')
                                     &#125;
                                 ]
                             &#125;
@@ -542,421 +543,13 @@ export class AppMenuComponent &#123;
         ];
 
         this.modelUngrouped = [
-            &#123; label: 'Main Menu', icon: 'pi pi-fw pi-home',
-                items: [
-                    &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;,
-                    &#123; label: 'Customization', icon: 'pi pi-fw pi-cog',
-                        items: [
-                            &#123;
-                                label: 'Menu Layouts', icon: 'pi pi-fw pi-th-large', badge: 2,
-                                items: [
-                                    &#123; label: 'Static', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'static' &#125;,
-                                    &#123; label: 'Overlay', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'overlay' &#125;,
-                                    &#123; label: 'Slim', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'slim' &#125;,
-                                    &#123; label: 'Horizontal', icon: 'pi pi-fw pi-bars', command: event => this.app.layoutMode = 'horizontal' &#125;,
-                                    &#123; label: 'Grouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = true &#125;,
-                                    &#123; label: 'Ungrouped Menu', icon: 'pi pi-fw pi-bars', command: event => this.app.grouped = false &#125;
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Menu Colors', icon: 'pi pi-fw pi-list', badge: 2,
-                                items: [
-                                    &#123; label: 'Light', icon: 'pi pi-fw pi-circle-off', command: event => this.app.darkMenu = false &#125;,
-                                    &#123; label: 'Dark', icon: 'pi pi-fw pi-circle-on', command: event => this.app.darkMenu = true &#125;
-                                ]
-                            &#125;,
-                            &#123;label: 'User Profile', icon: 'pi pi-fw pi-user', badge: 2,
-                                items: [
-                                    &#123;label: 'Popup Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'popup'&#125;,
-                                    &#123;label: 'Inline Profile', icon: 'pi pi-fw pi-user',  command: () => this.app.profileMode = 'inline'&#125;
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Themes', icon: 'pi pi-fw pi-pencil', badge: 17,
-                                items: [
-                                    &#123;
-                                        label: 'Blue', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('blue', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('blue', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('blue', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Blue Grey', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('bluegrey', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('bluegrey', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('bluegrey', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Light Blue', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightblue', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightblue', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightblue', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Indigo', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('indigo', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('indigo', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('indigo', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Pink', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('pink', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('pink', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('pink', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Green', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('green', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('green', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('green', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Light Green', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightgreen', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightgreen', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lightgreen', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Teal', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('teal', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('teal', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('teal', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Cyan', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('cyan', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('cyan', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('cyan', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Lime', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lime', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lime', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('lime', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Amber', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('amber', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('amber', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('amber', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Orange', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('orange', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('orange', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('orange', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Deep Orange', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeporange', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeporange', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeporange', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Yellow', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('yellow', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('yellow', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('yellow', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Purple', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('purple', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('purple', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('purple', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Deep Purple', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeppurple', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeppurple', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('deeppurple', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Brown', icon: 'pi pi-fw pi-pencil',
-                                        items: [
-                                            &#123;
-                                                label: 'Accent', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('brown', 'accent')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Light', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('brown', 'light')
-                                            &#125;,
-                                            &#123;
-                                                label: 'Dark', icon: 'pi pi-fw pi-pencil',
-                                                command: (event) => this.changeTheme('brown', 'dark')
-                                            &#125;
-                                        ]
-                                    &#125;
-                                ]
-                            &#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Components', icon: 'pi pi-fw pi-star',
-                        items: [
-                            &#123; label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/sample']  &#125;,
-                            &#123; label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/forms'] &#125;,
-                            &#123; label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/data'] &#125;,
-                            &#123; label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/panels'] &#125;,
-                            &#123; label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/overlays'] &#125;,
-                            &#123; label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/menus'] &#125;,
-                            &#123; label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/messages'] &#125;,
-                            &#123; label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/charts'] &#125;,
-                            &#123; label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/file'] &#125;,
-                            &#123; label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/misc'] &#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Pages', icon: 'pi pi-fw pi-copy',
-                        items: [
-                            &#123; label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] &#125;,
-                            &#123; label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' &#125;,
-                            &#123; label: 'Login Page', icon: 'pi pi-fw pi-sign-in', url: 'assets/pages/login.html', target: '_blank' &#125;,
-                            &#123; label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle',
-                                url: 'assets/pages/error.html', target: '_blank' &#125;,
-                            &#123; label: '404 Page', icon: 'pi pi-fw pi-times', url: 'assets/pages/404.html', target: '_blank' &#125;,
-                            &#123;
-                                label: 'Access Denied', icon: 'pi pi-fw pi-ban',
-                                url: 'assets/pages/access.html', target: '_blank'
-                            &#125;
-                        ]
-                    &#125;,
-                    &#123;
-                        label: 'Hierarchy', icon: 'pi pi-fw pi-sitemap',
-                        items: [
-                            &#123;
-                                label: 'Submenu 1', icon: 'pi pi-fw pi-sign-in',
-                                items: [
-                                    &#123;
-                                        label: 'Submenu 1.1', icon: 'pi pi-fw pi-sign-in',
-                                        items: [
-                                            &#123; label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Submenu 1.2', icon: 'pi pi-fw pi-sign-in',
-                                        items: [
-                                            &#123; label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 1.2.2', icon: 'pi pi-fw pi-sign-in' &#125;
-                                        ]
-                                    &#125;,
-                                ]
-                            &#125;,
-                            &#123;
-                                label: 'Submenu 2', icon: 'pi pi-fw pi-sign-in',
-                                items: [
-                                    &#123;
-                                        label: 'Submenu 2.1', icon: 'pi pi-fw pi-sign-in',
-                                        items: [
-                                            &#123; label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 2.1.3', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                        ]
-                                    &#125;,
-                                    &#123;
-                                        label: 'Submenu 2.2', icon: 'pi pi-fw pi-sign-in',
-                                        items: [
-                                            &#123; label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-sign-in' &#125;,
-                                            &#123; label: 'Submenu 2.2.2', icon: 'pi pi-fw pi-sign-in' &#125;
-                                        ]
-                                    &#125;,
-                                ]
-                            &#125;
-                        ]
-                    &#125;,
-                    &#123; label: 'Get Started', icon: 'pi pi-fw pi-download',
-                        items: [
-                            &#123;
-                                label: 'Documentation', icon: 'pi pi-fw pi-file', routerLink: ['/documentation']
-                            &#125;,
-                            &#123;
-                                label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
-                            &#125;
-                        ]
-                    &#125;
-                ]
+            &#123;
+                label: 'Main Menu', 
+                icon: 'pi pi-fw pi-home',
+                items: this.modelGrouped
             &#125;
         ];
     &#125;
-
 &#125;
 </code>
 </pre>
