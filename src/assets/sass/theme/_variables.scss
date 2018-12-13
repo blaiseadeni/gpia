@@ -426,7 +426,8 @@ $messagePadding:$inputPadding;
 $messageMargin:0;
 
 //overlays
-$overlayContentBorder:1px solid $panelContentBorder;
+$overlayContentBorder:$panelContentBorder;
+$overlayContentBorderColor:#e0e0e0;
 $overlayContainerShadow:0 3px 6px 0 rgba(0, 0, 0, 0.16);
 
 //overlay panel

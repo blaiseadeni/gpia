@@ -71,6 +71,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
+import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 import { AppComponent } from './app.component';
 import { AppProfileComponent } from './app.profile.component';
@@ -169,7 +170,8 @@ import { BreadcrumbService } from './breadcrumb.service';
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        VirtualScrollerModule
     ],
     declarations: [
         AppComponent,

@@ -677,7 +677,7 @@ sass src/assets/theme/mytheme/theme.scss src/assets/theme/mytheme/theme.css
             <p>Watch mode is handy to avoid compiling everytime when a change is made, instead use the following command
             so that sass generates the file whenever you make a customization. This builds all css files whenever a change is made to any scss file.</p>
 <pre class="doc-command">
-sass -w src/assets/ --sourcemap=none
+sass --watch src/:src/ --no-source-map
 </pre>
 
             <p>Same can also be applied to layout itself;</p>
@@ -1192,7 +1192,8 @@ $messagePadding:$inputPadding;
 $messageMargin:0;
 
 //overlays
-$overlayContentBorder:1px solid $panelContentBorder;
+$overlayContentBorder:$panelContentBorder;
+$overlayContentBorderColor:#e0e0e0;
 $overlayContainerShadow:0 3px 6px 0 rgba(0, 0, 0, 0.16);
 
 //overlay panel
