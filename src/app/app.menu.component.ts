@@ -437,7 +437,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
         this.modelUngrouped = [
             {
-                label: 'Main Menu', 
+                label: 'Main Menu',
                 icon: 'pi pi-fw pi-home',
                 items: this.modelGrouped
             }
@@ -462,16 +462,14 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         if (theme === 'yellow' || theme === 'lime') {
             topbarLogo.src = 'assets/layout/images/logo-black.png';
             menuLogo.src = 'assets/layout/images/logo-black.png';
-        } 
-        else {
+        } else {
             topbarLogo.src = 'assets/layout/images/logo-white.png';
             menuLogo.src = 'assets/layout/images/logo-white.png';
         }
 
         if (scheme === 'dark') {
             this.app.darkMenu = true;
-        } 
-        else if (scheme === 'light') {
+        } else if (scheme === 'light') {
             this.app.darkMenu = false;
         }
     }
@@ -511,7 +509,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 </div>
                 <ul app-submenu [item]="child" *ngIf="child.items" [visible]="isActive(i)"
                     [reset]="reset" [parentActive]="isActive(i)"
-                    [@children]="(app.isSlim()||app.isHorizontal())&&root ? isActive(i) ?
+                    [@children]="(app.isSlim()||app.isHorizontal())&&!app.isMobile()&&root ? isActive(i) ?
                     'visible' : 'hidden' : isActive(i) ? 'visibleAnimated' :
                     app.grouped===true && root? 'visibleAnimated': 'hiddenAnimated'"></ul>
             </li>
