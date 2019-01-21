@@ -12,7 +12,7 @@
                 </div>
                 <div class="p-col-6">
                     <button type="button" pButton label="DataTable" (click)="op2.toggle($event)"></button>
-                    <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+                    <p-overlayPanel #op2 [showCloseIcon]="true">
                         <p-table [columns]="cols" [value]="cars" dataKey="vin" [style]="{'width':'500px'}">
                             <ng-template pTemplate="header" let-columns>
                                 <tr>
@@ -37,7 +37,7 @@
 
         <div class="card">
             <h1>Dialog</h1>
-            <p-dialog header="Godfather I" [(visible)]="display" modal="modal" showEffect="fade" width="400">
+            <p-dialog header="Godfather I" [(visible)]="display" modal="modal" showEffect="fade" width="500">
                 <div style="line-height: 1.5">The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.
                     His beloved son Michael has just come home from the war, but does not intend to become part of his father's
                     business. Through Michael's life the nature of the family business becomes clear. The business of the

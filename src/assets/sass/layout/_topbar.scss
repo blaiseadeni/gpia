@@ -10,7 +10,6 @@
         background-color: $topbarBgColor;
         @include clearfix();
         @include shadow(0 3px 6px 0 rgba(0, 0, 0, 0.16));
-        @include transition(left $transitionDuration);
 
         .layout-topbar-logo {
             display: none;

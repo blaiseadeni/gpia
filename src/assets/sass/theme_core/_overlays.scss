@@ -92,7 +92,7 @@ body {
         .ui-dialog-content {
             background-color: $panelContentBgColor;
             color: $panelContentTextColor;
-            border: $overlayContentBorder;
+            border: 0 none;
             padding: .5em;
         }
         
