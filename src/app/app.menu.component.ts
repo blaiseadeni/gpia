@@ -449,15 +449,15 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
     }
 
     changeTheme(theme: string, scheme: string) {
-        const layoutLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('layout-css');
+        const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
         layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
 
-        const themeLink: HTMLLinkElement = <HTMLLinkElement>document.getElementById('theme-css');
+        const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
         themeLink.href = 'assets/theme/' + theme + '/theme-' + scheme + '.css';
 
-        const topbarLogo: HTMLImageElement = <HTMLImageElement>document.getElementById('layout-topbar-logo');
+        const topbarLogo: HTMLImageElement = document.getElementById('layout-topbar-logo') as HTMLImageElement;
 
-        const menuLogo: HTMLImageElement = <HTMLImageElement>document.getElementById('layout-menu-logo');
+        const menuLogo: HTMLImageElement = document.getElementById('layout-menu-logo') as HTMLImageElement;
 
         if (theme === 'yellow' || theme === 'lime') {
             topbarLogo.src = 'assets/layout/images/logo-black.png';
@@ -567,7 +567,7 @@ export class AppSubMenuComponent {
 
         // execute command
         if (item.command) {
-            item.command({ originalEvent: event, item: item });
+            item.command({ originalEvent: event, item });
         }
 
         // prevent hash change
