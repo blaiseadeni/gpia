@@ -1,7 +1,7 @@
 @import './_variables';
 @import '../overrides/_layout_variables';
-@import './_loader';
 @import './_mixins';
+@import './_loader';
 @import './_main';
 @import './_topbar';
 @import './_menu';
@@ -11,5 +11,6 @@
 @import './_exception';
 @import './_login';
 @import './_landing';
+@import './_config';
 @import '../_fonts';
 @import '../overrides/_layout_styles';

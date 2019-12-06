@@ -96,6 +96,15 @@
     border-bottom-right-radius: $val;
 }
 
+@mixin border-radius-left($val) {
+    -moz-border-radius-topleft: $val;
+    -webkit-border-top-left-radius: $val;
+    border-top-left-radius: $val;
+    -moz-border-radius-bottomleft: $val;
+    -webkit-border-bottom-left-radius: $val;
+    border-bottom-left-radius: $val;
+}
+
 @mixin input-placeholder($color) {
     &::-webkit-input-placeholder {color: $color}
     &:-moz-placeholder           {color: $color}

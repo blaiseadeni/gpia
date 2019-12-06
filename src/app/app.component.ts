@@ -30,6 +30,8 @@ export class AppComponent implements AfterViewInit {
 
     topbarItemClick: boolean;
 
+    configClick: boolean;
+
     activeTopbarItem: any;
 
     resetMenu: boolean;
@@ -37,6 +39,10 @@ export class AppComponent implements AfterViewInit {
     menuHoverActive: boolean;
 
     grouped = true;
+
+    configActive: boolean;
+
+    themeColor: string = "blue-accent"
 
     @ViewChild('layoutMenuScroller', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
 
@@ -64,6 +70,11 @@ export class AppComponent implements AfterViewInit {
             this.menuHoverActive = false;
         }
 
+        if (this.configActive && !this.configClick) {
+            this.configActive = false;
+        }
+
+        this.configClick = false;
         this.topbarItemClick = false;
         this.menuClick = false;
     }
@@ -93,6 +104,26 @@ export class AppComponent implements AfterViewInit {
         }
     }
 
+    changeTheme(theme: string, scheme: string) {
+        const layoutLink: HTMLLinkElement = document.getElementById('layout-css') as HTMLLinkElement;
+        layoutLink.href = 'assets/layout/css/layout-' + theme + '.css';
+
+        const themeLink: HTMLLinkElement = document.getElementById('theme-css') as HTMLLinkElement;
+        themeLink.href = 'assets/theme/' + theme + '/theme-' + scheme + '.css';
+        this.themeColor = theme + "-" + scheme;
+
+        const topbarLogo: HTMLImageElement = document.getElementById('layout-topbar-logo') as HTMLImageElement;
+        const menuLogo: HTMLImageElement = document.getElementById('layout-menu-logo') as HTMLImageElement;
+
+        if (theme === 'yellow' || theme === 'lime') {
+            topbarLogo.src = 'assets/layout/images/logo-black.png';
+            menuLogo.src = 'assets/layout/images/logo-black.png';
+        } else {
+            topbarLogo.src = 'assets/layout/images/logo-white.png';
+            menuLogo.src = 'assets/layout/images/logo-white.png';
+        }
+    }
+    
     onTopbarMenuButtonClick(event) {
         this.topbarItemClick = true;
         this.topbarMenuActive = !this.topbarMenuActive;
@@ -114,6 +145,10 @@ export class AppComponent implements AfterViewInit {
 
     onTopbarSubItemClick(event) {
         event.preventDefault();
+    }
+
+    onConfigClick(event) {
+        this.configClick = true;
     }
 
     hideOverlayMenu() {

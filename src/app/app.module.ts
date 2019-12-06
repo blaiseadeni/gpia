@@ -79,6 +79,7 @@ import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppFooterComponent } from './app.footer.component';
+import { AppConfigComponent } from './app.config.component';
 import { DashboardDemoComponent } from './demo/view/dashboarddemo.component';
 import { SampleDemoComponent } from './demo/view/sampledemo.component';
 import { FormsDemoComponent } from './demo/view/formsdemo.component';
@@ -181,6 +182,7 @@ import { BreadcrumbService } from './breadcrumb.service';
         AppBreadcrumbComponent,
         AppTopBarComponent,
         AppFooterComponent,
+        AppConfigComponent,
         DashboardDemoComponent,
         SampleDemoComponent,
         FormsDemoComponent,
