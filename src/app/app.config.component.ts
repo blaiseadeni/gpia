@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {trigger, state, style, transition, animate} from '@angular/animations';
 import {AppComponent} from './app.component';
 
 @Component({
@@ -18,28 +17,28 @@ import {AppComponent} from './app.component';
                         <h1>Menu Modes</h1>
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="app.layoutMode = 'static'">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="app.layoutMode = 'static'">
                                     <img src="assets/layout/images/configurator/menu/babylon-static.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.layoutMode === 'static'"></i>
                                 </a>
                                 <span>Static</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="app.layoutMode = 'overlay'">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="app.layoutMode = 'overlay'">
                                     <img src="assets/layout/images/configurator/menu/babylon-overlay.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.layoutMode === 'overlay'"></i>
                                 </a>
                                 <span>Overlay</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="app.layoutMode = 'horizontal'">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="app.layoutMode = 'horizontal'">
                                     <img src="assets/layout/images/configurator/menu/babylon-horizontal.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.layoutMode === 'horizontal'"></i>
                                 </a>
                                 <span>Horizontal</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1"
+                                <a style="cursor: pointer" class="layout-config-option-image"
                                    (click)="app.layoutMode = 'slim'">
                                     <img src="assets/layout/images/configurator/menu/babylon-slim.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.layoutMode === 'slim'"></i>
@@ -50,14 +49,14 @@ import {AppComponent} from './app.component';
                         <h1>Menu Type</h1>
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.grouped = true">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.grouped = true">
                                     <img src="assets/layout/images/configurator/menu/babylon-grouped.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.grouped"></i>
                                 </a>
                                 <span>Grouped</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.grouped = false">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.grouped = false">
                                     <img src="assets/layout/images/configurator/menu/babylon-ungrouped.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="!app.grouped"></i>
                                 </a>
@@ -67,14 +66,14 @@ import {AppComponent} from './app.component';
                         <h1>Menu Colors</h1>
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.darkMenu = true">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.darkMenu = true">
                                     <img src="assets/layout/images/configurator/menu/babylon-static.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.darkMenu"></i>
                                 </a>
                                 <span>Dark</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.darkMenu = false">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.darkMenu = false">
                                     <img src="assets/layout/images/configurator/menu/babylon-light.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="!app.darkMenu"></i>
                                 </a>
@@ -85,14 +84,14 @@ import {AppComponent} from './app.component';
                     <p-tabPanel header="User Profile">
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.profileMode = 'inline'">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.profileMode = 'inline'">
                                     <img src="assets/layout/images/configurator/menu/babylon-inline.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.profileMode === 'inline'"></i>
                                 </a>
                                 <span>Inline</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image ui-shadow-1" (click)="this.app.profileMode = 'popup'">
+                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.profileMode = 'popup'">
                                     <img src="assets/layout/images/configurator/menu/babylon-popup.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.profileMode === 'popup'"></i>
                                 </a>
@@ -103,7 +102,7 @@ import {AppComponent} from './app.component';
                     <p-tabPanel header="Themes">
                         <div class="p-grid">
                             <div class="p-col p-xl-2" *ngFor="let componentTheme of componentThemes">
-                                <a style="cursor: pointer" class="layout-config-option-image layout-config-option ui-shadow-1" (click)="app.changeTheme(componentTheme.name,componentTheme.file)">
+                                <a style="cursor: pointer" class="layout-config-option-image layout-config-option" (click)="app.changeTheme(componentTheme.name,componentTheme.file)">
                                     <img src="assets/layout/images/configurator/themes/{{componentTheme.image}}" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.themeColor === componentTheme.name + '-' + componentTheme.file"></i>
                                 </a>
@@ -113,21 +112,7 @@ import {AppComponent} from './app.component';
                 </p-tabView>
             </div>
         </div>
-    `,
-    animations: [
-        trigger('children', [
-            state('hiddenAnimated', style({
-                // opacity: 0,
-                // transform: ' translateX(-50%) translateY(-50%)'
-            })),
-            state('visibleAnimated', style({
-                // opacity: 1,
-                transform: 'translateX(-50%) translateY(-50%) scale(1)',
-            })),
-            transition('visibleAnimated => hiddenAnimated', animate('150ms cubic-bezier(0, 0, 0.2, 1)')),
-            transition('hiddenAnimated => visibleAnimated', animate('150ms cubic-bezier(0, 0, 0.2, 1)'))
-        ])
-    ]
+    `
 })
 export class AppConfigComponent implements OnInit {
 
