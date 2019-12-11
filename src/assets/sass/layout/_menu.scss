@@ -463,6 +463,10 @@
                 @include transition(left $transitionDuration);
             }
 
+            .layout-topbar {
+                @include transition(left $transitionDuration);
+            }
+
             .layout-main {
                 margin-left: 250px;
                 @include transition(margin-left $transitionDuration);
