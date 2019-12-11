@@ -161,7 +161,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 </div>
                 <ul app-submenu [item]="child" *ngIf="child.items" [visible]="isActive(i)"
                     [reset]="reset" [parentActive]="isActive(i)"
-                    [@children]="(app.isSlim()||app.isHorizontal())&&!app.isMobile()&&root ? isActive(i) ?
+                    [@children]="(app.isSlim()||app.isHorizontal())&&!app.isMobile()&&!app.isTablet()&&root ? isActive(i) ?
                     'visible' : 'hidden' : isActive(i) ? 'visibleAnimated' :
                     app.grouped===true && root? 'visibleAnimated': 'hiddenAnimated'"></ul>
             </li>

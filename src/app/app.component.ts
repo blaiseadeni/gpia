@@ -84,7 +84,7 @@ export class AppComponent implements AfterViewInit {
         this.rotateMenuButton = !this.rotateMenuButton;
         this.topbarMenuActive = false;
 
-        if (this.layoutMode === 'overlay' && !this.isMobile()) {
+        if (this.layoutMode === 'overlay' && (!this.isMobile() && !this.isTablet())) {
             this.overlayMenuActive = !this.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
