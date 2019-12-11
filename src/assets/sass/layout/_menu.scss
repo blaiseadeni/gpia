@@ -12,13 +12,13 @@
 
         .layout-menu-logo {
             background-color: $logoBgColor;
-            
+
             a {
                 display: block;
                 text-align: left;
                 height: 60px;
                 padding-left: 12px;
-    
+
                 img {
                     margin-top: 15px;
                     height: 30px;
@@ -54,7 +54,7 @@
                         display: inline-block;
                         font-weight: 700;
                     }
-    
+
                     .layout-profile-role {
                         display: block;
                     }
@@ -75,7 +75,7 @@
                 padding: 0 12px;
                 margin: 0;
                 overflow: hidden;
-                
+
                 li {
                     a {
                         display: block;
@@ -83,12 +83,12 @@
                         text-align: left;
                         @include border-radius($borderRadius);
                         @include transition(background-color $transitionDuration);
-                        
+
                         i {
                             margin-right: 8px;
                             vertical-align: middle;
                         }
-                        
+
                         span {
                             font-weight: 700;
                             display: inline-block;
@@ -120,6 +120,7 @@
                     .layout-menuitem-icon {
                         margin-right: 6px;
                         vertical-align: middle;
+                        font-size: 1.25em;
                     }
 
                     .layout-menuitem-text {
@@ -228,7 +229,7 @@
                 left: 61px;
                 top: 17px;
                 line-height: 1;
-                
+
                 .layout-menu-tooltip-text {
                    padding: 6px 8px;
                    font-weight: 700;
@@ -240,7 +241,7 @@
                    @include border-radius($borderRadius);
                    @include shadow(0 2px 10px 0 rgba(0, 3, 6, 0.16));
                 }
-                
+
                 .layout-menu-tooltip-arrow {
                     position: absolute;
                     width: 0;
@@ -303,7 +304,7 @@
                     .layout-profile-name {
                         color: $menuitemTextColor;
                     }
-                    
+
                     .layout-profile-role {
                         color: $menuitemTextColor;
                     }
@@ -320,11 +321,11 @@
                 .layout-profile-menu {
                     a {
                         color: $menuitemTextColor;
-    
+
                         i {
                             color: $menuitemIconColor;
                         }
-    
+
                         &:hover {
                             background-color: $menuitemHoverBgColor;
                         }
@@ -343,7 +344,7 @@
                         .layout-submenu-toggler {
                             color: $menuitemIconColor;
                         }
-    
+
                         &:hover {
                             background-color: $menuitemHoverBgColor;
                         }
@@ -355,7 +356,7 @@
                         }
                     }
                 }
-    
+
                 > li {
                     > div {
                         color: $rootMenuitemTextColor;
@@ -380,7 +381,7 @@
                     .layout-profile-name {
                         color: $darkMenuitemTextColor;
                     }
-                    
+
                     .layout-profile-role {
                         color: darken($darkMenuitemTextColor, 15%);
                     }
@@ -397,11 +398,11 @@
                 .layout-profile-menu {
                     a {
                         color: $darkMenuitemTextColor;
-    
+
                         i {
                             color: $darkMenuitemIconColor;
                         }
-    
+
                         &:hover {
                             background-color: $darkMenuitemHoverBgColor;
                         }
@@ -410,7 +411,7 @@
             }
 
             .layout-menu {
-                
+
                 li {
                     a {
                         .layout-menuitem-text {
@@ -421,7 +422,7 @@
                         .layout-submenu-toggler {
                             color: $darkMenuitemIconColor;
                         }
-    
+
                         &:hover {
                             background-color: $darkMenuitemHoverBgColor;
                         }
@@ -433,7 +434,7 @@
                         }
                     }
                 }
-    
+
                 > li {
                     > div {
                         color: $darkMenuRootMenuitemTextColor;
@@ -461,7 +462,7 @@
                 left: 0;
                 @include transition(left $transitionDuration);
             }
-    
+
             .layout-main {
                 margin-left: 250px;
                 @include transition(margin-left $transitionDuration);
@@ -470,7 +471,7 @@
             .layout-footer {
                 padding-left: 270px;
             }
-    
+
             &.layout-static-inactive {
                 .layout-topbar {
                     left: 0;
@@ -480,7 +481,7 @@
                 .layout-menu-container {
                     left: -250px;
                 }
-    
+
                 .layout-main {
                     margin-left: 0;
                 }
@@ -496,7 +497,7 @@
                 }
             }
         }
-    
+
         &.layout-overlay {
             .layout-topbar {
                 left: 0;
@@ -513,7 +514,7 @@
                     border-right: 0 none;
                 }
             }
-    
+
             &.layout-overlay-active {
                 .layout-topbar {
                     left: 250px;
@@ -548,7 +549,7 @@
 
                 .layout-menu-logo {
                     overflow: hidden;
-                    
+
                     a {
                         img {
                             margin-top: 12px;
@@ -614,14 +615,14 @@
                             pointer-events: none;
                             left: 210px;
                         }
-    
+
                         &:before {
                             border-color: rgba(216, 216, 220, 0);
                             border-bottom-color: $topbarMenuBorderColor;
                             border-width: 10px;
                             margin-left: -10px;
                         }
-    
+
                         &:after {
                             border-color: rgba(244, 244, 249, 0);
                             border-bottom-color: $topbarMenuBgColor;
@@ -643,7 +644,7 @@
                         }
                     }
                 }
-                
+
                 .layout-menu {
                     padding: 0;
 
@@ -652,7 +653,7 @@
                             display: block;
                         }
                     }
-                    
+
                     > li {
                         position: relative;
                         margin-bottom: 0;
@@ -661,8 +662,8 @@
                             > a {
                                 background-color: $horizontalMenuitemActiveBgColor;
                                 @include border-radius-right(0);
-    
-                                .layout-menuitem-text, 
+
+                                .layout-menuitem-text,
                                 .layout-menuitem-icon,
                                 .layout-submenu-toggler {
                                     color: $horizontalMenuitemActiveTextColor;
@@ -673,7 +674,7 @@
                         > div {
                             display: none;
                         }
-                                            
+
                         > a {
                             display: block;
                             text-align: center;
@@ -682,21 +683,21 @@
                             padding-top: 19px;
                             padding-bottom: 19px;
                             @include border-radius(0);
-                            
+
                             .layout-menuitem-icon {
                                 font-size: 24px;
                                 margin-right: 0;
                             }
-                            
+
                             .layout-menuitem-text, .layout-submenu-toggler {
                                 display: none;
                             }
-                            
+
                             &:hover + .layout-menu-tooltip {
                                 display: block;
                             }
                         }
-                        
+
                         > ul {
                             position: absolute;
                             overflow: auto;
@@ -709,7 +710,7 @@
                             padding: 8px 12px;
                             @include border-radius-right($borderRadius);
                             @include shadow(0 2px 10px 0 rgba(0, 3, 6, 0.16));
-                            
+
                             li {
                                 a {
                                     padding: 8px 12px;
@@ -724,27 +725,27 @@
                                         a {
                                             padding-left: 28px;
                                         }
-                
+
                                         li {
                                             a {
                                                 padding-left: 44px;
                                             }
-                
+
                                             li {
                                                 a {
                                                     padding-left: 60px;
                                                 }
-                
+
                                                 li {
                                                     a {
                                                         padding-left: 76px;
                                                     }
-                
+
                                                     li {
                                                         a {
                                                             padding-left: 92px;
                                                         }
-                
+
                                                         li {
                                                             a {
                                                                 padding-left: 108px;
@@ -758,9 +759,9 @@
                                 }
                             }
                         }
-                        
+
                         &.active-menuitem {
-                            > a {                                
+                            > a {
                                 &:hover + .layout-menu-tooltip {
                                     display: none;
                                 }
@@ -787,7 +788,7 @@
             }
 
             &.layout-menu-dark {
-                .layout-menu-container {                   
+                .layout-menu-container {
                     .layout-menu {
                         > li {
                             > ul {
@@ -848,7 +849,7 @@
                         .layout-profile-icon {
                             display: none;
                         }
-                        
+
                         &:hover {
                             background-color: transparent;
                         }
@@ -879,14 +880,14 @@
                             pointer-events: none;
                             left: 210px;
                         }
-    
+
                         &:before {
                             border-color: rgba(216, 216, 220, 0);
                             border-bottom-color: $topbarMenuBorderColor;
                             border-width: 10px;
                             margin-left: -10px;
                         }
-    
+
                         &:after {
                             border-color: rgba(244, 244, 249, 0);
                             border-bottom-color: $topbarMenuBgColor;
@@ -905,7 +906,7 @@
                                 }
 
                                 &:hover {
-                                    background-color: $menuitemHoverBgColor;   
+                                    background-color: $menuitemHoverBgColor;
                                 }
                             }
                         }
@@ -939,8 +940,8 @@
                             > a {
                                 background-color: $horizontalMenuitemActiveBgColor;
                                 @include border-radius-bottom(0);
-    
-                                .layout-menuitem-text, 
+
+                                .layout-menuitem-text,
                                 .layout-menuitem-icon,
                                 .layout-submenu-toggler {
                                     color: $horizontalMenuitemActiveTextColor;
@@ -990,27 +991,27 @@
                                     a {
                                         padding-left: 28px;
                                     }
-            
+
                                     li {
                                         a {
                                             padding-left: 44px;
                                         }
-            
+
                                         li {
                                             a {
                                                 padding-left: 60px;
                                             }
-            
+
                                             li {
                                                 a {
                                                     padding-left: 76px;
                                                 }
-            
+
                                                 li {
                                                     a {
                                                         padding-left: 92px;
                                                     }
-            
+
                                                     li {
                                                         a {
                                                             padding-left: 108px;
@@ -1076,7 +1077,7 @@
                     .layout-profile {
                         border-right: 0 none;
                     }
-                   
+
                     .layout-menu {
                         border-right: 0 none;
 
@@ -1110,7 +1111,7 @@
                             padding-bottom: 0;
                         }
                     }
-                    
+
                     > .nano-pane {
                         display: none !important;
                     }
