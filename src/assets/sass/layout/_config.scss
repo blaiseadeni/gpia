@@ -82,6 +82,7 @@
                 margin-right: 44px;
     
                 li {
+                    outline: none;
                     vertical-align: bottom;
                     top: auto;
                     margin: 0;
@@ -296,7 +297,7 @@
     }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 896px) {
     .layout-config {
         transform: translate3d(100%, 0px, 0px);
         
