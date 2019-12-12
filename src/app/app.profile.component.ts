@@ -33,7 +33,7 @@ export class AppProfileComponent {
     constructor(public app: AppComponent) { }
 
     onClick(event) {
-        this.active = !this.active;
+        this.app.onInlineMenuClick(event);
         event.preventDefault();
     }
 }

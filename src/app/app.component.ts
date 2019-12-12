@@ -42,6 +42,10 @@ export class AppComponent implements AfterViewInit {
 
     configActive: boolean;
 
+    inlineMenuActive: boolean;
+
+    inlineMenuClick: boolean;
+
     themeColor: string = "blue-accent"
 
     @ViewChild('layoutMenuScroller', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
@@ -58,7 +62,7 @@ export class AppComponent implements AfterViewInit {
             this.topbarMenuActive = false;
         }
 
-        if (!this.menuClick) {
+        if (!this.menuClick || (this.inlineMenuClick && this.isSlim())) {
             if (this.isHorizontal() || this.isSlim()) {
                 this.resetMenu = true;
             }
@@ -74,6 +78,11 @@ export class AppComponent implements AfterViewInit {
             this.configActive = false;
         }
 
+        if(this.inlineMenuActive && !this.inlineMenuClick) {
+            this.inlineMenuActive = false;
+        }
+
+        this.inlineMenuClick = false;
         this.configClick = false;
         this.topbarItemClick = false;
         this.menuClick = false;
@@ -99,9 +108,18 @@ export class AppComponent implements AfterViewInit {
         this.menuClick = true;
         this.resetMenu = false;
 
+        if(this.inlineMenuActive && !this.inlineMenuClick) {
+            this.inlineMenuActive = false;
+        }
+
         if (!this.isHorizontal()) {
             setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 450);
         }
+    }
+
+    onInlineMenuClick(event) {
+        this.inlineMenuActive  = !this.inlineMenuActive;
+        this.inlineMenuClick = true;
     }
 
     changeTheme(theme: string, scheme: string) {
