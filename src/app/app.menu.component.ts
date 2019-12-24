@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MenuItem } from 'primeng/api';
-import { AppComponent } from './app.component';
+import { AppMainComponent } from './app.main.component';
 
 @Component({
     selector: 'app-menu',
@@ -18,7 +18,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
 
     modelUngrouped: any[];
 
-    constructor(public app: AppComponent) { }
+    constructor(public app: AppMainComponent) { }
 
     ngOnInit() {
         this.modelGrouped = [
@@ -47,12 +47,12 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 items: [
                     { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] },
                     { label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
-                    { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', url: 'assets/pages/login.html', target: '_blank' },
-                    { label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle', url: 'assets/pages/error.html', target: '_blank' },
-                    { label: '404 Page', icon: 'pi pi-fw pi-times', url: 'assets/pages/404.html', target: '_blank' },
+                    { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login'], target: '_blank' },
+                    { label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle', routerLink: ['/error'], target: '_blank' },
+                    { label: '404 Page', icon: 'pi pi-fw pi-times', routerLink: ['/404'], target: '_blank' },
                     {
                         label: 'Access Denied', icon: 'pi pi-fw pi-ban',
-                        url: 'assets/pages/access.html', target: '_blank'
+                        routerLink: ['/accessdenied'], target: '_blank'
                     }
                 ]
             },
@@ -202,7 +202,7 @@ export class AppSubMenuComponent {
 
     activeIndex: number;
 
-    constructor(public app: AppComponent, public appMenu: AppMenuComponent) { }
+    constructor(public app: AppMainComponent, public appMenu: AppMenuComponent) { }
 
     itemClick(event: Event, item: MenuItem, index: number) {
         if (this.root) {

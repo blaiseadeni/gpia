@@ -74,6 +74,11 @@ import { TreeTableModule } from 'primeng/treetable';
 import { VirtualScrollerModule } from 'primeng/virtualscroller';
 
 import { AppComponent } from './app.component';
+import { AppMainComponent } from './app.main.component';
+import { AppNotfoundComponent } from './pages/app.notfound.component';
+import { AppErrorComponent } from './pages/app.error.component';
+import { AppAccessdeniedComponent } from './pages/app.accessdenied.component';
+import { AppLoginComponent } from './pages/app.login.component';
 import { AppProfileComponent } from './app.profile.component';
 import { AppMenuComponent, AppSubMenuComponent } from './app.menu.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
@@ -176,6 +181,7 @@ import { BreadcrumbService } from './breadcrumb.service';
     ],
     declarations: [
         AppComponent,
+        AppMainComponent,
         AppMenuComponent,
         AppSubMenuComponent,
         AppProfileComponent,
@@ -196,7 +202,11 @@ import { BreadcrumbService } from './breadcrumb.service';
         ChartsDemoComponent,
         EmptyDemoComponent,
         FileDemoComponent,
-        DocumentationComponent
+        DocumentationComponent,
+        AppNotfoundComponent,
+        AppErrorComponent,
+        AppAccessdeniedComponent,
+        AppLoginComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
