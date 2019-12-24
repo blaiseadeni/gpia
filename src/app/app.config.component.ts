@@ -102,7 +102,8 @@ import {AppMainComponent} from './app.main.component';
                     <p-tabPanel header="Themes">
                         <div class="p-grid">
                             <div class="p-col p-xl-2" *ngFor="let componentTheme of componentThemes">
-                                <a style="cursor: pointer" class="layout-config-option-image layout-config-option" (click)="app.changeTheme(componentTheme.name,componentTheme.file)">
+                                <a style="cursor: pointer" class="layout-config-option-image layout-config-option"
+                                   (click)="app.changeTheme(componentTheme.name,componentTheme.file)">
                                     <img src="assets/layout/images/configurator/themes/{{componentTheme.image}}" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.themeColor === componentTheme.name + '-' + componentTheme.file"></i>
                                 </a>
