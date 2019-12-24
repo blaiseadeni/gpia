@@ -32,7 +32,7 @@
         "web-animations-js": "github:angular/web-animations-js#release_pr208",
         "zone.js": "0.9.1",
         "prismjs": "1.15.0",
-        "primeicons": "1.0.0",
+        "primeicons": "2.0.0",
         "primeflex": "1.0.0-rc.1"
     },
     "devDependencies": {

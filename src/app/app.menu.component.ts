@@ -46,6 +46,9 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 label: 'Pages', icon: 'pi pi-fw pi-copy',
                 items: [
                     { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] },
+                    { label: 'Invoice', icon: 'pi pi-fw pi-compass', routerLink: ['/invoice'] },
+                    { label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/help'] },
+                    { label: 'Wizard', icon: 'pi pi-fw pi-star', routerLink: ['/wizard'] },
                     { label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
                     { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login'], target: '_blank' },
                     { label: 'Error Page', icon: 'pi pi-fw pi-exclamation-triangle', routerLink: ['/error'], target: '_blank' },
