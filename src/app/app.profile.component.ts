@@ -8,7 +8,8 @@ import {AppMainComponent} from './app.main.component';
     animations: [
         trigger('menu', [
             state('hiddenAnimated', style({
-                height: '0px'
+                height: '0px',
+                paddingBottom: '0px'
             })),
             state('visibleAnimated', style({
                 height: '*'

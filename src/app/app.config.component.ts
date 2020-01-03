@@ -84,16 +84,16 @@ import {AppMainComponent} from './app.main.component';
                     <p-tabPanel header="User Profile">
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.profileMode = 'inline'">
+                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''" (click)="onProfileModeClick('inline')">
                                     <img src="assets/layout/images/configurator/menu/babylon-inline.png" alt="babylon"/>
-                                    <i class="pi pi-check" *ngIf="app.profileMode === 'inline'"></i>
+                                    <i class="pi pi-check" *ngIf="app.profileMode === 'inline' && !app.isHorizontal()"></i>
                                 </a>
                                 <span>Inline</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" class="layout-config-option-image" (click)="this.app.profileMode = 'popup'">
+                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''" (click)="onProfileModeClick('popup')">
                                     <img src="assets/layout/images/configurator/menu/babylon-popup.png" alt="babylon"/>
-                                    <i class="pi pi-check" *ngIf="app.profileMode === 'popup'"></i>
+                                    <i class="pi pi-check" *ngIf="app.profileMode === 'popup' || app.isHorizontal()"></i>
                                 </a>
                                 <span>Popup</span>
                             </div>
@@ -103,9 +103,9 @@ import {AppMainComponent} from './app.main.component';
                         <div class="p-grid">
                             <div class="p-col p-xl-2" *ngFor="let componentTheme of componentThemes">
                                 <a style="cursor: pointer" class="layout-config-option-image layout-config-option"
-                                   (click)="app.changeTheme(componentTheme.name,componentTheme.file)">
+                                   (click)="changeTheme(componentTheme.name,componentTheme.file)">
                                     <img src="assets/layout/images/configurator/themes/{{componentTheme.image}}" alt="babylon"/>
-                                    <i class="pi pi-check" *ngIf="app.themeColor === componentTheme.name + '-' + componentTheme.file"></i>
+                                    <i class="pi pi-check" *ngIf="themeColor === componentTheme.name + '-' + componentTheme.file"></i>
                                 </a>
                             </div>
                         </div>
@@ -118,6 +118,8 @@ import {AppMainComponent} from './app.main.component';
 export class AppConfigComponent implements OnInit {
 
     componentThemes: any;
+
+    themeColor = 'blue-accent';
 
     constructor(public app: AppMainComponent) {}
 
@@ -177,6 +179,56 @@ export class AppConfigComponent implements OnInit {
         ];
     }
 
+    onProfileModeClick(mode: string) {
+        if (this.app.isHorizontal()) {
+            return;
+        }
+
+        this.app.profileMode = mode;
+    }
+
+    changeTheme(theme: string, scheme: string) {
+        this.changeStyleSheetsColor('theme-css', 'theme-' + scheme + '.css');
+        this.changeStyleSheetsColor('layout-css', 'layout-' + theme + '.css');
+        this.themeColor = theme + '-' + scheme;
+
+        const topbarLogo: HTMLImageElement = document.getElementById('layout-topbar-logo') as HTMLImageElement;
+        const menuLogo: HTMLImageElement = document.getElementById('layout-menu-logo') as HTMLImageElement;
+
+        if (theme === 'yellow' || theme === 'lime') {
+            topbarLogo.src = 'assets/layout/images/logo-black.png';
+            menuLogo.src = 'assets/layout/images/logo-black.png';
+        } 
+        else {
+            topbarLogo.src = 'assets/layout/images/logo-white.png';
+            menuLogo.src = 'assets/layout/images/logo-white.png';
+        }
+    }
+
+    changeStyleSheetsColor(id, value) {
+        const element = document.getElementById(id);
+        const urlTokens = element.getAttribute('href').split('/');
+        urlTokens[urlTokens.length - 1] = value;
+
+        const newURL = urlTokens.join('/');
+
+        this.replaceLink(element, newURL);
+    }
+
+    replaceLink(linkElement, href) {
+        const id = linkElement.getAttribute('id');
+        const cloneLinkElement = linkElement.cloneNode(true);
+
+        cloneLinkElement.setAttribute('href', href);
+        cloneLinkElement.setAttribute('id', id + '-clone');
+
+        linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+        cloneLinkElement.addEventListener('load', () => {
+            linkElement.remove();
+            cloneLinkElement.setAttribute('id', id);
+        });
+    }
 
     onConfigButtonClick(event) {
         this.app.configActive = !this.app.configActive;
