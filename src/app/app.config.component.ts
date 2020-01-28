@@ -190,8 +190,8 @@ export class AppConfigComponent implements OnInit {
     }
 
     changeTheme(theme: string, scheme: string) {
-        this.changeStyleSheetsColor('theme-css', 'theme-' + scheme + '.css');
-        this.changeStyleSheetsColor('layout-css', 'layout-' + theme + '.css');
+        this.changeStyleSheetsColor('theme-css', theme, 'theme-' + scheme + '.css');
+        this.changeStyleSheetsColor('layout-css', theme, 'layout-' + theme + '.css');
         this.themeColor = theme + '-' + scheme;
 
         const topbarLogo: HTMLImageElement = document.getElementById('layout-topbar-logo') as HTMLImageElement;
@@ -206,11 +206,16 @@ export class AppConfigComponent implements OnInit {
         }
     }
 
-    changeStyleSheetsColor(id, value) {
+    changeStyleSheetsColor(id, color, value) {
         const element = document.getElementById(id);
         const urlTokens = element.getAttribute('href').split('/');
-        urlTokens[urlTokens.length - 1] = value;
 
+        if (id.localeCompare('layout-css') === 0) {
+            urlTokens[urlTokens.length - 1] = value;
+        } else {
+            urlTokens[urlTokens.length - 2] = color ;
+            urlTokens[urlTokens.length - 1] = value ;
+        }
         const newURL = urlTokens.join('/');
 
         this.replaceLink(element, newURL);
