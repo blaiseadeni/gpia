@@ -84,14 +84,16 @@ import {AppMainComponent} from './app.main.component';
                     <p-tabPanel header="User Profile">
                         <div class="p-grid">
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''" (click)="onProfileModeClick('inline')">
+                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''"
+                                   (click)="onProfileModeClick('inline')">
                                     <img src="assets/layout/images/configurator/menu/babylon-inline.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.profileMode === 'inline' && !app.isHorizontal()"></i>
                                 </a>
                                 <span>Inline</span>
                             </div>
                             <div class="p-col p-col-fixed">
-                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''" (click)="onProfileModeClick('popup')">
+                                <a style="cursor: pointer" [class]="app.isHorizontal() ? 'ui-state-disabled':''"
+                                   (click)="onProfileModeClick('popup')">
                                     <img src="assets/layout/images/configurator/menu/babylon-popup.png" alt="babylon"/>
                                     <i class="pi pi-check" *ngIf="app.profileMode === 'popup' || app.isHorizontal()"></i>
                                 </a>
@@ -198,8 +200,7 @@ export class AppConfigComponent implements OnInit {
         if (theme === 'yellow' || theme === 'lime') {
             topbarLogo.src = 'assets/layout/images/logo-black.png';
             menuLogo.src = 'assets/layout/images/logo-black.png';
-        } 
-        else {
+        } else {
             topbarLogo.src = 'assets/layout/images/logo-white.png';
             menuLogo.src = 'assets/layout/images/logo-white.png';
         }
