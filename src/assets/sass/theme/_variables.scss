@@ -490,3 +490,19 @@ $confirmDialogPadding:1.5em;
 
 //general
 $disabledOpacity:.5;
+
+//carousel
+$carouselNavButtonsBgColor: $secondaryButtonBgColor;
+$carouselNavButtonsBorder: $secondaryButtonBorder;
+$carouselNavButtonsBorderRadius: 3px;
+$carouselNavButtonsMargin: .2em;
+$carouselNavButtonsColor: $secondaryButtonTextColor;
+$carouselNavButtonsHoverBgColor: $secondaryButtonHoverBgColor;
+$carouselNavButtonsHoverColor: $secondaryButtonHoverTextColor;
+$carouselNavButtonsHoverBorderColor: $secondaryButtonHoverBorderColor;
+$carouselNavButtonsTransition: color $transitionDuration;
+$carouselDotIconWidth: 20px;
+$carouselDotIconHeight: 6px;
+$carouselDotIconBgColor: #b2c1cd;
+$carouselDotIconMargin: 0 .2em;
+$carouselActiveDotIconBgColor: $primaryColor;

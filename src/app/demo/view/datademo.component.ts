@@ -72,6 +72,36 @@ import interactionPlugin from '@fullcalendar/interaction';
             text-align: left;
         }
 
+        .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
+            border: 1px solid #b3c2ca;
+            border-radius: 3px;
+            margin: 0.3em;
+            text-align: center;
+            padding: 2em 0 2.25em 0;
+        }
+        .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-top: 24px;
+        }
+        .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {
+            margin: 0.25em 0 2em 0;
+        }
+        .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
+            margin-left: 0.5em;
+        }
+        .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
+            margin-left: 0;
+        }
+        .ui-carousel.custom-carousel .ui-carousel-dot-icon {
+            width: 16px !important;
+            height: 16px !important;
+            border-radius: 50%;
+        }
+        .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
+            margin-left: 0.6em;
+        }
+
         @media (max-width: 40em) {
             .car-item {
                 text-align: center;
@@ -122,6 +152,8 @@ export class DataDemoComponent implements OnInit {
     orderListCars: Car[];
 
     carouselCars: Car[];
+
+    responsiveOptions;
 
     files1: TreeNode[];
 
@@ -197,6 +229,24 @@ export class DataDemoComponent implements OnInit {
             { vin: 'ybw5fsd', year: 2012, brand: 'Ford', color: 'Yellow' },
             { vin: '45665e5', year: 2011, brand: 'Mercedes', color: 'Brown' },
             { vin: 'he6sb5v', year: 2015, brand: 'Ford', color: 'Black' }
+        ];
+
+        this.responsiveOptions = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1,
+                numScroll: 1
+            }
         ];
 
         this.fullCalendarOptions = {

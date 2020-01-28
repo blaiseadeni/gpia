@@ -232,23 +232,24 @@
     <div class="p-col-12">
         <div class="card card-w-title">
             <h1>Carousel</h1>
-            <p-carousel headerText="Cars" [value]="carouselCars">
+            <p-carousel [value]="carouselCars" [numVisible]="4" [numScroll]="3" [circular]="false" [responsiveOptions]="responsiveOptions">
                 <ng-template let-car pTemplate="item">
-                    <div class="p-grid" style="text-align:center">
-                        <div class="p-col-12">
-                            <img src="assets/demo/images/car/{{car.brand}}.png" />
+                    <div class="car-details">
+                        <div class="p-grid p-nogutter">
+                            <div class="p-col-12">
+                                <img src="assets/demo/images/car/{{car.brand}}.png" />
+                            </div>
+                            <div class="p-col-12 car-data">
+                                <div class="car-title">{{car.brand}}</div>
+                                <div class="car-subtitle">{{car.year}} | {{car.color}}</div>
+
+                                <div class="car-buttons">
+                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-search"></button>
+                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-star"></button>
+                                    <button pButton type="button" class="ui-button-secondary" icon="pi pi-cog"></button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="p-col-6">Vin: </div>
-                        <div class="p-col-6" style="font-weight:bold">{{car.vin}}</div>
-
-                        <div class="p-col-6">Year: </div>
-                        <div class="p-col-6" style="font-weight:bold">{{car.year}}</div>
-
-                        <div class="p-col-6">Brand: </div>
-                        <div class="p-col-6" style="font-weight:bold">{{car.brand}}</div>
-
-                        <div class="p-col-6">Color: </div>
-                        <div class="p-col-6" style="font-weight:bold">{{car.color}}</div>
                     </div>
                 </ng-template>
             </p-carousel>
