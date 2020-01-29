@@ -479,6 +479,16 @@ body {
                 }
             }
         }
+
+        .ui-carousel {
+            .ui-carousel-content {
+                .ui-carousel-prev,
+                .ui-carousel-next {
+                    width: 2.5em;
+                }
+            }
+        }
+
     }
 
     .ui-picklist {
@@ -788,8 +798,6 @@ body {
             color: $dataIconColor;
         }
     }
-
-
 
     .ui-carousel {
         .ui-carousel-content {
