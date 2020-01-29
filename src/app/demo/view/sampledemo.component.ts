@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { CarService } from '../service/carservice';
 import { CountryService } from '../service/countryservice';
 import { NodeService } from '../service/nodeservice';
@@ -37,7 +37,8 @@ import { BreadcrumbService } from '../../breadcrumb.service';
         }
         .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
             margin-left: 0.6em;
-        }`]
+        }`],
+    encapsulation: ViewEncapsulation.None
 })
 export class SampleDemoComponent implements OnInit {
 
