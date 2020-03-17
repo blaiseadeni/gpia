@@ -6,8 +6,11 @@ import { AppMainComponent } from './app.main.component';
 @Component({
     selector: 'app-menu',
     template: `
-        <ul app-submenu [item]="app.grouped ? modelGrouped : modelUngrouped" root="true" class="layout-menu"
-            visible="true" [reset]="reset" parentActive="true"></ul>
+
+        <ul class="layout-menu">
+            <li app-menuitem *ngFor="let item of (app.grouped ? modelGrouped : modelUngrouped); let i = index;"
+                [item]="item" [index]="i" [visible]="true" [root]="true"></li>
+        </ul>
     `
 })
 export class AppMenuComponent implements OnInit, AfterViewInit {
@@ -28,26 +31,26 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 ]
             },
             {
-                label: 'Components', icon: 'pi pi-fw pi-star',
+                label: 'Components', icon: 'pi pi-fw pi-star', routerLink: ['/components'],
                 items: [
-                    { label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/sample']  },
-                    { label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/forms'] },
-                    { label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/data'] },
-                    { label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/panels'] },
-                    { label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/overlays'] },
-                    { label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/menus'] },
-                    { label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/messages'] },
-                    { label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/charts'] },
-                    { label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/file'] },
-                    { label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/misc'] }
+                    { label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/components/sample']  },
+                    { label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/components/forms'] },
+                    { label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/components/data'] },
+                    { label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/components/panels'] },
+                    { label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/components/overlays'] },
+                    { label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/components/menus'] },
+                    { label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/components/messages'] },
+                    { label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/components/charts'] },
+                    { label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/components/file'] },
+                    { label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/components/misc'] }
                 ]
             },
             {
-                label: 'Pages', icon: 'pi pi-fw pi-copy',
+                label: 'Pages', icon: 'pi pi-fw pi-copy', routerLink: ['/pages'],
                 items: [
-                    { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] },
-                    { label: 'Invoice', icon: 'pi pi-fw pi-compass', routerLink: ['/invoice'] },
-                    { label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/help'] },
+                    { label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/pages/empty'] },
+                    { label: 'Invoice', icon: 'pi pi-fw pi-compass', routerLink: ['/pages/invoice'] },
+                    { label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help'] },
                     { label: 'Wizard', icon: 'pi pi-fw pi-star', routerLink: ['/wizard'] },
                     { label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' },
                     { label: 'Login Page', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login'], target: '_blank' },
@@ -129,11 +132,11 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
         setTimeout(() => { this.app.layoutMenuScrollerViewChild.moveBar(); }, 100);
     }
 }
-
+/*
 @Component({
-    /* tslint:disable:component-selector */
+    /* tslint:disable:component-selector
     selector: '[app-submenu]',
-    /* tslint:enable:component-selector */
+    /* tslint:enable:component-selector
     template: `
         <ng-template ngFor let-child let-i="index" [ngForOf]="(root ? item : item.items)">
             <li [ngClass]="{'layout-root-menuitem':root ,'active-menuitem': isActive(i)}" [class]="child.badgeStyleClass"
@@ -281,4 +284,4 @@ export class AppSubMenuComponent {
             this.activeIndex = null;
         }
     }
-}
+}*/
