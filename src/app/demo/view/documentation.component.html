@@ -3,7 +3,7 @@
         <div class="card docs no-margin">
 
             <h1>Current Version</h1>
-            <p>Angular 8 and PrimeNG 8</p>
+            <p>Angular 9 and PrimeNG 9</p>
 
             <h1>Dependencies</h1>
             <p>Babylon has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
@@ -73,12 +73,10 @@ Run 'ng help' for more options.
             &lt;/a&gt;
         &lt;/div&gt;
         &lt;div class="layout-menu-wrapper"&gt;
-            &lt;p-scrollPanel #layoutMenuScroller [style]="&#123;height: '100%' &#125;"&gt;
-                &lt;div class="menu-scroll-content"&gt;
-                    &lt;app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"&gt;&lt;/app-inline-profile&gt;
-                    &lt;app-menu [reset]="resetMenu"&gt;&lt;/app-menu&gt;
-                &lt;/div&gt;
-            &lt;/p-scrollPanel&gt;
+            &lt;div class="menu-scroll-content"&gt;
+                &lt;app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"&gt;&lt;/app-inline-profile&gt;
+                &lt;app-menu [reset]="resetMenu"&gt;&lt;/app-menu&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
@@ -102,8 +100,7 @@ Run 'ng help' for more options.
 
             <h1>Menu</h1>
             <p>Menu is a separate component defined in app.menu.component.ts file based on PrimeNG MenuModel API. In order to define the menuitems,
-            navigate to this file and define your own model as a nested structure. Here is the menu component from the sample application. The helper
-            app-submenu component is also available in the same file.</p>
+            navigate to this file and define your own model as a nested structure. Here is the menu component from the sample application.</p>
 <div style="height:400px;overflow: auto;">
 <pre>
 <code class="language-javascript" pCode>
@@ -115,11 +112,13 @@ import &#123;AppComponent&#125; from './app.component';
 @Component(&#123;
     selector: 'app-menu',
     template: `
-        &lt;ul app-submenu [item]="app.grouped ? modelGrouped : modelUngrouped" root="true" class="layout-menu"
-            visible="true" [reset]="reset" parentActive="true"&gt;&lt;/ul&gt;
+        &lt;ul class="layout-menu"&gt;
+            &lt;li app-menuitem *ngFor="let item of (app.grouped ? modelGrouped : modelUngrouped); let i = index;"
+                [item]="item" [index]="i" [visible]="true" [root]="true"&gt;&lt;/li&gt;
+        &lt;/ul&gt;
     `
 &#125;)
-export class AppMenuComponent implements OnInit, AfterViewInit &#123;
+export class AppMenuComponent implements OnInit &#123;
 
     @Input() reset: boolean;
 
@@ -1001,6 +1000,16 @@ export class ControlPanelComponent &#123;
             </ul>
 
             <h1>Migration Guide</h1>
+            <h4>8.0.1 to 9.0.0</h4>
+            <p>Angular 9 and PrimeNG 9</p>
+            <ul>
+                <li>Update dependencies with <a href="https://angular.io/cli/update">ng update</a>.</li>
+                <li>Update theme.css and layout.css files.</li>
+                <li>Update app.menu.component.ts and app.menu.component.html while retaining your MenuModel.</li>
+                <li>Include app.menuitem.component.ts under app folder and define it app.module.ts with declarations property.</li>
+                <li>Include app.menu.service.ts under app folder and define it app.module.ts with providers property.</li>
+            </ul>
+
             <h4>8.0.0 to 8.0.1</h4>
             <ul>
                 <li>Update layout css files.</li>
