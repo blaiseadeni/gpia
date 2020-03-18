@@ -7,16 +7,16 @@ import { BreadcrumbService } from '../../breadcrumb.service';
     providers: [MessageService]
 })
 export class FileDemoComponent {
-    
+
     uploadedFiles: any[] = [];
-    
+
     constructor(private breadcrumbService: BreadcrumbService, private messageService: MessageService) {
         this.breadcrumbService.setItems([
             { label: 'Components' },
             { label: 'File', routerLink: ['/components/file'] }
         ]);
     }
-    
+
     onUpload(event) {
         for (const file of event.files) {
             this.uploadedFiles.push(file);
