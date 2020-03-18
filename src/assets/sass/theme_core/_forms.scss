@@ -555,7 +555,7 @@ body {
                         &:hover {
                             border: $inputBorder;
                         }
-                        
+
                         &.ui-state-active:hover {
                             border-color: $checkboxActiveBorderColor;
                         }
@@ -681,7 +681,7 @@ body {
                 background-color: $inputBgColor;
                 color: $textColor;
             }
-        } 
+        }
 
         .ql-picker.ql-expanded {
             .ql-picker-label {
@@ -951,11 +951,12 @@ body {
 
             td {
                 padding: $calendarCellDatePadding;
-                
+
                 > a, > span {
                     display: block;
                     text-align: center;
                     color: $textColor;
+                    border: $calendarBorder;
                     padding: $calendarCellDatePadding;
                     @include border-radius($calendarCellDateBorderRadius);
                 }
@@ -978,7 +979,13 @@ body {
                     a {
                         background-color: $calendarCellDateTodayBgColor;
                         color: $calendarCellDateTodayTextColor;
+                        border: $calendarTodayBorder;
                         font-weight: 600;
+
+                        &.ui-state-active {
+                            color: $calendarCellDateSelectedTextColor;
+                            background-color: $calendarCellDateSelectedBgColor;
+                        }
                     }
                 }
             }

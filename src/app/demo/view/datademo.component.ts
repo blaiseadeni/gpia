@@ -12,26 +12,89 @@ import interactionPlugin from '@fullcalendar/interaction';
 @Component({
     templateUrl: './datademo.component.html',
     styles: [`
-        .ui-dataview .search-icon {
-            margin-top: 3em;
+        /* Table */
+        .ui-table.ui-table-cars .ui-table-caption.ui-widget-header {
+            padding: 12px;
+            text-align: left;
+            font-size: 20px;
+            font-weight: normal;
         }
 
-        .ui-dataview .filter-container {
+        .ui-table .ui-table-globalfilter-container {
+            position: relative;
+            top: -4px;
+        }
+
+        .ui-column-filter {
+            margin-top: 1em;
+        }
+
+        .ui-column-filter .ui-multiselect-label {
+            font-weight: 500;
+        }
+
+        .ui-table.ui-table-cars .ui-table-thead > tr > th {
+            text-align: left;
+        }
+
+        .ui-table-globalfilter-container {
+            float: right;
+            display: inline;
+        }
+
+        .ui-table.ui-table-cars .ui-table-tbody .ui-column-title {
+            font-size: 16px;
+        }
+
+        .ui-table.ui-table-cars .ui-paginator {
+            padding: 1em;
+        }
+
+        /* DataView */
+        .filter-container {
             text-align: center;
         }
 
-        @media (max-width: 40em) {
-            .ui-dataview .car-details, .ui-dataview .search-icon{
-                text-align: center;
-                margin-top: 0;
+        .car-details-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2em;
+            border-bottom: 1px solid #d9dad9;
+        }
+
+        .car-details-list > div {
+            display: flex;
+            align-items: center;
+        }
+
+        .car-details-list > div img {
+            margin-right: 14px;
+        }
+
+        .car-detail {
+            padding: 0 1em 1em 1em;
+            border-bottom: 1px solid #d9dad9;
+            margin: 1em;
+        }
+
+        .ui-panel-content {
+            padding: 1em;
+        }
+
+        @media (max-width: 1024px) {
+            .car-details-list img {
+                width: 75px;
             }
 
-            .ui-dataview .filter-container {
+            .filter-container {
                 text-align: left;
             }
         }
+
+        /* Carousel */
         .car-item {
-             padding-top: 5px;
+            padding-top: 5px;
         }
 
         .car-item .ui-md-3 {
@@ -101,6 +164,9 @@ import interactionPlugin from '@fullcalendar/interaction';
         .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
             margin-left: 0.6em;
         }
+        .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
+            margin-right: 0.6em;
+        }
 
         @media (max-width: 40em) {
             .car-item {
@@ -135,15 +201,23 @@ export class DataDemoComponent implements OnInit {
 
     cars3: Car[];
 
+    cars4: Car[];
+
     carsVirtual: Car[] = [];
 
     cols: any[];
 
     cols2: any[];
 
+    brands: SelectItem[];
+
+    colors: SelectItem[];
+
     data: TreeNode[];
 
     selectedCar: Car;
+
+    selectedCar2: Car;
 
     sourceCars: Car[];
 
@@ -152,8 +226,6 @@ export class DataDemoComponent implements OnInit {
     orderListCars: Car[];
 
     carouselCars: Car[];
-
-    responsiveOptions;
 
     files1: TreeNode[];
 
@@ -173,8 +245,6 @@ export class DataDemoComponent implements OnInit {
 
     selectedNodes: TreeNode[];
 
-    scheduleHeader: any;
-
     sortOptions: SelectItem[];
 
     sortKey: string;
@@ -187,6 +257,8 @@ export class DataDemoComponent implements OnInit {
 
     timeout: any;
 
+    responsiveOptions: any;
+
     constructor(private carService: CarService, private eventService: EventService, private nodeService: NodeService,
                 private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
@@ -196,7 +268,8 @@ export class DataDemoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.carService.getCarsMedium().then(cars => this.cars1 = cars);
+        this.carService.getCarsLarge().then(cars => this.cars1 = cars);
+        this.carService.getCarsMedium().then(cars => this.cars4 = cars);
         this.cols = [
             { field: 'vin', header: 'Vin' },
             { field: 'year', header: 'Year' },
@@ -218,7 +291,29 @@ export class DataDemoComponent implements OnInit {
         this.nodeService.getFiles().then(files => this.files3 = files);
         this.nodeService.getFilesystem().then(files => this.files4 = files);
         this.eventService.getEvents().then(events => { this.events = events; });
+        this.brands = [
+            { label: 'Audi', value: 'Audi' },
+            { label: 'BMW', value: 'BMW' },
+            { label: 'Fiat', value: 'Fiat' },
+            { label: 'Honda', value: 'Honda' },
+            { label: 'Jaguar', value: 'Jaguar' },
+            { label: 'Mercedes', value: 'Mercedes' },
+            { label: 'Renault', value: 'Renault' },
+            { label: 'VW', value: 'VW' },
+            { label: 'Volvo', value: 'Volvo' }
+        ];
 
+        this.colors = [
+            { label: 'White', value: 'White' },
+            { label: 'Green', value: 'Green' },
+            { label: 'Silver', value: 'Silver' },
+            { label: 'Black', value: 'Black' },
+            { label: 'Red', value: 'Red' },
+            { label: 'Maroon', value: 'Maroon' },
+            { label: 'Brown', value: 'Brown' },
+            { label: 'Orange', value: 'Orange' },
+            { label: 'Blue', value: 'Blue' }
+        ];
         this.carouselCars = [
             { vin: 'r3278r2', year: 2010, brand: 'Audi', color: 'Black' },
             { vin: 'jhto2g2', year: 2015, brand: 'BMW', color: 'White' },
@@ -229,24 +324,6 @@ export class DataDemoComponent implements OnInit {
             { vin: 'ybw5fsd', year: 2012, brand: 'Ford', color: 'Yellow' },
             { vin: '45665e5', year: 2011, brand: 'Mercedes', color: 'Brown' },
             { vin: 'he6sb5v', year: 2015, brand: 'Ford', color: 'Black' }
-        ];
-
-        this.responsiveOptions = [
-            {
-                breakpoint: '1024px',
-                numVisible: 3,
-                numScroll: 3
-            },
-            {
-                breakpoint: '768px',
-                numVisible: 2,
-                numScroll: 2
-            },
-            {
-                breakpoint: '560px',
-                numVisible: 1,
-                numScroll: 1
-            }
         ];
 
         this.fullCalendarOptions = {
@@ -294,6 +371,24 @@ export class DataDemoComponent implements OnInit {
             { label: 'Newest First', value: '!year' },
             { label: 'Oldest First', value: 'year' },
             { label: 'Brand', value: 'brand' }
+        ];
+
+        this.responsiveOptions = [
+            {
+                breakpoint: '1024px',
+                numVisible: 3,
+                numScroll: 3
+            },
+            {
+                breakpoint: '768px',
+                numVisible: 2,
+                numScroll: 2
+            },
+            {
+                breakpoint: '560px',
+                numVisible: 1,
+                numScroll: 1
+            }
         ];
     }
 

@@ -244,6 +244,8 @@ $calendarNavIconColor:$textSecondaryColor;
 $calendarNavIconHoverColor:$primaryColor;
 $calendarNavIconTransition:color $transitionDuration;
 $calendarHeaderCellPadding:0.286em;
+$calendarBorder: 1px solid transparent;
+$calendarTodayBorder: 1px solid $highlightBgColor;
 $calendarButtonBarDivider:$inputBorder;
 $calendarMultipleMonthDivider:$inputBorder;
 $calendarPadding:0.857em;
