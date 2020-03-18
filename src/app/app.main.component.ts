@@ -1,12 +1,12 @@
-import {Component, AfterViewInit, Renderer2, ViewChild} from '@angular/core';
-import {ScrollPanel} from 'primeng/primeng';
+import {Component, Renderer2} from '@angular/core';
+import { MenuService } from './app.menu.service';
 
 @Component({
     selector: 'app-main',
     templateUrl: './app.main.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppMainComponent implements AfterViewInit {
+export class AppMainComponent {
 
     layoutMode = 'static';
 
@@ -24,8 +24,6 @@ export class AppMainComponent implements AfterViewInit {
 
     staticMenuMobileActive: boolean;
 
-    layoutMenuScroller: HTMLDivElement;
-
     menuClick: boolean;
 
     topbarItemClick: boolean;
@@ -33,8 +31,6 @@ export class AppMainComponent implements AfterViewInit {
     configClick: boolean;
 
     activeTopbarItem: any;
-
-    resetMenu: boolean;
 
     menuHoverActive: boolean;
 
@@ -46,13 +42,7 @@ export class AppMainComponent implements AfterViewInit {
 
     inlineMenuClick: boolean;
 
-    @ViewChild('layoutMenuScroller', { static: true }) layoutMenuScrollerViewChild: ScrollPanel;
-
-    constructor(public renderer: Renderer2) {}
-
-    ngAfterViewInit() {
-        setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 100);
-    }
+    constructor(public renderer: Renderer2, private menuService: MenuService) {}
 
     onLayoutClick() {
         if (!this.topbarItemClick) {
@@ -62,7 +52,7 @@ export class AppMainComponent implements AfterViewInit {
 
         if (!this.menuClick || (this.inlineMenuClick && this.isSlim())) {
             if (this.isHorizontal() || this.isSlim()) {
-                this.resetMenu = true;
+                this.menuService.reset();
             }
 
             if (this.overlayMenuActive || this.staticMenuMobileActive) {
@@ -104,14 +94,9 @@ export class AppMainComponent implements AfterViewInit {
 
     onMenuClick($event) {
         this.menuClick = true;
-        this.resetMenu = false;
 
         if (this.inlineMenuActive && !this.inlineMenuClick) {
             this.inlineMenuActive = false;
-        }
-
-        if (!this.isHorizontal()) {
-            setTimeout(() => {this.layoutMenuScrollerViewChild.moveBar(); }, 450);
         }
     }
 

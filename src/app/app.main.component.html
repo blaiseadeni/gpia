@@ -18,12 +18,10 @@
             </a>
         </div>
         <div class="layout-menu-wrapper">
-            <p-scrollPanel #layoutMenuScroller [style]="{height: '100%' }">
-                <div class="menu-scroll-content">
-                    <app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"></app-inline-profile>
-                    <app-menu [reset]="resetMenu"></app-menu>
-                </div>
-            </p-scrollPanel>
+            <div class="menu-scroll-content">
+                <app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"></app-inline-profile>
+                <app-menu [reset]="resetMenu"></app-menu>
+            </div>
         </div>
     </div>
 

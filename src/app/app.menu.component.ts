@@ -1,6 +1,4 @@
-import { Component, Input, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { MenuItem } from 'primeng/api';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppMainComponent } from './app.main.component';
 
 @Component({
@@ -13,7 +11,7 @@ import { AppMainComponent } from './app.main.component';
         </ul>
     `
 })
-export class AppMenuComponent implements OnInit, AfterViewInit {
+export class AppMenuComponent implements OnInit {
 
     @Input() reset: boolean;
 
@@ -126,10 +124,6 @@ export class AppMenuComponent implements OnInit, AfterViewInit {
                 items: this.modelGrouped
             }
         ];
-    }
-
-    ngAfterViewInit() {
-        setTimeout(() => { this.app.layoutMenuScrollerViewChild.moveBar(); }, 100);
     }
 }
 /*
