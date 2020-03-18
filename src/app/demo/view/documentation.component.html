@@ -75,7 +75,7 @@ Run 'ng help' for more options.
         &lt;div class="layout-menu-wrapper"&gt;
             &lt;div class="menu-scroll-content"&gt;
                 &lt;app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"&gt;&lt;/app-inline-profile&gt;
-                &lt;app-menu [reset]="resetMenu"&gt;&lt;/app-menu&gt;
+                &lt;app-menu&gt;&lt;/app-menu&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -104,10 +104,8 @@ Run 'ng help' for more options.
 <div style="height:400px;overflow: auto;">
 <pre>
 <code class="language-javascript" pCode>
-import &#123;Component, Input,&#125; from '@angular/core';
-import &#123;trigger, state, style, transition, animate&#125; from '@angular/animations';
-import &#123;MenuItem&#125; from 'primeng/api';
-import &#123;AppComponent&#125; from './app.component';
+import &#123; Component, OnInit &#125; from '@angular/core';
+import &#123; AppMainComponent &#125; from './app.main.component';
 
 @Component(&#123;
     selector: 'app-menu',
@@ -119,8 +117,6 @@ import &#123;AppComponent&#125; from './app.component';
     `
 &#125;)
 export class AppMenuComponent implements OnInit &#123;
-
-    @Input() reset: boolean;
 
     modelGrouped: any[];
 
@@ -136,26 +132,26 @@ export class AppMenuComponent implements OnInit &#123;
                 ]
             &#125;,
             &#123;
-                label: 'Components', icon: 'pi pi-fw pi-star',
+                label: 'Components', icon: 'pi pi-fw pi-star', routerLink: ['/components'],
                 items: [
-                    &#123; label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/sample']  &#125;,
-                    &#123; label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/forms'] &#125;,
-                    &#123; label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/data'] &#125;,
-                    &#123; label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/panels'] &#125;,
-                    &#123; label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/overlays'] &#125;,
-                    &#123; label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/menus'] &#125;,
-                    &#123; label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/messages'] &#125;,
-                    &#123; label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/charts'] &#125;,
-                    &#123; label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/file'] &#125;,
-                    &#123; label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/misc'] &#125;
+                    &#123; label: 'Sample Page', icon: 'pi pi-fw pi-th-large', routerLink: ['/components/sample']  &#125;,
+                    &#123; label: 'Forms', icon: 'pi pi-fw pi-file', routerLink: ['/components/forms'] &#125;,
+                    &#123; label: 'Data', icon: 'pi pi-fw pi-table', routerLink: ['/components/data'] &#125;,
+                    &#123; label: 'Panels', icon: 'pi pi-fw pi-list', routerLink: ['/components/panels'] &#125;,
+                    &#123; label: 'Overlays', icon: 'pi pi-fw pi-clone', routerLink: ['/components/overlays'] &#125;,
+                    &#123; label: 'Menus', icon: 'pi pi-fw pi-plus', routerLink: ['/components/menus'] &#125;,
+                    &#123; label: 'Messages', icon: 'pi pi-fw pi-spinner', routerLink: ['/components/messages'] &#125;,
+                    &#123; label: 'Charts', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/components/charts'] &#125;,
+                    &#123; label: 'File', icon: 'pi pi-fw pi-upload', routerLink: ['/components/file'] &#125;,
+                    &#123; label: 'Misc', icon: 'pi pi-fw pi-briefcase', routerLink: ['/components/misc'] &#125;
                 ]
             &#125;,
             &#123;
-                label: 'Pages', icon: 'pi pi-fw pi-copy',
+                label: 'Pages', icon: 'pi pi-fw pi-copy', routerLink: ['/pages'],
                 items: [
-                    &#123; label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/empty'] &#125;,
-                    &#123; label: 'Invoice', icon: 'pi pi-fw pi-compass', routerLink: ['/invoice'] &#125;,
-                    &#123; label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/help'] &#125;,
+                    &#123; label: 'Empty Page', icon: 'pi pi-fw pi-clone', routerLink: ['/pages/empty'] &#125;,
+                    &#123; label: 'Invoice', icon: 'pi pi-fw pi-compass', routerLink: ['/pages/invoice'] &#125;,
+                    &#123; label: 'Help Page', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help'] &#125;,
                     &#123; label: 'Wizard', icon: 'pi pi-fw pi-star', routerLink: ['/wizard'] &#125;,
                     &#123; label: 'Landing Page', icon: 'pi pi-fw pi-globe', url: 'assets/pages/landing.html', target: '_blank' &#125;,
                     &#123; label: 'Login Page', icon: 'pi pi-fw pi-sign-in', url: 'assets/pages/login.html', target: '_blank' &#125;,
@@ -936,6 +932,22 @@ $confirmDialogPadding:1.5em;
 
 //general
 $disabledOpacity:.5;
+
+//carousel
+$carouselNavButtonsBgColor: $secondaryButtonBgColor;
+$carouselNavButtonsBorder: $secondaryButtonBorder;
+$carouselNavButtonsBorderRadius: 3px;
+$carouselNavButtonsMargin: .2em;
+$carouselNavButtonsColor: $secondaryButtonTextColor;
+$carouselNavButtonsHoverBgColor: $secondaryButtonHoverBgColor;
+$carouselNavButtonsHoverColor: $secondaryButtonHoverTextColor;
+$carouselNavButtonsHoverBorderColor: $secondaryButtonHoverBorderColor;
+$carouselNavButtonsTransition: color $transitionDuration;
+$carouselDotIconWidth: 20px;
+$carouselDotIconHeight: 6px;
+$carouselDotIconBgColor: #b2c1cd;
+$carouselDotIconMargin: 0 .2em;
+$carouselActiveDotIconBgColor: $primaryColor;
 </code>
 </pre>
 </div>

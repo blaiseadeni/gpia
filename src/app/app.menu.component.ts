@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppMainComponent } from './app.main.component';
 
 @Component({
@@ -11,8 +11,6 @@ import { AppMainComponent } from './app.main.component';
     `
 })
 export class AppMenuComponent implements OnInit {
-
-    @Input() reset: boolean;
 
     modelGrouped: any[];
 
