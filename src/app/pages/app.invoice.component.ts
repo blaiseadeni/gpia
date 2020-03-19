@@ -10,7 +10,7 @@ export class AppInvoiceComponent {
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             { label: 'Pages' },
-            { label: 'Invoice', routerLink: ['/invoice'] }
+            { label: 'Invoice', routerLink: ['/pages/invoice'] }
         ]);
     }
 
