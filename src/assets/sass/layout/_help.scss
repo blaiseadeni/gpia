@@ -25,7 +25,7 @@
                  span {
                     width: 100%;
 
-                     .ui-autocomplete-input {
+                     .p-autocomplete-input {
                         width: 100%;
                         padding: 10px;
                         padding-left: 30px;
@@ -172,8 +172,8 @@
                     }
 
                     .questions-content {
-                        .ui-accordion {
-                            .ui-accordion-header a {
+                        .p-accordion {
+                            .p-accordion-header a {
                                 background-color: transparent;
                                 padding: 24px 0px;
                                 margin: 0 40px;
@@ -192,7 +192,7 @@
                                     padding: 0 15px ;
                                 }
 
-                                .ui-accordion-toggle-icon {
+                                .p-accordion-toggle-icon {
                                     position: absolute;
                                     right: 0;
                                     left: auto;
@@ -200,12 +200,12 @@
                                     font-weight: 600;
                                 }
 
-                                &.ui-state-active {
+                                &.p-state-active {
                                     background-color: transparent;
                                 }
                             }
 
-                            .ui-accordion-content {
+                            .p-accordion-content {
                                 border: none;
                                 padding: 22px 28px;
                                 margin: 0 40px;
@@ -241,13 +241,13 @@
                 .help-contents-row {
                     .help-content {
                         .questions-content {
-                            .ui-accordion {
-                                .ui-accordion-header {
+                            .p-accordion {
+                                .p-accordion-header {
                                     padding: 24px 0px;
                                     margin: 0 10px;
                                 }
 
-                                .ui-accordion-content {
+                                .p-accordion-content {
                                     padding: 22px 28px;
                                     margin: 0 10px;
                                 }

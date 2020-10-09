@@ -55,7 +55,7 @@
 
         <div class="p-col-12 p-lg-8">
             <div class="card card-w-title statistics">
-                <h1>Statistics</h1>
+                <h5>Statistics</h5>
                 <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
             </div>
         </div>
@@ -132,7 +132,7 @@
 
         <div class="p-col-12 p-md-12 p-lg-4">
             <div class="card card-w-title tasks">
-                <h1>Tasks</h1>
+                <h5>Tasks</h5>
                 <ul>
                     <li>
                         <p-checkbox binary="true"></p-checkbox>
@@ -165,16 +165,16 @@
 
         <div class="p-col-12 p-md-12 p-lg-4">
             <div class="card card-w-title resolution-center p-fluid">
-                <h1>Support Request</h1>
+                <h5>Support Request</h5>
 
                 <label for="resolution-username">Username</label>
                 <input id="resolution-username" type="text" pInputText placeholder="Name">
 
                 <label for="resolution-message">Message</label>
                 <textarea id="resolution-message" type="text" pInputTextarea placeholder="Message"></textarea>
-                
+
                 <div class="resolution-button-bar">
-                    <button type="button" label="Save Draft" pButton class="ui-button-secondary" icon="pi pi-plus"></button>
+                    <button type="button" label="Save Draft" pButton class="p-button-secondary" icon="pi pi-plus"></button>
                     <button type="button" label="Send" pButton icon="pi pi-check"></button>
                 </div>
             </div>
@@ -182,7 +182,7 @@
 
         <div class="p-col-12 p-md-12 p-lg-4">
             <div class="card card-w-title team">
-                <h1>Team</h1>
+                <h5>Team</h5>
                 <ul>
                     <li>
                         <img src="assets/layout/images/avatar.png" alt="babylon-layout" />
@@ -242,7 +242,7 @@
 
         <div class="p-col-12 p-xl-6">
             <div class="card card-w-title timeline">
-                <h1>Timeline</h1>
+                <h5>Timeline</h5>
                 <ul>
                     <li>
                         <div class="activity-link"></div>
@@ -317,36 +317,35 @@
 
         <div class="p-col-12 p-xl-6">
             <div class="card card-w-title global-sales p-fluid">
-                <h1>Global Sales</h1>
-                <p-table [columns]="cols" [value]="cars" selectionMode="single" dataKey="vin" [(selection)]="selectedCar" [responsive]="true"
-                         [paginator]="true" [rows]="5">
-                    <ng-template pTemplate="header" let-columns>
+                <h5>Global Sales</h5>
+                <p-table [value]="products" [paginator]="true" [rows]="5">
+                    <ng-template pTemplate="header">
                         <tr>
-                            <th>
-                                Logo
+                            <th pSortableColumn="id">ID
+                                <p-sortIcon field="id"></p-sortIcon>
                             </th>
-                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                                {{col.header}}
-                                <p-sortIcon [field]="col.field"></p-sortIcon>
+                            <th pSortableColumn="category">Category
+                                <p-sortIcon field="category"></p-sortIcon>
                             </th>
-                            <th>
-                                View
+                            <th pSortableColumn="price">Price
+                                <p-sortIcon field="price"></p-sortIcon>
                             </th>
+                            <th pSortableColumn="inventoryStatus">Status
+                                <p-sortIcon field="inventoryStatus"></p-sortIcon>
+                            </th>
+                            <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-columns="columns">
-                        <tr [pSelectableRow]="rowData">
-                            <td>
-                                <img src="assets/demo/images/car/{{rowData.brand}}.png" width="50">
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{product.id}}</td>
+                            <td>{{product.category}}</td>
+                            <td>{{product.price | currency:'USD'}}</td>
+                            <td><span
+                                [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{product.inventoryStatus}}</span>
                             </td>
-                            <td *ngFor="let col of columns">
-                                {{rowData[col.field]}}
-                            </td>
-                            <td>
-                                <div class="ui-g">
-                                    <div class="ui-g-6"><p-button icon="pi pi-search" type="button"></p-button></div>
-                                    <div class="ui-g-6"><p-button icon="pi pi-times" type="button" styleClass="ui-button-danger"></p-button></div>
-                                </div>
+                            <td style="text-align: center">
+                                <button pButton type="button" icon="pi pi-search"></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -354,7 +353,7 @@
             </div>
 
             <div class="card card-w-title live-support">
-                <h1>Live Support</h1>
+                <h5>Live Support</h5>
                 <ul>
                     <li>
                         <div class="p-grid">
@@ -406,7 +405,7 @@
 
         <div class="p-col-12 p-md-12 p-lg-12">
             <div class="card card-w-title">
-                <h1>Schedule</h1>
+                <h5>Schedule</h5>
                 <p-fullCalendar [events]="events" [options]="fullCalendarOptions"></p-fullCalendar>
             </div>
         </div>

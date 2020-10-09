@@ -7,7 +7,7 @@
                 'layout-static-inactive': staticMenuDesktopInactive,
                 'layout-mobile-active': staticMenuMobileActive,
                 'layout-menu-dark':darkMenu,
-                'layout-menu-light':!darkMenu}">
+                'layout-menu-light':!darkMenu, 'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple}">
 
     <app-topbar></app-topbar>
 
@@ -32,11 +32,10 @@
             <router-outlet></router-outlet>
         </div>
 
+        <app-footer></app-footer>
     </div>
 
     <app-config></app-config>
-
-    <app-footer></app-footer>
 
     <div class="layout-mask"></div>
 

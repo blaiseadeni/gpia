@@ -1,12 +1,13 @@
-import {Component, Renderer2} from '@angular/core';
-import { MenuService } from './app.menu.service';
+import {Component, OnInit} from '@angular/core';
+import {MenuService} from './app.menu.service';
+import {PrimeNGConfig} from 'primeng/api';
 
 @Component({
     selector: 'app-main',
     templateUrl: './app.main.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppMainComponent {
+export class AppMainComponent implements OnInit {
 
     layoutMode = 'static';
 
@@ -42,7 +43,16 @@ export class AppMainComponent {
 
     inlineMenuClick: boolean;
 
-    constructor(public renderer: Renderer2, private menuService: MenuService) {}
+    inputStyle = 'outlined';
+
+    ripple: boolean;
+
+    constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig) {
+    }
+
+    ngOnInit() {
+        this.primengConfig.ripple = true;
+    }
 
     onLayoutClick() {
         if (!this.topbarItemClick) {
@@ -85,8 +95,10 @@ export class AppMainComponent {
             this.overlayMenuActive = !this.overlayMenuActive;
         } else {
             if (this.isDesktop()) {
-                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive; } else {
-                this.staticMenuMobileActive = !this.staticMenuMobileActive; }
+                this.staticMenuDesktopInactive = !this.staticMenuDesktopInactive;
+            } else {
+                this.staticMenuMobileActive = !this.staticMenuMobileActive;
+            }
         }
 
         event.preventDefault();
@@ -101,7 +113,7 @@ export class AppMainComponent {
     }
 
     onInlineMenuClick(event) {
-        this.inlineMenuActive  = !this.inlineMenuActive;
+        this.inlineMenuActive = !this.inlineMenuActive;
         this.inlineMenuClick = true;
     }
 
@@ -118,8 +130,10 @@ export class AppMainComponent {
         this.topbarItemClick = true;
 
         if (this.activeTopbarItem === item) {
-            this.activeTopbarItem = null; } else {
-            this.activeTopbarItem = item; }
+            this.activeTopbarItem = null;
+        } else {
+            this.activeTopbarItem = item;
+        }
 
         event.preventDefault();
     }
@@ -130,6 +144,10 @@ export class AppMainComponent {
 
     onConfigClick(event) {
         this.configClick = true;
+    }
+
+    onRippleChange(event) {
+        this.ripple = event.checked;
     }
 
     hideOverlayMenu() {

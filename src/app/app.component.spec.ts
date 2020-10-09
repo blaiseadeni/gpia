@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppBreadcrumbComponent } from './app.breadcrumb.component';
 import { AppProfileComponent } from './app.profile.component';
-import { BreadcrumbService } from './breadcrumb.service';
+import { BreadcrumbService } from './app.breadcrumb.service';
 import { AppFooterComponent } from './app.footer.component';
 import { AppMenuComponent } from './app.menu.component';
 import { AccordionModule } from 'primeng/accordion';

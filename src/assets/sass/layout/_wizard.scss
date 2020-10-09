@@ -105,9 +105,6 @@ html {
                             margin-top: 24px;
                             display: block;
                         }
-                        .ui-icon {
-                            color: #ffffff;
-                        }
                     }
                 }
 
@@ -117,7 +114,7 @@ html {
                     justify-content: flex-end;
 
 
-                    .ui-button {
+                    .p-button {
                         background-color: #405965;
                         border: none;
                         border-radius: 4px;
@@ -125,7 +122,7 @@ html {
                         font-size: 13px;
                         font-weight: 600;
 
-                        &.ui-state-hover {
+                        &:hover {
                             background-color: #4b6a79;
                             @include transition(background-color .3s);
                         }
@@ -161,15 +158,15 @@ html {
                                 color: #ffffff;
                             }
 
-                            .ui-dropdown {
+                            .p-dropdown {
                                 border: solid 1px #527382;
                                 width: 100%;
-                                .ui-inputtext {
+                                .p-inputtext {
                                     background-color: #405965;
                                     color: #ffffff;
                                     @include border-radius(2px);
                                 }
-                                .ui-dropdown-trigger {
+                                .p-dropdown-trigger {
                                     background-color: #405965;
                                     color: #ffffff;
                                     @include border-radius(2px);
@@ -333,13 +330,14 @@ html {
 
                             .customPanel{
                                 width:100%;
+                                margin-left: .5em;
 
                                 img {
                                     height: 35px;
                                     margin-right: 8px;
                                 }
 
-                                .ui-radiobutton{
+                                .p-radiobutton{
                                     margin-top: 8px;
                                 }
                             }
@@ -361,8 +359,7 @@ html {
                                 display: inline-block;
                             }
 
-                            .ui-chkbox-label {
-                                margin-top: 24px;
+                            .p-checkbox-label {
                                 color: #ffffff;
                                 font-size: 13px;
                             }
@@ -493,7 +490,7 @@ html {
                                 margin-bottom: 20px;
                             }
 
-                            .ui-button {
+                            .p-button {
                                 height: 50px;
                             }
                         }

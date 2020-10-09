@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { BreadcrumbService } from '../../breadcrumb.service';
+import {Component, OnInit} from '@angular/core';
+import {BreadcrumbService} from '../../app.breadcrumb.service';
 
 @Component({
     templateUrl: './chartsdemo.component.html'
@@ -18,8 +18,7 @@ export class ChartsDemoComponent implements OnInit {
 
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Components' },
-            { label: 'Charts', routerLink: ['/components/charts'] }
+            {label: 'Charts'}
         ]);
     }
 
@@ -31,13 +30,15 @@ export class ChartsDemoComponent implements OnInit {
                     label: 'First Dataset',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
-                    borderColor: '#2196F3'
+                    backgroundColor: 'rgb(255, 205, 86)',
+                    borderColor: 'rgb(255, 205, 86)'
                 },
                 {
                     label: 'Second Dataset',
                     data: [28, 48, 40, 19, 86, 27, 90],
                     fill: false,
-                    borderColor: '#FFC107'
+                    backgroundColor: 'rgb(75, 192, 192)',
+                    borderColor: 'rgb(75, 192, 192)'
                 }
             ]
         };
@@ -47,29 +48,29 @@ export class ChartsDemoComponent implements OnInit {
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: '#2196F3',
-                    borderColor: '#2196F3',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
                     data: [65, 59, 80, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: '#FFC107',
-                    borderColor: '#FFC107',
+                    backgroundColor: 'rgb(54, 162, 235)',
+                    borderColor: 'rgb(54, 162, 235)',
                     data: [28, 48, 40, 19, 86, 27, 90]
                 }
             ]
         };
 
         this.pieData = {
-            labels: ['A', 'B', 'C', 'D'],
+            labels: ['A', 'B', 'C'],
             datasets: [
                 {
                     data: [540, 325, 702, 421],
                     backgroundColor: [
-                        '#2196F3',
-                        '#FFC107',
-                        '#00796B',
-                        '#E91E63'
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)'
                     ]
                 }]
         };
@@ -83,18 +84,18 @@ export class ChartsDemoComponent implements OnInit {
                     3
                 ],
                 backgroundColor: [
-                    '#2196F3',
-                    '#FFC107',
-                    '#00796B',
-                    '#E91E63'
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)'
                 ],
                 label: 'My dataset'
             }],
             labels: [
                 'Blue',
-                'Amber',
-                'Teal',
-                'Pink',
+                'Purple',
+                'Orange',
+                'Green'
             ]
         };
 
@@ -103,22 +104,22 @@ export class ChartsDemoComponent implements OnInit {
             datasets: [
                 {
                     label: 'My First dataset',
-                    backgroundColor: 'rgba(223,240,236,0.2)',
-                    borderColor: '#2196F3',
-                    pointBackgroundColor: '#2196F3',
+                    backgroundColor: 'rgba(54, 162, 235,0.2)',
+                    borderColor: 'rgba(54, 162, 235,1)',
+                    pointBackgroundColor: 'rgba(54, 162, 235,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#2196F3',
+                    pointHoverBorderColor: 'rgba(54, 162, 235,1)',
                     data: [65, 59, 90, 81, 56, 55, 40]
                 },
                 {
                     label: 'My Second dataset',
-                    backgroundColor: 'rgba(228,217,238,0.2)',
-                    borderColor: '#FFC107',
-                    pointBackgroundColor: '#FFC107',
+                    backgroundColor: 'rgba(255, 99, 132,0.2)',
+                    borderColor: 'rgba(255, 99, 132,1)',
+                    pointBackgroundColor: 'rgba(255, 99, 132,1)',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#FFC107',
+                    pointHoverBorderColor: 'rgba(255, 99, 132,1)',
                     data: [28, 48, 40, 19, 96, 27, 100]
                 }
             ]

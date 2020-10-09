@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {state, style, trigger} from '@angular/animations';
-import {BreadcrumbService} from '../breadcrumb.service';
+import {BreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({
     selector: 'app-help',
