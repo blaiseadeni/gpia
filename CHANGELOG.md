@@ -1,6 +1,11 @@
 # Changelog
 
-##10.0.0
+##10.0.1
+
+**Migration Guide**
+- Update theme files and layout files.
+
+###10.0.0
 **Migration Guide**
 - Update your project to Angular 10.
 - Update theme files and layout files.
