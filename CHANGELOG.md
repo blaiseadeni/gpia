@@ -1,5 +1,15 @@
 # Changelog
 
+##10.0.2
+
+**Migration Guide**
+- Update app.main.component.ts.
+- Update app.menu.component.ts and app.menuitem.component.ts.
+- Update theme files and layout files.
+
+**Implemented New Features and Enhancements:**
+- Remove ungroup menu
+
 ##10.0.1
 
 **Migration Guide**
