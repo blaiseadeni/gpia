@@ -39,16 +39,6 @@ import {AppMainComponent} from './app.main.component';
                 <label for="mode4">Slim</label>
             </div>
 
-            <h5>Menu Type</h5>
-            <div class="p-field-radiobutton">
-                <p-radioButton name="grouped" [value]="true" [(ngModel)]="app.grouped" inputId="grouped1"></p-radioButton>
-                <label for="grouped1">Grouped</label>
-            </div>
-            <div class="p-field-radiobutton">
-                <p-radioButton name="grouped" [value]="false" [(ngModel)]="app.grouped" inputId="grouped2"></p-radioButton>
-                <label for="grouped2">Ungrouped</label>
-            </div>
-
             <h5>Menu Colors</h5>
             <div class="p-field-radiobutton">
                 <p-radioButton name="darkMenu" [value]="true" [(ngModel)]="app.darkMenu" inputId="darkMenu1"></p-radioButton>

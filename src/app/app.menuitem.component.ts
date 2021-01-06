@@ -36,9 +36,7 @@ import { AppMainComponent } from './app.main.component';
                 <div class="layout-menu-tooltip-text">{{item.label}}</div>
             </div>
             <ul *ngIf="item.items || (active || animating)" (@children.done)="onAnimationDone()"
-                [@children]="(app.isSlim()||app.isHorizontal())&&app.isDesktop()&&root ? active ?
-                    'visible' : 'hidden' : root ? 'visible' : active ? 'visibleAnimated' :
-                    app.grouped && root ? 'visibleAnimated': root ? 'visibleAnimated' : 'hiddenAnimated'">
+                [@children]="(root ? 'visible' : active ? 'visibleAnimated' : 'hiddenAnimated')">
                 <ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
                     <li app-menuitem *ngIf="child.visible!==false" [item]="child" [visible]="active"
                         [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>

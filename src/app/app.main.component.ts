@@ -35,8 +35,6 @@ export class AppMainComponent implements OnInit {
 
     menuHoverActive: boolean;
 
-    grouped = true;
-
     configActive: boolean;
 
     inlineMenuActive: boolean;

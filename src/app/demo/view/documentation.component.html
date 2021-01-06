@@ -108,21 +108,19 @@ import &#123; AppMainComponent &#125; from './app.main.component';
     selector: 'app-menu',
     template: `
         &lt;ul class="layout-menu"&gt;
-            &lt;li app-menuitem *ngFor="let item of (app.grouped ? modelGrouped : modelUngrouped); let i = index;"
+            &lt;li app-menuitem *ngFor="let item of model; let i = index;"
                 [item]="item" [index]="i" [visible]="true" [root]="true"&gt;&lt;/li&gt;
         &lt;/ul&gt;
     `
 &#125;)
 export class AppMenuComponent implements OnInit &#123;
 
-    modelGrouped: any[];
-
-    modelUngrouped: any[];
+    model: any[];
 
     constructor(public app: AppComponent) &#123; &#125;
 
     ngOnInit() &#123;
-        this.modelGrouped = [
+        this.model = [
             &#123; label: 'Home Page', icon: 'pi pi-fw pi-home',
                 items: [
                     &#123;label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']&#125;
@@ -228,14 +226,6 @@ export class AppMenuComponent implements OnInit &#123;
                         label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
                     &#125;
                 ]
-            &#125;
-        ];
-
-        this.modelUngrouped = [
-            &#123;
-                label: 'Main Menu',
-                icon: 'pi pi-fw pi-home',
-                items: this.modelGrouped
             &#125;
         ];
     &#125;

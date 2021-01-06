@@ -5,22 +5,20 @@ import {AppMainComponent} from './app.main.component';
     selector: 'app-menu',
     template: `
         <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of (app.grouped ? modelGrouped : modelUngrouped); let i = index;"
+            <li app-menuitem *ngFor="let item of model; let i = index;"
                 [item]="item" [index]="i" [visible]="true" [root]="true"></li>
         </ul>
     `
 })
 export class AppMenuComponent implements OnInit {
 
-    modelGrouped: any[];
-
-    modelUngrouped: any[];
+    model: any[];
 
     constructor(public app: AppMainComponent) {
     }
 
     ngOnInit() {
-        this.modelGrouped = [
+        this.model = [
             {
                 label: 'Home Page', icon: 'pi pi-fw pi-home',
                 items: [
@@ -128,14 +126,6 @@ export class AppMenuComponent implements OnInit {
                         label: 'Buy Now', icon: 'pi pi-fw pi-money-bill', url: ['https://www.primefaces.org/store']
                     }
                 ]
-            }
-        ];
-
-        this.modelUngrouped = [
-            {
-                label: 'Main Menu',
-                icon: 'pi pi-fw pi-home',
-                items: this.modelGrouped
             }
         ];
     }
