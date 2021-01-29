@@ -6,8 +6,8 @@
                 'layout-slim': isSlim(),
                 'layout-static-inactive': staticMenuDesktopInactive,
                 'layout-mobile-active': staticMenuMobileActive,
-                'layout-menu-dark':darkMenu,
-                'layout-menu-light':!darkMenu, 'p-input-filled': inputStyle === 'filled', 'p-ripple-disabled': !ripple}">
+                'layout-menu-dark':app.darkMenu,
+                'layout-menu-light':!app.darkMenu, 'p-input-filled': app.inputStyle === 'filled', 'p-ripple-disabled': !app.ripple}">
 
     <app-topbar></app-topbar>
 
@@ -19,7 +19,7 @@
         </div>
         <div class="layout-menu-wrapper">
             <div class="menu-scroll-content">
-                <app-inline-profile *ngIf="profileMode=='inline'&&!isHorizontal()"></app-inline-profile>
+                <app-inline-profile *ngIf="app.profileMode=='inline'&&!isHorizontal()"></app-inline-profile>
                 <app-menu></app-menu>
             </div>
         </div>

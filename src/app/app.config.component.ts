@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
 
 @Component({
@@ -7,7 +8,7 @@ import {AppMainComponent} from './app.main.component';
         <a style="cursor: pointer" id="layout-config-button" class="layout-config-button" (click)="onConfigButtonClick($event)">
             <i class="pi pi-cog"></i>
         </a>
-        <div class="layout-config" [ngClass]="{'layout-config-active': app.configActive}" (click)="app.onConfigClick($event)">
+        <div class="layout-config" [ngClass]="{'layout-config-active': appMain.configActive}" (click)="appMain.onConfigClick($event)">
             <h5>Input Style</h5>
             <div class="p-field-radiobutton">
                 <p-radioButton name="inputStyle" value="outlined" [(ngModel)]="app.inputStyle" inputId="inputStyle1"></p-radioButton>
@@ -19,7 +20,7 @@ import {AppMainComponent} from './app.main.component';
             </div>
 
             <h5>Ripple Effect</h5>
-            <p-inputSwitch [ngModel]="app.ripple" (onChange)="app.onRippleChange($event)"></p-inputSwitch>
+            <p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
 
             <h5>Menu Mode</h5>
             <div class="p-field-radiobutton">
@@ -51,11 +52,11 @@ import {AppMainComponent} from './app.main.component';
 
             <h5>User Profile</h5>
             <div class="p-field-radiobutton">
-                <p-radioButton name="profileMode" value="inline" [(ngModel)]="app.profileMode" [disabled]="app.isHorizontal()" inputId="profileMode1"></p-radioButton>
+                <p-radioButton name="profileMode" value="inline" [(ngModel)]="app.profileMode" [disabled]="appMain.isHorizontal()" inputId="profileMode1"></p-radioButton>
                 <label for="profileMode1">Inline</label>
             </div>
             <div class="p-field-radiobutton">
-                <p-radioButton name="profileMode" value="popup" [(ngModel)]="app.profileMode" [disabled]="app.isHorizontal()" inputId="profileMode2"></p-radioButton>
+                <p-radioButton name="profileMode" value="popup" [(ngModel)]="app.profileMode" [disabled]="appMain.isHorizontal()" inputId="profileMode2"></p-radioButton>
                 <label for="profileMode2">Popup</label>
             </div>
 
@@ -76,7 +77,7 @@ export class AppConfigComponent implements OnInit {
 
     themeColor = 'blue';
 
-    constructor(public app: AppMainComponent) {}
+    constructor(public app: AppComponent, public appMain: AppMainComponent) {}
 
     ngOnInit() {
         this.componentThemes = [
@@ -150,8 +151,8 @@ export class AppConfigComponent implements OnInit {
     }
 
     onConfigButtonClick(event) {
-        this.app.configActive = !this.app.configActive;
-        this.app.configClick = true;
+        this.appMain.configActive = !this.appMain.configActive;
+        this.appMain.configClick = true;
         event.preventDefault();
     }
 }

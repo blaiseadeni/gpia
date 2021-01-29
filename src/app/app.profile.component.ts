@@ -31,10 +31,10 @@ export class AppProfileComponent {
 
     active: boolean;
 
-    constructor(public app: AppMainComponent) { }
+    constructor(public appMain: AppMainComponent) { }
 
     onClick(event) {
-        this.app.onInlineMenuClick(event);
+        this.appMain.onInlineMenuClick(event);
         event.preventDefault();
     }
 }
