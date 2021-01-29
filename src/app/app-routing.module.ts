@@ -2,6 +2,8 @@ import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
 import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
+import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
+import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
 import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
 import {MediaDemoComponent} from './demo/view/mediademo.component';
@@ -33,6 +35,7 @@ import {TypographyComponent} from './utilities/typography.component';
 import {TextComponent} from './utilities/text.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
+import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
 import {AppInvoiceComponent} from './pages/app.invoice.component';
 import {AppHelpComponent} from './pages/app.help.component';
 import {AppWizardComponent} from './pages/app.wizard.component';
@@ -45,6 +48,8 @@ import {AppWizardComponent} from './pages/app.wizard.component';
                 children: [
                     {path: '', component: DashboardDemoComponent},
                     {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
+                    {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
+                    {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
                     {path: 'uikit/input', component: InputDemoComponent},
                     {path: 'uikit/button', component: ButtonDemoComponent},
                     {path: 'uikit/table', component: TableDemoComponent},
@@ -69,6 +74,7 @@ import {AppWizardComponent} from './pages/app.wizard.component';
                     {path: 'utilities/text', component: TextComponent},
                     {path: 'pages/crud', component: AppCrudComponent},
                     {path: 'pages/calendar', component: AppCalendarComponent},
+                    {path: 'pages/timeline', component: AppTimelineDemoComponent},
                     {path: 'pages/invoice', component: AppInvoiceComponent},
                     {path: 'pages/help', component: AppHelpComponent},
                     {path: 'pages/empty', component: EmptyDemoComponent},
