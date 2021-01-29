@@ -9,19 +9,6 @@ import {AppMainComponent} from './app.main.component';
             <i class="pi pi-cog"></i>
         </a>
         <div class="layout-config" [ngClass]="{'layout-config-active': appMain.configActive}" (click)="appMain.onConfigClick($event)">
-            <h5>Input Style</h5>
-            <div class="p-field-radiobutton">
-                <p-radioButton name="inputStyle" value="outlined" [(ngModel)]="app.inputStyle" inputId="inputStyle1"></p-radioButton>
-                <label for="inputStyle1">Outlined</label>
-            </div>
-            <div class="p-field-radiobutton">
-                <p-radioButton name="inputStyle" value="filled" [(ngModel)]="app.inputStyle" inputId="inputStyle2"></p-radioButton>
-                <label for="inputStyle2">Filled</label>
-            </div>
-
-            <h5>Ripple Effect</h5>
-            <p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
-
             <h5>Menu Mode</h5>
             <div class="p-field-radiobutton">
                 <p-radioButton name="menuMode" value="static" [(ngModel)]="app.layoutMode" inputId="mode1"></p-radioButton>
@@ -59,6 +46,19 @@ import {AppMainComponent} from './app.main.component';
                 <p-radioButton name="profileMode" value="popup" [(ngModel)]="app.profileMode" [disabled]="appMain.isHorizontal()" inputId="profileMode2"></p-radioButton>
                 <label for="profileMode2">Popup</label>
             </div>
+
+            <h5>Input Style</h5>
+            <div class="p-field-radiobutton">
+                <p-radioButton name="inputStyle" value="outlined" [(ngModel)]="app.inputStyle" inputId="inputStyle1"></p-radioButton>
+                <label for="inputStyle1">Outlined</label>
+            </div>
+            <div class="p-field-radiobutton">
+                <p-radioButton name="inputStyle" value="filled" [(ngModel)]="app.inputStyle" inputId="inputStyle2"></p-radioButton>
+                <label for="inputStyle2">Filled</label>
+            </div>
+
+            <h5>Ripple Effect</h5>
+            <p-inputSwitch [ngModel]="app.ripple" (onChange)="appMain.onRippleChange($event)"></p-inputSwitch>
 
             <h5>Themes</h5>
             <div class="layout-themes">
