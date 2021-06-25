@@ -60,7 +60,7 @@ export class AppMainComponent {
             this.configActive = false;
         }
 
-        if (this.inlineMenuActive && !this.inlineMenuClick) {
+        if (this.inlineMenuActive && !this.inlineMenuClick && !this.isStatic()) {
             this.inlineMenuActive = false;
         }
 
@@ -91,7 +91,7 @@ export class AppMainComponent {
     onMenuClick($event) {
         this.menuClick = true;
 
-        if (this.inlineMenuActive && !this.inlineMenuClick) {
+        if (this.inlineMenuActive && !this.inlineMenuClick && !this.isStatic()) {
             this.inlineMenuActive = false;
         }
     }
