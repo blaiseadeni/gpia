@@ -33,32 +33,39 @@ export class DashboardDemoComponent implements OnInit {
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
-        this.eventService.getEvents().then(events => this.events = events);
+        this.eventService.getEvents().then(events => {
+            this.events = events;
+            this.fullCalendarOptions = {...this.fullCalendarOptions, ...{events: events}};
+        });
 
         this.chartData = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Sales',
-                data: [12, 19, 3, 5, 2, 3, 9],
-                borderColor: [
-                    '#7E57C2',
-                ],
-                borderWidth: 3,
-                borderDash: [5, 5],
-                fill: false,
-                pointRadius: 3
-            }, {
-                label: 'Income',
-                data: [1, 2, 5, 3, 12, 7, 15],
-                backgroundColor: [
-                    'rgba(187,222,251,0.2)',
-                ],
-                borderColor: [
-                    '#42A5F5',
-                ],
-                borderWidth: 3,
-                fill: true
-            },
+            datasets: [
+                {
+                    label: 'Sales',
+                    data: [12, 19, 3, 5, 2, 3, 9],
+                    borderColor: [
+                        '#7E57C2',
+                    ],
+                    borderWidth: 3,
+                    borderDash: [5, 5],
+                    fill: false,
+                    pointRadius: 3,
+                    tension: .4
+                },
+                {
+                    label: 'Income',
+                    data: [1, 2, 5, 3, 12, 7, 15],
+                    backgroundColor: [
+                        'rgba(187,222,251,0.2)',
+                    ],
+                    borderColor: [
+                        '#42A5F5',
+                    ],
+                    borderWidth: 3,
+                    fill: true,
+                    tension: .4
+                },
                 {
                     label: 'Expenses',
                     data: [7, 12, 15, 5, 3, 13, 21],
@@ -67,7 +74,8 @@ export class DashboardDemoComponent implements OnInit {
                     ],
                     borderWidth: 3,
                     fill: false,
-                    pointRadius: [4, 6, 4, 12, 8, 0, 4]
+                    pointRadius: [4, 6, 4, 12, 8, 0, 4],
+                    tension: .4
                 },
                 {
                     label: 'New Users',
@@ -76,8 +84,10 @@ export class DashboardDemoComponent implements OnInit {
                         '#66BB6A',
                     ],
                     borderWidth: 3,
-                    fill: false
-                }]
+                    fill: false,
+                    tension: .4
+                }
+            ]
         };
 
         this.chartOptions = {
@@ -86,20 +96,20 @@ export class DashboardDemoComponent implements OnInit {
                 mode: 'index'
             },
             scales: {
-                xAxes: [{
+                x: {
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Month'
                     }
-                }],
-                yAxes: [{
+                },
+                y: {
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'Value'
                     }
-                }]
+                }
             }
         };
 
@@ -110,13 +120,16 @@ export class DashboardDemoComponent implements OnInit {
         ];
 
         this.fullCalendarOptions = {
-            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-            defaultDate: '2017-02-12',
-            header: {
-                left: 'prev,next,today',
+            initialDate: '2021-02-01',
+            headerToolbar: {
+                left: 'prev,next today',
                 center: 'title',
-                right: ''
-            }
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            editable: true,
+            selectable: true,
+            selectMirror: true,
+            dayMaxEvents: true,
         };
     }
 }

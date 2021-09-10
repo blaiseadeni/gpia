@@ -25,7 +25,7 @@ module.exports = function (config) {
             suppressAll: true // removes the duplicated traces
         },
         coverageReporter: {
-            dir: require('path').join(__dirname, './coverage/forupdate'),
+            dir: require('path').join(__dirname, './coverage/babylon-ng'),
             subdir: '.',
             reporters: [
                 {type: 'html'},
