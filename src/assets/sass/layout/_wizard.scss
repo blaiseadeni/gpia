@@ -164,12 +164,12 @@ html {
                                 .p-inputtext {
                                     background-color: #405965;
                                     color: #ffffff;
-                                    @include border-radius(2px);
+                                    @include border-radius(0);
                                 }
                                 .p-dropdown-trigger {
                                     background-color: #405965;
                                     color: #ffffff;
-                                    @include border-radius(2px);
+                                    @include border-radius(0);
                                 }
                             }
 
