@@ -3,7 +3,7 @@
         <div class="card docs no-margin">
 
             <h4>Current Version</h4>
-            <p>Angular 12 and PrimeNG 12</p>
+            <p>Angular 13 and PrimeNG 13</p>
 
             <h4>Dependencies</h4>
             <p>Babylon has no direct dependency other than PrimeNG. More information about dependencies is available at <a href="https://www.primefaces.org/why-primeng-templates/">Why PrimeNG Templates</a> article.</p>
@@ -152,7 +152,7 @@ export class AppMenuComponent implements OnInit &#123;
                     &#123;label: 'FlexBox', icon: 'pi pi-fw pi-directions', routerLink: ['utilities/flexbox']&#125;,
                     &#123;label: 'Icons', icon: 'pi pi-fw pi-search', routerLink: ['utilities/icons']&#125;,
                     &#123;label: 'Text', icon: 'pi pi-fw pi-pencil', routerLink: ['utilities/text']&#125;,
-                    &#123;label: 'Widgets', icon: 'pi pi-fw pi-star-o', routerLink: ['utilities/widgets']&#125;,
+                    &#123;label: 'Widgets', icon: 'pi pi-fw pi-star', routerLink: ['utilities/widgets']&#125;,
                     &#123;label: 'Grid System', icon: 'pi pi-fw pi-th-large', routerLink: ['utilities/grid']&#125;,
                     &#123;label: 'Spacing', icon: 'pi pi-fw pi-arrow-right', routerLink: ['utilities/spacing']&#125;,
                     &#123;label: 'Typography', icon: 'pi pi-fw pi-align-center', routerLink: ['utilities/typography']&#125;
@@ -419,12 +419,12 @@ $shade800:#343a40 !default;    //unused
 $shade900:#212529 !default;    //unused
 
 //global
-$fontFamily:'cabin',sans-serif;
+$fontFamily:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $fontSize:1rem !default;
 $fontWeight:normal !default;
 $textColor:$shade700 !default;
 $textSecondaryColor:$shade600 !default;
-$borderRadius:4px !default;
+$borderRadius:3px !default;
 $transitionDuration:.2s !default;
 $formElementTransition:background-color $transitionDuration, color $transitionDuration, border-color $transitionDuration, box-shadow $transitionDuration !default;
 $actionIconTransition:background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration !default;
@@ -504,6 +504,12 @@ $inputOverlayBg:$inputListBg !default;
 $inputOverlayHeaderBg:$inputListHeaderBg !default;
 $inputOverlayBorder:0 none !default;
 $inputOverlayShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
+
+//password
+$passwordMeterBg:$shade300 !default;
+$passwordWeakBg:#D32F2F !default;
+$passwordMediumBg:#FBC02D !default;
+$passwordStrongBg:#689F38 !default;
 
 //button
 $buttonPadding:.5rem 1rem !default;
@@ -627,7 +633,7 @@ $radiobuttonActiveHoverBorderColor:$primaryDarkerColor !default;
 $colorPickerPreviewWidth:2rem !default;
 $colorPickerPreviewHeight:2rem !default;
 $colorPickerBg:#323232 !default;
-$colorPickerBorderColor:#191919 !default;
+$colorPickerBorder:1px solid #191919 !default;
 $colorPickerHandleColor:$shade000 !default;
 
 //togglebutton
@@ -691,6 +697,7 @@ $calendarHeaderBorder:1px solid $shade300 !default;
 $calendarHeaderTextColor:$shade700 !default;
 $calendarHeaderFontWeight:600 !default;
 $calendarHeaderCellPadding:.5rem !default;
+$calendarMonthYearHeaderHoverTextColor: $primaryColor !default;
 
 $calendarCellDatePadding:.5rem !default;
 $calendarCellDateWidth:2.5rem !default;
@@ -726,6 +733,7 @@ $inputSwitchSliderOnHoverBg:$primaryDarkColor !default;
 $inputSwitchHandleOnBg:$shade000 !default;
 
 //panel
+$panelHeaderBorderColor:$shade300 !default;
 $panelHeaderBorder:1px solid $shade300 !default;
 $panelHeaderBg:$shade100 !default;
 $panelHeaderTextColor:$shade700 !default;
@@ -737,6 +745,7 @@ $panelHeaderHoverBg:$shade200 !default;
 $panelHeaderHoverBorderColor:$shade300 !default;
 $panelHeaderTextHoverColor:$shade700 !default;
 
+$panelContentBorderColor: $shade300 !default;
 $panelContentBorder:1px solid $shade300 !default;
 $panelContentBg:$shade000 !default;
 $panelContentTextColor:$shade700 !default;
@@ -907,19 +916,16 @@ $dataViewContentBorder:0 none !default;
 $dataViewListItemBorder:solid $shade200 !default;
 $dataViewListItemBorderWidth:0 0 1px 0 !default;
 
-//orderlist, picklist
-$orderListBreakpoint:769px !default;
-$pickListBreakpoint:769px !default;
-
 //schedule
 $fullCalendarEventBg:$primaryDarkColor !default;
+$fullCalendarEventBorderColor: $primaryDarkColor !default;
 $fullCalendarEventBorder:1px solid $primaryDarkColor !default;
 $fullCalendarEventTextColor:$primaryTextColor !default;
 
 //tree
 $treeContainerPadding:0.286rem !default;
 $treeNodePadding:0.143rem !default;
-$treeNodeContentPadding:.5rem !default;
+$treeNodeContentPadding:0 !default;
 $treeNodeChildrenPadding:0 0 0 1rem !default;
 $treeNodeIconColor:$shade600 !default;
 
@@ -997,6 +1003,10 @@ $dialogContentPadding:0 1.5rem 2rem 1.5rem !default;
 $dialogFooterBorder:0 none !default;
 $dialogFooterPadding:0 1.5rem 1.5rem 1.5rem !default;
 
+//confirmpopup
+$confirmPopupContentPadding:$panelContentPadding !default;
+$confirmPopupFooterPadding:0 1rem 1rem 1rem !default;
+
 //tooltip
 $tooltipBg:$shade700 !default;
 $tooltipTextColor:$shade000 !default;
@@ -1018,6 +1028,7 @@ $progressBarHeight:1.5rem !default;
 $progressBarBorder:0 none !default;
 $progressBarBg:$shade300 !default;
 $progressBarValueBg:$primaryColor !default;
+$progressBarValueTextColor:$primaryTextColor !default;
 
 //menu (e.g. menu, menubar, tieredmenu)
 $menuWidth:12.5rem !default;
@@ -1045,6 +1056,7 @@ $overlayMenuBg:$menuBg !default;
 $overlayMenuBorder:0 none !default;
 $overlayMenuShadow:0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12) !default;
 $verticalMenuPadding:.25rem 0 !default;
+$verticalMenuitemMargin:0 !default;
 $menuSeparatorMargin:.25rem 0 !default;
 
 $breadcrumbPadding:1rem !default;
@@ -1136,38 +1148,38 @@ $galleriaThumbnailNavigatorWidth:2rem !default;
 $galleriaThumbnailNavigatorHeight:2rem !default;
 
 //divider
-$dividerHorizontalMargin:1rem 0;
-$dividerHorizontalPadding:0 1rem;
-$dividerVerticalMargin:0 1rem;
-$dividerVerticalPadding:1rem 0;
-$dividerSize:1px;
-$dividerColor:$shade300;
+$dividerHorizontalMargin:1rem 0 !default;
+$dividerHorizontalPadding:0 1rem !default;
+$dividerVerticalMargin:0 1rem !default;
+$dividerVerticalPadding:1rem 0 !default;
+$dividerSize:1px !default;
+$dividerColor:$shade300 !default;
 
 //avatar
-$avatarBg:$shade300;
-$avatarTextColor:$textColor;
+$avatarBg:$shade300 !default;
+$avatarTextColor:$textColor !default;
 
 //chip
-$chipBg:$shade300;
-$chipTextColor:$textColor;
-$chipBorderRadius: 16px;
+$chipBg:$shade300 !default;
+$chipTextColor:$textColor !default;
+$chipBorderRadius: 16px !default;
 
 //scrollTop
-$scrollTopBg:rgba(0,0,0,0.7);
-$scrollTopHoverBg:rgba(0,0,0,0.8);
-$scrollTopWidth:3rem;
-$scrollTopHeight:3rem;
-$scrollTopBorderRadius:50%;
-$scrollTopFontSize:1.5rem;
-$scrollTopTextColor:$shade100;
+$scrollTopBg:rgba(0,0,0,0.7) !default;
+$scrollTopHoverBg:rgba(0,0,0,0.8) !default;
+$scrollTopWidth:3rem !default;
+$scrollTopHeight:3rem !default;
+$scrollTopBorderRadius:50% !default;
+$scrollTopFontSize:1.5rem !default;
+$scrollTopTextColor:$shade100 !default;
 
 //skeleton
-$skeletonBg:$shade200;
-$skeletonAnimationBg:rgba(255,255,255,0.4);
+$skeletonBg:$shade200 !default;
+$skeletonAnimationBg:rgba(255,255,255,0.4) !default;
 
 //splitter
-$splitterGutterBg:$shade100;
-$splitterGutterHandleBg:$shade300;
+$splitterGutterBg:$shade100 !default;
+$splitterGutterHandleBg:$shade300 !default;
 
 :root &#123;
 --surface-a:#&#123;$shade000&#125;;

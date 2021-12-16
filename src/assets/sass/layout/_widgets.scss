@@ -685,8 +685,8 @@
     text-align: center;
     min-height: 450px;
     padding: 16px 48px;
-    background-color: #f2f2f2;
     color: #525257;
+    background-color:#ffffff;
     border: 2px solid transparent;
     @include transition(border-color $transitionDuration);
     @include shadow(0 3px 6px 0 rgba(0, 0, 0, 0.08));

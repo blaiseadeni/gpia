@@ -12,6 +12,11 @@ import {BreadcrumbService} from '../../app.breadcrumb.service';
 		:host ::ng-deep .p-message {
 			margin-left: .25em;
 		}
+
+        :host ::ng-deep .p-toast{
+            margin-top: 5em;
+            z-index:99999;
+        }
     `],
     providers: [MessageService]
 })
