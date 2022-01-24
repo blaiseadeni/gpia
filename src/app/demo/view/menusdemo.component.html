@@ -55,11 +55,11 @@
     </div>
 
     <div class="col-12 md:col-4">
-        <div class="card">
+        <div class="card" #anchor>
             <h5>ContextMenu</h5>
             Right click to display.
 
-            <p-contextMenu [global]="true" [model]="menuItems"></p-contextMenu>
+            <p-contextMenu [target]="anchor" [model]="menuItems"></p-contextMenu>
         </div>
 
         <div class="card">
