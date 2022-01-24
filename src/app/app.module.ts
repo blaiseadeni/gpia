@@ -99,6 +99,7 @@ import {AppConfigComponent} from './app.config.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
 
+
 // Demo pages
 import {AppCodeModule} from './app.code.component';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
@@ -120,15 +121,7 @@ import {EmptyDemoComponent} from './demo/view/emptydemo.component';
 import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
-import {DisplayComponent} from './utilities/display.component';
-import {ElevationComponent} from './utilities/elevation.component';
-import {FlexboxComponent} from './utilities/flexbox.component';
-import {GridComponent} from './utilities/grid.component';
 import {IconsComponent} from './utilities/icons.component';
-import {WidgetsComponent} from './utilities/widgets.component';
-import {SpacingComponent} from './utilities/spacing.component';
-import {TypographyComponent} from './utilities/typography.component';
-import {TextComponent} from './utilities/text.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppTimelineDemoComponent} from './pages/app.timelinedemo.component';
@@ -139,6 +132,8 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 import {AppWizardComponent} from './pages/app.wizard.component';
+import {BlockViewer} from './blocks/blockviewer/blockviewer.component';
+import {BlocksComponent} from './blocks/blocks/blocks.component';
 
 // Demo services
 import {CountryService} from './demo/service/countryservice';
@@ -282,15 +277,7 @@ FullCalendarModule.registerPlugins([
         EmptyDemoComponent,
         FileDemoComponent,
         DocumentationComponent,
-        DisplayComponent,
-        ElevationComponent,
-        FlexboxComponent,
-        GridComponent,
         IconsComponent,
-        WidgetsComponent,
-        SpacingComponent,
-        TypographyComponent,
-        TextComponent,
         AppCrudComponent,
         AppCalendarComponent,
         AppTimelineDemoComponent,
@@ -300,7 +287,9 @@ FullCalendarModule.registerPlugins([
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
-        AppWizardComponent
+        AppWizardComponent,
+        BlockViewer,
+        BlocksComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

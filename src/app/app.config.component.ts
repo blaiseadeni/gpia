@@ -10,49 +10,49 @@ import {AppMainComponent} from './app.main.component';
         </a>
         <div class="layout-config" [ngClass]="{'layout-config-active': appMain.configActive}" (click)="appMain.onConfigClick($event)">
             <h5>Menu Mode</h5>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="menuMode" value="static" [(ngModel)]="app.layoutMode" inputId="mode1"></p-radioButton>
                 <label for="mode1">Static</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="menuMode" value="overlay" [(ngModel)]="app.layoutMode" inputId="mode2"></p-radioButton>
                 <label for="mode2">Overlay</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="menuMode" value="horizontal" [(ngModel)]="app.layoutMode" inputId="mode3" (onClick)="app.profileMode = 'popup'"></p-radioButton>
                 <label for="mode3">Horizontal</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="menuMode" value="slim" [(ngModel)]="app.layoutMode" inputId="mode4"></p-radioButton>
                 <label for="mode4">Slim</label>
             </div>
 
             <h5>Menu Colors</h5>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="darkMenu" [value]="true" [(ngModel)]="app.darkMenu" inputId="darkMenu1"></p-radioButton>
                 <label for="darkMenu1">Dark</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="darkMenu" [value]="false" [(ngModel)]="app.darkMenu" inputId="darkMenu2"></p-radioButton>
                 <label for="darkMenu2">Light</label>
             </div>
 
             <h5>User Profile</h5>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="profileMode" value="inline" [(ngModel)]="app.profileMode" [disabled]="appMain.isHorizontal()" inputId="profileMode1"></p-radioButton>
                 <label for="profileMode1">Inline</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="profileMode" value="popup" [(ngModel)]="app.profileMode" [disabled]="appMain.isHorizontal()" inputId="profileMode2"></p-radioButton>
                 <label for="profileMode2">Popup</label>
             </div>
 
             <h5>Input Style</h5>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="inputStyle" value="outlined" [(ngModel)]="app.inputStyle" inputId="inputStyle1"></p-radioButton>
                 <label for="inputStyle1">Outlined</label>
             </div>
-            <div class="p-field-radiobutton">
+            <div class="field-radiobutton">
                 <p-radioButton name="inputStyle" value="filled" [(ngModel)]="app.inputStyle" inputId="inputStyle2"></p-radioButton>
                 <label for="inputStyle2">Filled</label>
             </div>

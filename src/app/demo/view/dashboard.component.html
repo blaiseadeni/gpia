@@ -1,6 +1,6 @@
 <div class="layout-dashboard">
-    <div class="p-grid">
-        <div class="p-col-12 p-lg-6 p-xl-3">
+    <div class="grid">
+        <div class="col-12 lg:col-6 xl:col-3">
             <div class="overview-box sales">
                 <i class="overview-icon pi pi-dollar"></i>
                 <span class="overview-title">Sales</span>
@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-lg-6 p-xl-3">
+        <div class="col-12 lg:col-6 xl:col-3">
             <div class="overview-box views">
                 <i class="overview-icon pi pi-search"></i>
                 <span class="overview-title">Views</span>
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-lg-6 p-xl-3">
+        <div class="col-12 lg:col-6 xl:col-3">
             <div class="overview-box users">
                 <i class="overview-icon pi pi-users"></i>
                 <span class="overview-title">Users</span>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-col-12 p-lg-6 p-xl-3">
+        <div class="col-12 lg:col-6 xl:col-3">
             <div class="overview-box checkin">
                 <i class="overview-icon pi pi-map-marker"></i>
                 <span class="overview-title">Check-Ins</span>
@@ -53,20 +53,20 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-lg-8">
+        <div class="col-12 lg:col-8">
             <div class="card card-w-title statistics">
                 <h5>Statistics</h5>
                 <p-chart type="line" [data]="chartData" [options]="chartOptions"></p-chart>
             </div>
         </div>
 
-        <div class="p-col-12 p-lg-4">
+        <div class="col-12 lg:col-4">
             <div class="user-card card">
                 <div class="user-card-header">
                     <img src="assets/layout/images/dashboard/bg-header.png" alt="babylon-layout" class="profile-image" />
                 </div>
                 <div class="user-card-content">
-                    <img src="assets/layout/images/avatar.png" alt="apollo-layout" />
+                    <img src="assets/layout/images/avatar.png" alt="babylon-layout" />
                     <p-menu #menu popup="popup" [model]="items" appendTo="body"></p-menu>
                     <button pButton id="user-button" type="button" icon="pi pi-bars" class="secondary-btn" (click)="menu.toggle($event)"></button>
 
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <div class="card card-w-title tasks">
                 <h5>Tasks</h5>
                 <ul>
@@ -163,7 +163,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <div class="card card-w-title resolution-center p-fluid">
                 <h5>Support Request</h5>
 
@@ -180,7 +180,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-md-12 p-lg-4">
+        <div class="col-12 md:col-12 lg:col-4">
             <div class="card card-w-title team">
                 <h5>Team</h5>
                 <ul>
@@ -240,7 +240,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-xl-6">
+        <div class="col-12 xl:col-6">
             <div class="card card-w-title timeline">
                 <h5>Timeline</h5>
                 <ul>
@@ -315,7 +315,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-xl-6">
+        <div class="col-12 xl:col-6">
             <div class="card card-w-title global-sales p-fluid">
                 <h5>Global Sales</h5>
                 <p-table [value]="products" [paginator]="true" [rows]="5">
@@ -356,33 +356,33 @@
                 <h5>Live Support</h5>
                 <ul>
                     <li>
-                        <div class="p-grid">
-                            <div class="p-col-fixed">
+                        <div class="grid">
+                            <div class="col-fixed">
                                 <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
                             </div>
-                            <div class="p-col">
+                            <div class="col">
                                 <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Nam ac euismod justo, eget blandit purus.</div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div class="p-grid">
-                            <div class="p-col">
+                        <div class="grid">
+                            <div class="col">
                                 <div class="chat-message">Mauris malesuada quis risus ut consequat.
                                     Maecenas ornare nunc risus, pulvinar euismod mi pellentesque eget.</div>
                             </div>
-                            <div class="p-col-fixed">
+                            <div class="col-fixed">
                                 <img src="assets/layout/images/avatar-julia.png" alt="babylon-layout" />
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div class="p-grid">
-                            <div class="p-col-fixed">
+                        <div class="grid">
+                            <div class="col-fixed">
                                 <img src="assets/layout/images/avatar-john.png" alt="babylon-layout" />
                             </div>
-                            <div class="p-col">
+                            <div class="col">
                                 <div class="chat-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                     Nam ac euismod justo, eget blandit purus.</div>
                             </div>
@@ -391,11 +391,11 @@
                 </ul>
 
                 <div class="new-message">
-                    <div class="p-grid p-nogutter">
-                        <div class="p-col">
+                    <div class="grid grid-nogutter">
+                        <div class="col">
                             <input type="text" placeholder="Write a message.." />
                         </div>
-                        <div class="p-col-fixed">
+                        <div class="col-fixed">
                             <p-button type="button" label="Send"></p-button>
                         </div>
                     </div>
@@ -403,7 +403,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-md-12 p-lg-12">
+        <div class="col-12 md:col-12 lg:col-12">
             <div class="card card-w-title">
                 <h5>Schedule</h5>
                 <full-calendar [options]="fullCalendarOptions"></full-calendar>

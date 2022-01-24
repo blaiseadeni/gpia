@@ -147,20 +147,17 @@
                     }
 
                     .menuitem-badge {
-                        position: absolute;
-                        display: block;
-                        right: 24px;
-                        height: 20px;
-                        width: 20px;
-                        line-height: 20px;
-                        top: 50%;
-                        font-size: 12px;
-                        margin-top: -10px;
-                        font-weight: 700;
+                        float: right;
+                        width: auto;
+                        margin-right: 2px;
+                        text-align: center;
                         background-color: $badgeBgColor;
                         color: $badgeTextColor;
-                        text-align: center;
-                        @include border-radius(50%);
+                        font-size: $fontSize - 2;
+                        font-weight: 700;
+                        line-height: 16px;
+                        border-radius:3px;
+                        padding: 2px 6px;
                     }
                 }
 

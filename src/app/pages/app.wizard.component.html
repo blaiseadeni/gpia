@@ -48,8 +48,8 @@
                     <p>You must have an account to complete your order and manage your downloads.</p>
                 </div>
 
-                <div class="wizard-forms-wrapper p-grid p-nogutter">
-                    <div class="p-col-12 p-md-6 wizard-forms">
+                <div class="wizard-forms-wrapper grid grid-nogutter">
+                    <div class="col-12 md:col-6 wizard-forms">
                         <label for="username" class="form-label">Enter Username</label>
                         <input id="username" type="text" pInputText/>
 
@@ -60,7 +60,7 @@
                         <input id="password" type="password" pInputText/>
                     </div>
 
-                    <div class="p-col-12 p-md-6 wizard-forms">
+                    <div class="col-12 md:col-6 wizard-forms">
                         <label for="timezone" class="form-label">Select Timezone</label>
                         <p-dropdown id="timezone" [style]="{'margin-bottom':'10px'}" [options]="dropdownOptions1"
                                     [(ngModel)]="selectDropdownOptions1"></p-dropdown>
@@ -83,8 +83,8 @@
             </div>
 
             <div class="wizard-card-content tier" [ngClass]="{'active-content': activeTab === 'tier'}">
-                <div class="wizard-tier-cards p-grid ">
-                    <div class="p-col-12 p-md-4 ">
+                <div class="wizard-tier-cards grid ">
+                    <div class="col-12 md:col-4 ">
                         <div class="wizard-tier-card beginner" [ngClass]="{'active-tier-card': activeCard === 'basic'}"
                              (click)="selectTier('basic')">
                             <div class="wizard-tier-card-header">
@@ -116,7 +116,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="p-col-12 p-md-4 ">
+                    <div class="col-12 md:col-4 ">
                         <div class="wizard-tier-card professional"
                              [ngClass]="{'active-tier-card': activeCard === 'professional'}"
                              (click)="selectTier('professional')">
@@ -149,7 +149,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="p-col-12 p-md-4 ">
+                    <div class="col-12 md:col-4 ">
                         <div class="wizard-tier-card enterprise"
                              [ngClass]="{'active-tier-card': activeCard === 'enterprise'}"
                              (click)="selectTier('enterprise')">
@@ -193,12 +193,12 @@
             <div class="wizard-card-content payment" [ngClass]="{'active-content': activeTab === 'payment'}">
                 <div class="wizard-forms-wrapper">
                     <div class="wizard-forms ">
-                        <div class="customPanel p-grid">
-                            <div class="p-col-1 p-lg-1 p-md-1" style="line-height: 2em">
+                        <div class="customPanel grid">
+                            <div class="col-1 lg:col-1 md:col-1" style="line-height: 2em">
                                 <p-radioButton name="group1" value="Credit" [(ngModel)]="radioButton1"
                                                inputId="credit"></p-radioButton>
                             </div>
-                            <div class="p-col-11 p-lg-5 p-md-5">
+                            <div class="col-11 lg:col-5 md:col-5">
                                 <div class="credits">
                                     <img src="assets/layout/images/extensions/asset-mastercard.png"
                                          alt="babylon-layout"/>
@@ -206,12 +206,12 @@
                                     <img src="assets/layout/images/extensions/asset-amex.png" alt="babylon-layout"/>
                                 </div>
                             </div>
-                            <div class="p-col-1 p-lg-1 p-md-1" style="line-height: 2em">
+                            <div class="col-1 lg:col-1 md:col-1" style="line-height: 2em">
 
                                 <p-radioButton name="group1" value="Paypal" [(ngModel)]="radioButton1"
                                                inputId="paypal"></p-radioButton>
                             </div>
-                            <div class="p-col-11 p-lg-5 p-md-5">
+                            <div class="col-11 lg:col-5 md:col-5">
                                 <div class="paypal">
                                     <img src="assets/layout/images/extensions/asset-paypal.png" alt="babylon-layout"/>
                                 </div>
@@ -221,16 +221,16 @@
                         <label for="name" class="form-label">Cardholder Name</label>
                         <input id="name" pInputText type="text">
 
-                        <div class="numbers p-grid">
-                            <div class="p-col-12 p-md-6">
+                        <div class="numbers grid">
+                            <div class="col-12 md:col-6">
                                 <label for="number" class="form-label">Cardholder Number</label>
                                 <p-inputMask mask="9999-9999-9999-9999"></p-inputMask>
                             </div>
-                            <div class="p-col-6 p-md-3">
+                            <div class="col-6 md:col-3">
                                 <label for="date" class="form-label">Date</label>
                                 <p-inputMask mask="99/99"></p-inputMask>
                             </div>
-                            <div class="p-col-6 p-md-3">
+                            <div class="col-6 md:col-3">
                                 <label for="ccv" class="form-label">CCV</label>
                                 <p-inputMask mask="999"></p-inputMask>
                             </div>
