@@ -22,7 +22,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'UI Kit', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
+                label: 'UI Kit', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
                 items: [
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
                     {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
@@ -66,7 +66,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Login', icon: 'pi pi-fw pi-sign-in', routerLink: ['/login']},
                     {label: 'Invoice', icon: 'pi pi-fw pi-dollar', routerLink: ['/pages/invoice']},
                     {label: 'Help', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/help']},
-                    {label: 'Wizard', icon: 'pi pi-fw pi-star', routerLink: ['/wizard']},
+                    {label: 'Wizard', icon: 'pi pi-fw pi-star-fill', routerLink: ['/wizard']},
                     {label: 'Error', icon: 'pi pi-fw pi-times-circle', routerLink: ['/error']},
                     {label: 'Not Found', icon: 'pi pi-fw pi-exclamation-circle', routerLink: ['/notfound']},
                     {label: 'Access Denied', icon: 'pi pi-fw pi-lock', routerLink: ['/access']},
