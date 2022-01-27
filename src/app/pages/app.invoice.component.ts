@@ -9,7 +9,8 @@ export class AppInvoiceComponent {
 
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Invoice'}
+            {label: 'Pages'},
+            {label: 'Invoice'}
         ]);
     }
 

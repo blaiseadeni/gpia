@@ -29,6 +29,7 @@ export class AppCalendarComponent implements OnInit {
 
     constructor(private eventService: EventService, private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
+            {label: 'Pages'},
             {label: 'Calendar'}
         ]);
     }

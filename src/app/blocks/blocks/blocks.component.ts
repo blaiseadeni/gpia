@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 
 @Component({
   templateUrl: './blocks.component.html'
 })
 export class BlocksComponent{
 
-  block1: string = `
+    constructor(private breadcrumbService: BreadcrumbService) {
+        this.breadcrumbService.setItems([
+            {label: 'Prime Blocks'},
+            {label: 'Free Blocks'}
+        ]);
+    }
+      block1: string = `
   <div class="grid grid-nogutter surface-section text-800">
       <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
           <section>

@@ -4,12 +4,10 @@ import {MenuItem} from 'primeng/api';
 import {Product} from '../domain/product';
 import {ProductService} from '../service/productservice';
 import {BreadcrumbService} from '../../app.breadcrumb.service';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
 
 @Component({
-    templateUrl: './dashboard.component.html'
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['../../../assets/demo/badges.scss']
 })
 export class DashboardDemoComponent implements OnInit {
 

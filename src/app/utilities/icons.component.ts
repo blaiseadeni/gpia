@@ -16,6 +16,7 @@ export class IconsComponent implements OnInit {
 
     constructor(private iconService: IconService, private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
+            {label: 'Utilities'},
             {label: 'Icons'}
         ]);
     }

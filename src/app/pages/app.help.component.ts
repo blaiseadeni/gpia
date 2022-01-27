@@ -28,7 +28,8 @@ export class AppHelpComponent {
 
     constructor(private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Help Page' }
+            {label: 'Pages'},
+            {label: 'Help Page'}
         ]);
     }
 
