@@ -9,6 +9,16 @@ import {BreadcrumbService} from '../app.breadcrumb.service';
             :host ::ng-deep .fc-header-toolbar {
                 display: flex;
                 flex-wrap: wrap;
+
+                .fc-dayGridMonth-button {
+                    margin-top: 1rem;
+                }
+                .fc-timeGridWeek-button{
+                    margin-top: 1rem;
+                }
+                .fc-timeGridDay-button{
+                    margin-top: 1rem;
+                }
             }
         }
     `]
