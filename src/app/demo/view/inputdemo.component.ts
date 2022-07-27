@@ -89,6 +89,8 @@ export class InputDemoComponent implements OnInit{
 
     valueKnob = 20;
 
+    valCheck2: boolean;
+
     constructor(private countryService: CountryService, private breadcrumbService: BreadcrumbService) {
         this.breadcrumbService.setItems([
             {label: 'UI Kit'},
