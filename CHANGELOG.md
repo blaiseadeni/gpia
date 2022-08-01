@@ -2,7 +2,7 @@
 
 ## 14.0.1
 **Fixed bugs:**
-- Fixed a bug caus
+- Fixed a bug causes menu malfunction in menu service.
 
 ## 14.0.0
 **Migration Guide**
