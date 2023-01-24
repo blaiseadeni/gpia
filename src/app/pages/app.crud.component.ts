@@ -4,6 +4,7 @@ import { ProductService } from '../demo/service/productservice';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import {BreadcrumbService} from '../app.breadcrumb.service';
+import { Table } from 'primeng/table';
 
 @Component({
     templateUrl: './app.crud.component.html',
@@ -12,23 +13,23 @@ import {BreadcrumbService} from '../app.breadcrumb.service';
 })
 export class AppCrudComponent implements OnInit {
 
-    productDialog: boolean;
+    productDialog: boolean = false;
 
     deleteProductDialog: boolean = false;
 
     deleteProductsDialog: boolean = false;
 
-    products: Product[];
+    products: Product[] = [];
 
-    product: Product;
+    product: Product = {};
 
-    selectedProducts: Product[];
+    selectedProducts: Product[] = [];
 
-    submitted: boolean;
+    submitted: boolean = false;
 
-    cols: any[];
+    cols: any[] = [];
 
-    statuses: any[];
+    statuses: any[] = [];
 
     rowsPerPageOptions = [5, 10, 20];
 
@@ -39,21 +40,22 @@ export class AppCrudComponent implements OnInit {
             {label: 'Crud'}
         ]);
     }
-   ngOnInit() {
+
+    ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
 
         this.cols = [
-            {field: 'name', header: 'Name'},
-            {field: 'price', header: 'Price'},
-            {field: 'category', header: 'Category'},
-            {field: 'rating', header: 'Reviews'},
-            {field: 'inventoryStatus', header: 'Status'}
+            { field: 'product', header: 'Product' },
+            { field: 'price', header: 'Price' },
+            { field: 'category', header: 'Category' },
+            { field: 'rating', header: 'Reviews' },
+            { field: 'inventoryStatus', header: 'Status' }
         ];
 
         this.statuses = [
-            {label: 'INSTOCK', value: 'instock'},
-            {label: 'LOWSTOCK', value: 'lowstock'},
-            {label: 'OUTOFSTOCK', value: 'outofstock'}
+            { label: 'INSTOCK', value: 'instock' },
+            { label: 'LOWSTOCK', value: 'lowstock' },
+            { label: 'OUTOFSTOCK', value: 'outofstock' }
         ];
     }
 
@@ -68,26 +70,26 @@ export class AppCrudComponent implements OnInit {
     }
 
     editProduct(product: Product) {
-        this.product = {...product};
+        this.product = { ...product };
         this.productDialog = true;
     }
 
     deleteProduct(product: Product) {
         this.deleteProductDialog = true;
-        this.product = {...product};
+        this.product = { ...product };
     }
 
-    confirmDeleteSelected(){
+    confirmDeleteSelected() {
         this.deleteProductsDialog = false;
         this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
-        this.selectedProducts = null;
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+        this.selectedProducts = [];
     }
 
-    confirmDelete(){
+    confirmDelete() {
         this.deleteProductDialog = false;
         this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
         this.product = {};
     }
 
@@ -99,12 +101,12 @@ export class AppCrudComponent implements OnInit {
     saveProduct() {
         this.submitted = true;
 
-        if (this.product.name.trim()) {
+        if (this.product.name?.trim()) {
             if (this.product.id) {
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
+                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
                 this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             } else {
                 this.product.id = this.createId();
                 this.product.code = this.createId();
@@ -112,7 +114,7 @@ export class AppCrudComponent implements OnInit {
                 // @ts-ignore
                 this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
                 this.products.push(this.product);
-                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
             }
 
             this.products = [...this.products];
@@ -140,5 +142,9 @@ export class AppCrudComponent implements OnInit {
             id += chars.charAt(Math.floor(Math.random() * chars.length));
         }
         return id;
+    }
+
+    onGlobalFilter(table: Table, event: Event) {
+        table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
 }
