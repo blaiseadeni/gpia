@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectorRef, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Subscription } from 'rxjs';
@@ -72,8 +72,7 @@ import { AppMainComponent } from './app.main.component';
             transition('void => visibleAnimated, visibleAnimated => void',
                 animate('400ms cubic-bezier(0.86, 0, 0.07, 1)'))
         ])
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    ]
 })
 export class AppMenuitemComponent implements OnInit, OnDestroy {
 
@@ -87,7 +86,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     @Input() parentKey: string;
 
-    animating: boolean;
+    animating: boolean = false;
 
     active = false;
 
@@ -120,8 +119,6 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
                         this.active = false;
                     }
                 }
-
-                this.cd.markForCheck();
             });
     }
 
