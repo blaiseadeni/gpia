@@ -1,4 +1,4 @@
-{
+`ZDXFT{
     "extends": "tslint:recommended",
     "rulesDirectory": [
         "codelyzer"

@@ -147,6 +147,15 @@ import {ProductService} from './demo/service/productservice';
 // Application services
 import {BreadcrumbService} from './app.breadcrumb.service';
 import {MenuService} from './app.menu.service';
+import { AgencesComponent } from './components/agences/agences.component';
+import { CompteursComponent } from './components/compteurs/compteurs.component';
+import { AbonnesComponent } from './components/abonnes/abonnes.component';
+import { IndexagesComponent } from './components/indexages/indexages.component';
+import { FacturesComponent } from './components/factures/factures.component';
+import { PaiementsComponent } from './components/paiements/paiements.component';
+import { UtilisateursComponent } from './components/utilisateurs/utilisateurs.component';
+import { ApurementComponent } from './components/paiements/apurement/apurement.component';
+import { SocietesComponent } from './components/societes/societes.component';
 
 @NgModule({
     imports: [
@@ -280,6 +289,15 @@ import {MenuService} from './app.menu.service';
         AppWizardComponent,
         BlockViewer,
         BlocksComponent,
+        AgencesComponent,
+        CompteursComponent,
+        AbonnesComponent,
+        IndexagesComponent,
+        FacturesComponent,
+        PaiementsComponent,
+        UtilisateursComponent,
+        ApurementComponent,
+        SocietesComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

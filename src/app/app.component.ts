@@ -9,7 +9,7 @@ export class AppComponent implements OnInit{
 
     layoutMode = 'static';
 
-    darkMenu = true;
+    darkMenu = false;
 
     profileMode = 'popup';
 

@@ -3,22 +3,64 @@ import {Component, OnInit} from '@angular/core';
 @Component({
     selector: 'app-menu',
     template: `
-        <ul class="layout-menu">
-            <li app-menuitem *ngFor="let item of model; let i = index;"
-                [item]="item" [index]="i" [visible]="true" [root]="true"></li>
-        </ul>
+    <ul class="layout-menu">
+    <li app-menuitem *ngFor="let item of model; let i = index;"
+    [item]="item" [index]="i" [visible]="true" [root]="true"></li>
+    </ul>
     `
 })
 export class AppMenuComponent implements OnInit {
-
+    
     model: any[];
-
+    
     ngOnInit() {
         this.model = [
             {
                 label: 'Home Page', icon: 'pi pi-fw pi-home',
                 items: [
                     {label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}
+                ]
+            },
+            {
+                label: 'Elements de base', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
+                items: [
+                    {label: 'Agences', icon: 'pi pi-fw pi-id-card', routerLink: ['/base/agences']},
+                    {label: 'Compteurs', icon: 'pi pi-fw pi-check-square', routerLink: ['/base/compteurs']},
+                    {label: 'Abonnés', icon: 'pi pi-bookmark', routerLink: ['/base/abonnes']}
+                ]
+            },
+            {
+                label: 'Opérations', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
+                items: [                   
+                    {label: 'Indexage', icon: 'pi pi-exclamation-circle', routerLink: ['/base/indexages']},
+                    {label: 'Facturation', icon: 'pi pi-fw pi-mobile', routerLink: ['/base/facturation'], class: 'rotated-icon'},                   
+                     {
+                        label: 'Paiement', icon: 'pi pi-fw pi-align-left',
+                        items: [
+                            {
+                                label: 'Mes factures',  icon: 'pi pi-fw pi-table', routerLink: ['/base/apurement']                              
+                            },
+                            {
+                                label: 'Mes paiements', icon: 'pi pi-fw pi-table', routerLink: ['/base/paiement']
+                            },
+                        ]
+                    }
+                ]
+            },
+            {
+                label: 'Rapports', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
+                items: [
+                    {label: 'Indexage', icon: 'pi pi-exclamation-circle', routerLink: ['/uikit/invalidstate']},
+                    {label: 'Facturation', icon: 'pi pi-fw pi-mobile', routerLink: ['/uikit/button'], class: 'rotated-icon'},
+                    { label: 'Paiement', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table'] },
+                   
+                ]
+            },
+            {
+                label: 'Configurations', icon: 'pi pi-fw pi-star-fill', routerLink: ['/uikit'],
+                items: [
+                    {label: 'Utilisateurs', icon: 'pi pi-exclamation-circle', routerLink: ['/configurations/utilisateurs']},
+                    {label: 'Paramètres de société', icon: 'pi pi-exclamation-circle', routerLink: ['/configurations/societe']},
                 ]
             },
             {

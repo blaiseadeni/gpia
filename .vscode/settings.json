@@ -1,0 +1,11 @@
+{
+    "gitConfigUser.profiles": [
+        {
+            "label": "julia",
+            "email": "blaiseadeni@gmail.com",
+            "userName": "julia",
+            "selected": true
+        }
+    ],
+    "angular.enable-strict-mode-prompt": false
+}

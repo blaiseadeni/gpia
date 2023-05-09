@@ -31,16 +31,37 @@ import {AppInvoiceComponent} from './pages/app.invoice.component';
 import {AppHelpComponent} from './pages/app.help.component';
 import {AppWizardComponent} from './pages/app.wizard.component';
 import {BlocksComponent} from './blocks/blocks/blocks.component';
+import { AgencesComponent } from './components/agences/agences.component';
+import { CompteursComponent } from './components/compteurs/compteurs.component';
+import { AbonnesComponent } from './components/abonnes/abonnes.component';
+import { IndexagesComponent } from './components/indexages/indexages.component';
+import { FacturesComponent } from './components/factures/factures.component';
+import { PaiementsComponent } from './components/paiements/paiements.component';
+import { UtilisateursComponent } from './components/utilisateurs/utilisateurs.component';
+import { ApurementComponent } from './components/paiements/apurement/apurement.component';
+import { SocietesComponent } from './components/societes/societes.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
+                path:'',
+                redirectTo:'login',
+                pathMatch:'full',
+            },
+            {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', component: DashboardDemoComponent},
-                    {path: 'uikit/formlayout', component: FormLayoutDemoComponent},
-                    {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
+                    {path: 'admin', component: DashboardDemoComponent},
+                    {path: 'base/agences', component: AgencesComponent},
+                    {path: 'base/compteurs', component: CompteursComponent},
+                    {path: 'base/abonnes', component: AbonnesComponent},
+                    {path: 'base/indexages', component: IndexagesComponent},
+                    {path: 'base/facturation', component: FacturesComponent},
+                    {path: 'base/paiement', component: PaiementsComponent},
+                    {path: 'base/apurement', component: ApurementComponent},
+                    {path: 'configurations/utilisateurs', component: UtilisateursComponent},
+                    {path: 'configurations/societe', component: SocietesComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},
                     {path: 'uikit/input', component: InputDemoComponent},
                     {path: 'uikit/button', component: ButtonDemoComponent},
