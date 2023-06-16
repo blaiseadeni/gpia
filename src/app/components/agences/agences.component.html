@@ -16,7 +16,7 @@
                 </ng-template>
             </p-toolbar>
             
-            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="agences" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Liste Agences</h5>
@@ -35,33 +35,38 @@
                         <th pSortableColumn="name">Libellé <p-sortIcon field="name"></p-sortIcon></th>
                         <th pSortableColumn="price">Site <p-sortIcon field="price"></p-sortIcon></th>
                         <th pSortableColumn="category">Secteur <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="category">Commune <p-sortIcon field="category"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-agence>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="agence"></p-tableCheckbox>
                         </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                            {{product.code || product.id}}
+                            {{agence.code || agence.code}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
-                            {{product.name}}
+                            {{agence.libelle}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            {{agence.site}}
                         </td>
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            {{agence.secteur}}
+                        </td>
+                        <td style="width:20%; min-width:10rem;">
+                            <span class="p-column-title">Category</span>
+                            {{agence.commune}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(agence)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClicked(agence)"></button>
                             </div>
                         </td>
                     </tr>
@@ -70,42 +75,57 @@
         </div>
         
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Détails Agence " [modal]="true" class="p-fluid">
-            <ng-template pTemplate="content">               
+            <ng-template pTemplate="content">  
+                
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Code</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="agence.code" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.code}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.code">Libellé obligatoire.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="name">Libellé</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="agence.libelle" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.libelle}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.libelle">Libellé obligatoire.</small>
+                    </div>
+                </div>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="name">Site</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="agence.site" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.site}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.site">Site obligatoire.</small>
+                    </div>
+                    <div class="field col">
+                        <label for="name">Secteur</label>
+                        <input type="text" pInputText id="name" [(ngModel)]="agence.secteur" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agences.secteur}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.secteur">Secteur obligatoire.</small>
+                    </div>
+                </div>                                         
                 <div class="field">
-                    <label for="name">Libellé</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Libellé obligatoire.</small>
-                </div>                             
-                <div class="field">
-                    <label for="name">Site</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Site obligatoire.</small>
-                </div>                             
-                <div class="field">
-                    <label for="name">Secteur</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Secteur obligatoire.</small>
+                    <label for="name">Commune</label>
+                    <input type="text" pInputText id="name" [(ngModel)]="agence.commune" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.commune}"/>
+                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.commune">Secteur obligatoire.</small>
                 </div>                             
             </ng-template>
             
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="Enregistrer()"></button>
             </ng-template>
         </p-dialog>
         
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirmation" [modal]="true" [style]="{width:'300px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
+                <span *ngIf="agence">Voulez-vous supprimer <b>{{agence.libelle}}</b>?</span>
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(agence.id)"></button>
             </ng-template>
         </p-dialog>
         
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+        <p-dialog [(visible)]="deleteProductsDialog" header="Confirmation" [modal]="true" [style]="{width:'450px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span>Are you sure you want to delete selected products?</span>

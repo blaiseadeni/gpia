@@ -4,6 +4,10 @@ import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Product } from 'src/app/demo/domain/product';
 import { ProductService } from 'src/app/demo/service/productservice';
+import { Indexage } from 'src/app/models/models';
+import { AbonnesService } from 'src/app/services/abonnes/abonnes.service';
+import { CompteursService } from 'src/app/services/compteurs/compteurs.service';
+import { IndexagesService } from 'src/app/services/indexages/indexages.service';
 
 @Component({
     selector: 'app-indexages',
@@ -35,10 +39,23 @@ export class IndexagesComponent {
     
     cities: SelectItem[];
     
+    compteur: any;
+    
+    abonnes: any;
+    
+    indexages: any;
+    
+    indexage: Indexage = {
+        date: undefined,
+        numero: undefined,
+        quantite: undefined,
+        compteurId: undefined,
+    };
+    
     constructor(private productService: ProductService, private messageService: MessageService,
-        private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+        private indexageService: IndexagesService, private compteurService: CompteursService,private abonneService: AbonnesService,private breadcrumbService: BreadcrumbService) {
             this.breadcrumbService.setItems([
-                {label: 'Eléments'},
+                {label: 'Opétions'},
                 {label: 'Indexage'}
             ]);
         }
@@ -47,115 +64,138 @@ export class IndexagesComponent {
             this.productService.getProducts().then(data => this.products = data);
             
             this.cols = [
-                { field: 'product', header: 'Product' },
-                { field: 'price', header: 'Price' },
-                { field: 'category', header: 'Category' },
-                { field: 'rating', header: 'Reviews' },
-                { field: 'inventoryStatus', header: 'Status' }
+                { field: 'date', header: 'Date' },
+                { field: 'numero', header: 'Numero' },
+                { field: 'quantite', header: 'Quantite' },
+                { field: 'compteur', header: 'Compteur' },
             ];
+            this.getAll();
+            this.getAbonnes();
+        }
+        
+        getAll() {
+            this.indexageService.getAll()
+            .subscribe({
+                next: (response) => {
+                    this.indexages = response;               },
+                    error: (errors) => {
+                        console.log(errors);
+                    }
+                });
+            }
             
-            this.statuses = [
-                { label: 'INSTOCK', value: 'instock' },
-                { label: 'LOWSTOCK', value: 'lowstock' },
-                { label: 'OUTOFSTOCK', value: 'outofstock' }
-            ];
+            getAbonnes() {
+                this.abonneService.getAll()
+                .subscribe({
+                    next: (response) => {
+                        this.abonnes = response;
+                    },
+                    error: (errors) => {
+                        console.log(errors);
+                    }
+                });
+            }
+                        
+            getCompteur(event: any) {
+                this.compteurService.get(event.value.compteurId)
+                .subscribe({
+                    next: (response) => {
+                        this.compteur = response;
+                    },
+                    error: (errors) => {
+                        console.log(errors);
+                    }
+                });
+            }
             
-            this.cities = [
-                {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-                {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-                {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-                {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-                {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
-            ];
-        }
-        
-        openNew() {
-            this.product = {};
-            this.submitted = false;
-            this.productDialog = true;
-        }
-        
-        deleteSelectedProducts() {
-            this.deleteProductsDialog = true;
-        }
-        
-        editProduct(product: Product) {
-            this.product = { ...product };
-            this.productDialog = true;
-        }
-        
-        deleteProduct(product: Product) {
-            this.deleteProductDialog = true;
-            this.product = { ...product };
-        }
-        
-        confirmDeleteSelected() {
-            this.deleteProductsDialog = false;
-            this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-            this.selectedProducts = [];
-        }
-        
-        confirmDelete() {
-            this.deleteProductDialog = false;
-            this.products = this.products.filter(val => val.id !== this.product.id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-            this.product = {};
-        }
-        
-        hideDialog() {
-            this.productDialog = false;
-            this.submitted = false;
-        }
-        
-        saveProduct() {
-            this.submitted = true;
             
-            if (this.product.name?.trim()) {
-                if (this.product.id) {
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                    this.products[this.findIndexById(this.product.id)] = this.product;
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-                } else {
-                    this.product.id = this.createId();
-                    this.product.code = this.createId();
-                    this.product.image = 'product-placeholder.svg';
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                    this.products.push(this.product);
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-                }
-                
-                this.products = [...this.products];
-                this.productDialog = false;
+            openNew() {
+                this.product = {};
+                this.submitted = false;
+                this.productDialog = true;
+            }
+            
+            deleteSelectedProducts() {
+                this.deleteProductsDialog = true;
+            }
+            
+            editProduct(product: Product) {
+                this.product = { ...product };
+                this.productDialog = true;
+            }
+            
+            deleteProduct(product: Product) {
+                this.deleteProductDialog = true;
+                this.product = { ...product };
+            }
+            
+            confirmDeleteSelected() {
+                this.deleteProductsDialog = false;
+                this.products = this.products.filter(val => !this.selectedProducts.includes(val));
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+                this.selectedProducts = [];
+            }
+            
+            confirmDelete() {
+                this.deleteProductDialog = false;
+                this.products = this.products.filter(val => val.id !== this.product.id);
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
                 this.product = {};
             }
-        }
-        
-        findIndexById(id: string): number {
-            let index = -1;
-            for (let i = 0; i < this.products.length; i++) {
-                if (this.products[i].id === id) {
-                    index = i;
-                    break;
+            
+            hideDialog() {
+                this.productDialog = false;
+                this.submitted = false;
+            }
+            
+            saveProduct() {
+                this.submitted = true;
+                
+                if (this.product.name?.trim()) {
+                    if (this.product.id) {
+                        // @ts-ignore
+                        this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
+                        this.products[this.findIndexById(this.product.id)] = this.product;
+                        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+                    } else {
+                        this.product.id = this.createId();
+                        this.product.code = this.createId();
+                        this.product.image = 'product-placeholder.svg';
+                        // @ts-ignore
+                        this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
+                        this.products.push(this.product);
+                        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                    }
+                    
+                    this.products = [...this.products];
+                    this.productDialog = false;
+                    this.product = {};
                 }
             }
             
-            return index;
-        }
-        
-        createId(): string {
-            let id = '';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 5; i++) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
+            findIndexById(id: string): number {
+                let index = -1;
+                for (let i = 0; i < this.products.length; i++) {
+                    if (this.products[i].id === id) {
+                        index = i;
+                        break;
+                    }
+                }
+                
+                return index;
             }
-            return id;
+            
+            createId(): string {
+                let id = '';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                for (let i = 0; i < 5; i++) {
+                    id += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return id;
+            }
+            
+            onGlobalFilter(table: Table, event: Event) {
+                table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+            }
         }
         
-        onGlobalFilter(table: Table, event: Event) {
-            table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-        }
-    }
-    

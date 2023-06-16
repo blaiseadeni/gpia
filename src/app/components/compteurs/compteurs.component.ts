@@ -4,6 +4,9 @@ import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Product } from 'src/app/demo/domain/product';
 import { ProductService } from 'src/app/demo/service/productservice';
+import { Compteur } from 'src/app/models/models';
+import { AgencesService } from 'src/app/services/agences/agences.service';
+import { CompteursService } from 'src/app/services/compteurs/compteurs.service';
 
 @Component({
     selector: 'app-compteurs',
@@ -35,8 +38,14 @@ export class CompteursComponent {
     
     cities: SelectItem[];
     
+    compteurs: any;
+    
+    agences: any = {};
+    
+    compteur: Compteur={ id: undefined,numero: undefined,marque: undefined,montant: undefined,agenceId: undefined};
+    
     constructor(private productService: ProductService, private messageService: MessageService,
-        private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+        private confirmationService: ConfirmationService,private compteurService: CompteursService, private breadcrumbService: BreadcrumbService, private agenceService: AgencesService) {
             this.breadcrumbService.setItems([
                 {label: 'Eléments'},
                 {label: 'Compteurs'}
@@ -44,29 +53,89 @@ export class CompteursComponent {
         }
         
         ngOnInit() {
-            this.productService.getProducts().then(data => this.products = data);
-            
             this.cols = [
-                { field: 'product', header: 'Product' },
-                { field: 'price', header: 'Price' },
-                { field: 'category', header: 'Category' },
-                { field: 'rating', header: 'Reviews' },
-                { field: 'inventoryStatus', header: 'Status' }
+                { field: 'numero', header: 'numero' },
+                { field: 'marque', header: 'marque' },
+                { field: 'montant', header: 'montant' },
+                { field: 'agence', header: 'agence' }
             ];
-            
-            this.statuses = [
-                { label: 'INSTOCK', value: 'instock' },
-                { label: 'LOWSTOCK', value: 'lowstock' },
-                { label: 'OUTOFSTOCK', value: 'outofstock' }
-            ];
-            
-            this.cities = [
-                {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-                {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-                {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-                {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-                {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
-            ];
+            this.getAll();
+            this.getAgences();
+        }
+        getAll() {
+            this.compteurService.getAll()
+            .subscribe({
+                next: (response) => {
+                    this.compteurs = response;
+                },
+                error: (errors) => {
+                    console.log(errors);
+                }
+            });
+        }
+        
+        getAgences() {
+            this.agenceService.getAll()
+            .subscribe({
+                next: (response) => {
+                    this.agences = response;
+                },
+                error: (errors) => {
+                    console.log(errors);
+                }
+            });
+        }
+        
+        add() {
+            this.submitted = true;
+            this.compteur.agenceId = this.compteur.agenceId.id;
+            this.compteurService.add(this.compteur)
+            .subscribe({
+                next: (response) => {
+                    
+                },
+                complete: () => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 }); this.getAll(); },
+                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 }); this.getAll(); }
+            });
+        }
+        
+        update() {
+            this.submitted = true;
+            this.compteur.agenceId = this.compteur.agenceId.id;
+            console.log(this.compteur.id, this.compteur);
+            this.compteurService.update(this.compteur.id, this.compteur)
+            .subscribe({
+                next: (response) => {
+                    
+                },
+                complete: () => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 }); this.getAll(); },
+                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 }); this.getAll(); }
+            })
+        }
+        
+        edit(compteur: Compteur) {
+            this.compteur = compteur;
+            this.productDialog = true;
+        }
+        
+        create() {
+            this.submitted = true;
+            if (this.compteur.id) {
+                this.update();
+            } else {
+                this.add();
+            }
+        }
+        
+        delete(id: any) {
+            this.compteurService.delete(id)
+            .subscribe({
+                next: (response) => {
+                    
+                },
+                complete: () => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;},
+                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;}
+            });
         }
         
         openNew() {
@@ -75,10 +144,14 @@ export class CompteursComponent {
             this.productDialog = true;
         }
         
+        deleteSelected(compteur: Compteur) {
+            this.compteur = compteur;
+            this.deleteProductDialog = true;
+        }
+        
         deleteSelectedProducts() {
             this.deleteProductsDialog = true;
         }
-        
         editProduct(product: Product) {
             this.product = { ...product };
             this.productDialog = true;
@@ -110,7 +183,6 @@ export class CompteursComponent {
         
         saveProduct() {
             this.submitted = true;
-            
             if (this.product.name?.trim()) {
                 if (this.product.id) {
                     // @ts-ignore

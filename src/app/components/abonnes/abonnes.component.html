@@ -9,14 +9,14 @@
                         <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
-                
+
                 <ng-template pTemplate="right">
                     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
-            
-            <p-table #dt [value]="products" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,14,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+
+            <p-table #dt [value]="abonnes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,14,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
                         <h5 class="m-0">Liste Abonnés</h5>
@@ -31,150 +31,175 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Nom <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="name">Postnom <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="name">Prenom <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="price">Sexe <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="price">Contact <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="price">Adresse <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="price">Compteur <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="id"># <p-sortIcon field="id  "></p-sortIcon></th>
+                        <th pSortableColumn="nom">Nom <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="postnom">Postnom <p-sortIcon field="postnom"></p-sortIcon></th>
+                        <th pSortableColumn="prenom">Prenom <p-sortIcon field="prenom"></p-sortIcon></th>
+                        <th pSortableColumn="sexe">Sexe <p-sortIcon field="sexe"></p-sortIcon></th>
+                        <th pSortableColumn="contact">Contact <p-sortIcon field="contact"></p-sortIcon></th>
+                        <th pSortableColumn="adresse">Adresse <p-sortIcon field="adresse"></p-sortIcon></th>
+                        <th pSortableColumn="compteurId">Compteur <p-sortIcon field="compteurId"></p-sortIcon></th>
+                        <th pSortableColumn="quartier">Quartier <p-sortIcon field="quartier"></p-sortIcon></th>
+                        <th pSortableColumn="avenue">Avenue <p-sortIcon field="avenue"></p-sortIcon></th>
+                        <th pSortableColumn="mail">Mail <p-sortIcon field="mail"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-product>
+                <ng-template pTemplate="body" let-abonne>
                     <tr>
                         <td>
-                            <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                            <p-tableCheckbox [value]="abonne"></p-tableCheckbox>
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                            {{product.code || product.id}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Name</span>
-                            {{product.name}}
+                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">#</span>
+                            {{abonne.id}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Nom</span>
+                            {{abonne.nom}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Postnom</span>
+                            {{abonne.postnom}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Prenom</span>
+                            {{abonne.prenom}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Sexe</span>
+                            {{abonne.sexe}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Contact</span>
+                            {{abonne.contact}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{product.category}}
+                            <span class="p-column-title">Adresse</span>
+                            {{abonne.adresse}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Compteur</span>
+                            {{abonne.compteurId}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Avenue</span>
+                            {{abonne.avenue}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Quartier</span>
+                            {{abonne.quartier}}
+                        </td>
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Mail</span>
+                            {{abonne.mail}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(abonne)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(abonne)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-        
+
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Détails Abonné " [modal]="true" class="p-fluid">
-            <ng-template pTemplate="content"> 
-                
+            <ng-template pTemplate="content">
+
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="price">Nom</label>
-                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        <label for="nom">Nom</label>
+                        <input type="text" pInputText id="nom" [(ngModel)]="abonne.nom" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.nom}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.nom">Nom obligatoire.</small>
                     </div>
                     <div class="field col">
-                        <label for="quantity">Postnom</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                        <label for="postnom">Postnom</label>
+                        <input type="text" pInputText id="postnom" [(ngModel)]="abonne.postnom" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.postnom}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.postnom">Post-nom obligatoire.</small>
                     </div>
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="price">Prénom</label>
-                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        <label for="prenom">Prénom</label>
+                        <input type="text" pInputText id="prenom" [(ngModel)]="abonne.prenom" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.prenom}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.prenom">Prenom obligatoire.</small>
                     </div>
                     <div class="field col">
-                        <label for="quantity">Contact</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                        <label for="contact">Contact</label>
+                        <input type="text" pInputText id="contact" [(ngModel)]="abonne.contact" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.contact}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.contact">Prenom obligatoire.</small>
                     </div>
                 </div>
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="price">Quartier</label>
-                        <p-inputNumber id="price" [(ngModel)]="product.price" mode="currency" currency="USD" locale="en-US"></p-inputNumber>
+                        <label for="quartier">Quartier</label>
+                        <input type="text" pInputText id="quartier" [(ngModel)]="abonne.quartier" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.quartier}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.quartier">Quartier obligatoire.</small>
                     </div>
                     <div class="field col">
-                        <label for="quantity">Avenue</label>
-                        <p-inputNumber id="quantity" [(ngModel)]="product.quantity"></p-inputNumber>
+                        <label for="avenue">Avenue</label>
+                        <input type="text" pInputText id="avenue" [(ngModel)]="abonne.avenue" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.avenue}"/>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.avenue">Secteur obligatoire.</small>
                     </div>
                 </div>
-                
                 <div class="field">
                     <label class="mb-3">Sexe</label>
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-6">
-                            <p-radioButton id="category1" name="category" value="Accessories" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category1">Femelle</label>
+                            <p-radioButton id="sexe" name="sexe" value="Femelle" [(ngModel)]="abonne.sexe"></p-radioButton>
+                            <label for="sexe">Femelle</label>
                         </div>
                         <div class="field-radiobutton col-6">
-                            <p-radioButton id="category2" name="category" value="Clothing" [(ngModel)]="product.category"></p-radioButton>
-                            <label for="category2">Mâle</label>
-                        </div>                       
+                            <p-radioButton id="sexe" name="sexe" value="Mâle" [(ngModel)]="abonne.sexe"></p-radioButton>
+                            <label for="sexe">Mâle</label>
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="name">Compteur</label>
-                    <p-dropdown [options]="cities" [(ngModel)]="selectedDrop" placeholder="Select a City" [showClear]="true" appendTo="body"
-                    id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"></p-dropdown>                    
-                    <!-- <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/> -->
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !product.name">Agence obligatoire.</small>
-                </div>                            
-                <div class="field">
-                    <label for="description">Adresse</label>
-                    <textarea id="description" pInputTextarea [(ngModel)]="product.description" required rows="3" cols="20"></textarea>
+                <div class="formgrid grid">
+                    <div class="field col">
+                        <label for="compteurId">Compteur</label>
+                        <p-dropdown [options]="compteurs" [(ngModel)]="abonne.compteurId" optionLabel="numero" placeholder="Select a City" [showClear]="true" appendTo="body"
+                        id="compteurId" [(ngModel)]="abonne.compteurId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.compteurId}"></p-dropdown>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.compteurId">Compteur obligatoire.</small></div>
+                        <div class="field col">
+                            <label for="mail">Mail</label>
+                            <input type="text" pInputText id="mail" [(ngModel)]="abonne.mail" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !abonne.mail}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !abonne.mail">Secteur obligatoire.</small>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="adresse">Adresse</label>
+                        <textarea id="adresse" pInputTextarea [(ngModel)]="abonne.adresse" required rows="3" cols="20"></textarea>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                    <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="create()"></button>
+                </ng-template>
+            </p-dialog>
+
+            <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+                <div class="flex align-items-center justify-content-center">
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                    <span *ngIf="abonne">Etes-vous sûr de vouloir supprimer <b>{{abonne.nom}}</b> ?</span>
                 </div>
-            </ng-template>
-            
-            <ng-template pTemplate="footer">
-                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="deleteProductDialog = false"></button>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(abonne.id)"></button>
+                </ng-template>
+            </p-dialog>
+
+            <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+                <div class="flex align-items-center justify-content-center">
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                    <span>Are you sure you want to delete selected products?</span>
+                </div>
+                <ng-template pTemplate="footer">
+                    <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
+                </ng-template>
+            </p-dialog>
+        </div>
     </div>
-</div>
