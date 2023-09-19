@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
-import { Product } from 'src/app/demo/domain/product';
-import { ProductService } from 'src/app/demo/service/productservice';
-import { Agence } from 'src/app/models/models';
 import { AgencesService } from 'src/app/services/agences/agences.service';
+import { QuartierService } from 'src/app/services/quartier/quartier.service';
 
 @Component({
     selector: 'app-agences',
@@ -15,52 +14,53 @@ import { AgencesService } from 'src/app/services/agences/agences.service';
 })
 export class AgencesComponent {
     
-    productDialog: boolean = false;
-    
-    deleteProductDialog: boolean = false;
-    
-    deleteProductsDialog: boolean = false;
-    
-    products: Product[] = [];
-    
-    product: Product = {};
-    
-    selectedProducts: Product[] = [];
-    
+    agenceDialog: boolean = false;
+
+    deleteAgenceDialog: boolean = false;
+
     submitted: boolean = false;
-    
+
     cols: any[] = [];
-    
-    statuses: any[] = [];
-    
+
     rowsPerPageOptions = [5, 10, 20];
-    
-    agences: any;
-    
-    agence: Agence = {
-        id: undefined,
-        code: undefined,
-        libelle: undefined,
-        site: undefined,
-        secteur: undefined,
-        commune: undefined
-    };
-    
-    constructor(private productService: ProductService, private messageService: MessageService,
-        private agenceService: AgencesService, private breadcrumbService: BreadcrumbService) {
+
+    agences: any = [];
+
+    quartiers: any = [];
+
+    agence: any ={};
+
+    agenceForm: FormGroup;
+
+    constructor(
+        private messageService: MessageService,
+        private breadcrumbService: BreadcrumbService,
+        private service: AgencesService,
+        private quartierService:QuartierService) {
             this.breadcrumbService.setItems([
                 {label: 'Eléments'},
-                {label: 'Agences'}
+                {label: 'Agence'}
             ]);
         }
-        
+
         ngOnInit() {
-            
+            this.agenceForm = new FormGroup({
+                libelle: new FormControl('', Validators.required),
+                site: new FormControl('', Validators.required),
+                secteur: new FormControl('', Validators.required),
+                quartierId: new FormControl('', Validators.required),
+            })
+
+            this.cols = [
+                { field: 'id', header: 'id' },
+                { field: 'libelle', header: 'libelle' },
+            ];
             this.getAll();
+            this.getAllQuartier();
         }
-        
+
         getAll() {
-            this.agenceService.getAll()
+            this.service.getAll()
             .subscribe({
                 next: (response) => {
                     this.agences = response;
@@ -70,95 +70,187 @@ export class AgencesComponent {
                 }
             });
         }
-        
-        
-        add() {
-            this.submitted = true;
-            this.agenceService.add(this.agence)
+
+        getAllQuartier() {
+            this.quartierService.getAll()
             .subscribe({
                 next: (response) => {
-                    
+                    this.quartiers = response;
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 }); this.getAll(); },
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 }); this.getAll(); }
+                error: (errors) => {
+                    console.log(errors);
+                }
             });
         }
-        
-        update() {
+
+        save() {
+            if (this.agenceForm.valid)
+            {
+                if(this.agence.id){
+                    this.update();
+                    this.reset();
+                    this.agenceDialog = false;
+                }else{
+                    this.add();
+                    this.reset();
+                    this.agenceDialog = false;
+                }
+            } else {
+                this.validateAllFields(this.agenceForm);
+            }
+
+        }
+
+        add() {
+            const request = {
+                libelle: this.libelleValue.value,
+                site: this.siteValue.value,
+                secteur: this.secteurValue.value,
+                quartierId: this.quartierIdValue.value.id,
+            }
             this.submitted = true;
-            console.log(this.agence.id, this.agence);
-            this.agenceService.update(this.agence.id, this.agence)
+            this.service.add(request)
             .subscribe({
                 next: (response) => {
-                    
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                    this.getAll();
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 }); this.getAll(); },
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 }); this.getAll(); }
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 });
+                    this.getAll();
+                }
+            });
+        }
+
+        update() {
+            const request = {
+                libelle: this.libelleValue.value,
+                site: this.siteValue.value,
+                secteur: this.secteurValue.value,
+                quartierId: this.quartierIdValue.value.id,
+            }
+            this.submitted = true;
+            this.service.update(this.agence.id, request)
+            .subscribe({
+                next: (response) => {
+                    this.getAll();
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 });
+                    this.getAll();
+                }
             })
         }
-        
-        edit(agence: Agence) {
-            this.agence = agence;
-            this.productDialog = true;
-        }
-        
-        
-        Enregistrer() {
-            this.submitted = true;
-            if (this.agence.id) {
-                this.update();
-            } else {
-                this.add();
-            }
-        }
-        
-        delete(id: any) {
-            this.agenceService.delete(id)
+
+        find(id:any):any {
+            this.service.get(id)
             .subscribe({
                 next: (response) => {
-                    
+                    this.agence = response;
+                    this.agenceDialog = true;
+                    this.agenceForm.get("libelle")?.patchValue(this.agence.libelle);
+                    this.agenceForm.get("site")?.patchValue(this.agence.site);
+                    this.agenceForm.get("secteur")?.patchValue(this.agence.secteur);
+                    this.agenceForm.get("quartierId")?.patchValue(this.agence.quartierId.id);
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;},
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;}
+                error: (response) => {
+                    console.log(response);
+                }
+            })
+        }
+
+        delete(id: any) {
+            this.service.delete(id)
+            .subscribe({
+                next: (response) => {
+                    this.reset();
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteAgenceDialog = false;
+                    this.reset();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteAgenceDialog = false;
+                    this.reset();
+                }
             });
         }
-        
+
         openNew() {
-            this.product = {};
             this.submitted = false;
-            this.productDialog = true;
+            this.agenceDialog = true;
         }
-        
-        deleteClicked(agence: Agence) {
-            this.agence = agence;
-            this.deleteProductDialog = true;
+
+        deleteSelected(id: any) {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.agence = response;
+                    this.deleteAgenceDialog = true;
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
         }
-        
-        deleteSelectedProducts() {
-            this.deleteProductsDialog = true;
-        }
-        
-        confirmDeleteSelected() {
-            this.deleteProductsDialog = false;
-            this.agences = this.agences.filter(val => !this.selectedProducts.includes(val));
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-            this.selectedProducts = [];
-        }
-        
-        confirmDelete() {
-            this.deleteProductDialog = false;
-            this.agences = this.agences.filter(val => val.id !== this.agences.id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-            this.product = {};
-        }
-        
+
         hideDialog() {
-            this.productDialog = false;
+            this.agenceDialog = false;
             this.submitted = false;
+            this.reset();
         }
-        
+
+        hideSelect() {
+            this.deleteAgenceDialog = false;
+            this.reset();
+        }
+
+        reset() {
+            this.agenceForm.get("libelle")?.patchValue('');
+            this.agenceForm.get("site")?.patchValue('');
+            this.agenceForm.get("secteur")?.patchValue('');
+            this.agenceForm.get("quartierId")?.patchValue('');
+            this.agence = {};
+        }
         onGlobalFilter(table: Table, event: Event) {
             table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
         }
+
+        private validateAllFields(formGroup: FormGroup) {
+            Object.keys(formGroup.controls).forEach((field) => {
+                const control = formGroup.get(field)
+
+                if (control instanceof FormControl) {
+                    control.markAsDirty({ onlySelf: true })
+                } else if (control instanceof FormGroup) {
+                    this.validateAllFields(control)
+                }
+            })
+        }
+
+        get libelleValue() {
+            return this.agenceForm.get('libelle')
+        }
+        get siteValue() {
+            return this.agenceForm.get('site')
+        }
+        get secteurValue() {
+            return this.agenceForm.get('secteur')
+        }
+
+        get quartierIdValue() {
+            return this.agenceForm.get('quartierId')
+        }
     }
-    

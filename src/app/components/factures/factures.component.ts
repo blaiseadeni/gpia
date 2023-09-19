@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
-import { Product } from 'src/app/demo/domain/product';
-import { ProductService } from 'src/app/demo/service/productservice';
+import { FacturesService } from 'src/app/services/factures/factures.service';
 
 @Component({
     selector: 'app-factures',
@@ -12,150 +12,210 @@ import { ProductService } from 'src/app/demo/service/productservice';
     providers: [MessageService, ConfirmationService]
 })
 export class FacturesComponent {
-    
-    productDialog: boolean = false;
-    
-    deleteProductDialog: boolean = false;
-    
-    deleteProductsDialog: boolean = false;
-    
-    products: Product[] = [];
-    
-    product: Product = {};
-    
-    selectedProducts: Product[] = [];
-    
+
+    factureDialog: boolean = false;
+
+    deleteFactureDialog: boolean = false;
+
     submitted: boolean = false;
-    
+
     cols: any[] = [];
-    
-    statuses: any[] = [];
-    
+
     rowsPerPageOptions = [5, 10, 20];
-    
-    cities: SelectItem[];
-    
-    constructor(private productService: ProductService, private messageService: MessageService,
-        private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+
+    factures: any = [];
+
+
+    facture: any ={};
+
+    factureForm: FormGroup;
+
+    constructor(
+        private messageService: MessageService,
+        private breadcrumbService: BreadcrumbService,
+        private service:FacturesService) {
             this.breadcrumbService.setItems([
                 {label: 'Eléments'},
-                {label: 'Facture'}
+                {label: 'Agence'}
             ]);
         }
-        
+
         ngOnInit() {
-            this.productService.getProducts().then(data => this.products = data);
-            
+            this.factureForm = new FormGroup({
+                periode: new FormControl('', Validators.required),
+            })
+
             this.cols = [
-                { field: 'product', header: 'Product' },
-                { field: 'price', header: 'Price' },
-                { field: 'category', header: 'Category' },
-                { field: 'rating', header: 'Reviews' },
-                { field: 'inventoryStatus', header: 'Status' }
+                { field: 'id', header: 'id' },
+                { field: 'periode', header: 'periode' },
             ];
-            
-            this.statuses = [
-                { label: 'INSTOCK', value: 'instock' },
-                { label: 'LOWSTOCK', value: 'lowstock' },
-                { label: 'OUTOFSTOCK', value: 'outofstock' }
-            ];
-            
-            this.cities = [
-                {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-                {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-                {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-                {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-                {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
-            ];
+            this.getAll();
         }
-        
-        openNew() {
-            this.product = {};
-            this.submitted = false;
-            this.productDialog = true;
+
+        getAll() {
+            this.service.getAll()
+            .subscribe({
+                next: (response) => {
+                    this.factures = response;
+                },
+                error: (errors) => {
+                    console.log(errors);
+                }
+            });
         }
-        
-        deleteSelectedProducts() {
-            this.deleteProductsDialog = true;
+
+        save() {
+            if (this.factureForm.valid)
+            {
+                if(this.facture.id){
+                    this.update();
+                    this.reset();
+                    this.factureDialog = false;
+                }else{
+                    this.add();
+                    this.reset();
+                    this.factureDialog = false;
+                }
+            } else {
+                this.validateAllFields(this.factureForm);
+            }
+
         }
-        
-        editProduct(product: Product) {
-            this.product = { ...product };
-            this.productDialog = true;
-        }
-        
-        deleteProduct(product: Product) {
-            this.deleteProductDialog = true;
-            this.product = { ...product };
-        }
-        
-        confirmDeleteSelected() {
-            this.deleteProductsDialog = false;
-            this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-            this.selectedProducts = [];
-        }
-        
-        confirmDelete() {
-            this.deleteProductDialog = false;
-            this.products = this.products.filter(val => val.id !== this.product.id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-            this.product = {};
-        }
-        
-        hideDialog() {
-            this.productDialog = false;
-            this.submitted = false;
-        }
-        
-        saveProduct() {
+
+        add() {
+            const request = {
+                periode: this.periodeValue.value,
+            }
             this.submitted = true;
-            
-            if (this.product.name?.trim()) {
-                if (this.product.id) {
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                    this.products[this.findIndexById(this.product.id)] = this.product;
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-                } else {
-                    this.product.id = this.createId();
-                    this.product.code = this.createId();
-                    this.product.image = 'product-placeholder.svg';
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                    this.products.push(this.product);
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+            this.service.add(request)
+            .subscribe({
+                next: (response) => {
+                    this.messageService.add({ severity: 'success', summary: 'Génération', detail: ' Génération reussie avec succès', life: 3000 });
+                    this.getAll();
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Génération', detail: ' Génération reussie avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Génération', detail: 'Génération reussie avec succès', life: 3000 });
+                    this.getAll();
                 }
-                
-                this.products = [...this.products];
-                this.productDialog = false;
-                this.product = {};
-            }
+            });
         }
-        
-        findIndexById(id: string): number {
-            let index = -1;
-            for (let i = 0; i < this.products.length; i++) {
-                if (this.products[i].id === id) {
-                    index = i;
-                    break;
+
+
+        update() {
+            const request = {
+                periode: this.periodeValue.value,
+
+            }
+            this.submitted = true;
+            this.service.update(this.facture.id, request)
+            .subscribe({
+                next: (response) => {
+                    this.getAll();
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 });
+                    this.getAll();
                 }
-            }
-            
-            return index;
+            })
         }
-        
-        createId(): string {
-            let id = '';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 5; i++) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return id;
+
+        // find(id:any):any {
+        //     this.service.get(id)
+        //     .subscribe({
+        //         next: (response) => {
+        //             this.agence = response;
+        //             this.agenceDialog = true;
+        //             this.agenceForm.get("libelle")?.patchValue(this.agence.libelle);
+        //             this.agenceForm.get("site")?.patchValue(this.agence.site);
+        //             this.agenceForm.get("secteur")?.patchValue(this.agence.secteur);
+        //             this.agenceForm.get("quartierId")?.patchValue(this.agence.quartierId.id);
+        //         },
+        //         error: (response) => {
+        //             console.log(response);
+        //         }
+        //     })
+        // }
+
+        delete(id: any) {
+            this.service.delete(id)
+            .subscribe({
+                next: (response) => {
+                    this.reset();
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteFactureDialog = false;
+                    this.reset();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteFactureDialog = false;
+                    this.reset();
+                }
+            });
         }
-        
+
+        openNew() {
+            this.submitted = false;
+            this.factureDialog = true;
+        }
+
+        deleteSelected(id: any) {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.facture = response;
+                    this.deleteFactureDialog = true;
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
+        }
+
+        hideDialog() {
+            this.factureDialog = false;
+            this.submitted = false;
+            this.reset();
+        }
+
+        hideSelect() {
+            this.deleteFactureDialog = false;
+            this.reset();
+        }
+
+        reset() {
+            this.factureForm.get("periode")?.patchValue('');
+            this.facture = {};
+        }
         onGlobalFilter(table: Table, event: Event) {
             table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
         }
+
+        private validateAllFields(formGroup: FormGroup) {
+            Object.keys(formGroup.controls).forEach((field) => {
+                const control = formGroup.get(field)
+
+                if (control instanceof FormControl) {
+                    control.markAsDirty({ onlySelf: true })
+                } else if (control instanceof FormGroup) {
+                    this.validateAllFields(control)
+                }
+            })
+        }
+
+        get periodeValue() {
+            return this.factureForm.get('periode')
+        }
+
     }
-    

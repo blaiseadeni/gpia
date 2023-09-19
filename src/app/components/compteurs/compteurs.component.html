@@ -6,7 +6,6 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-primary mr-2" (click)="openNew()"></button>
-                        <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
 
@@ -16,10 +15,10 @@
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="compteurs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+            <p-table #dt [value]="compteurs" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"  selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Liste compteurs</h5>
+                        <h5 class="m-0">Liste des compteurs</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
@@ -28,45 +27,29 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
                         <th pSortableColumn="code"># <p-sortIcon field="code"></p-sortIcon></th>
                         <th pSortableColumn="name">Numéro <p-sortIcon field="name"></p-sortIcon></th>
                         <th pSortableColumn="name">Marque <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="name">Montant <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="price">Agence <p-sortIcon field="price"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-compteur>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="compteur"></p-tableCheckbox>
-                        </td>
                         <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
                             {{compteur.id }}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
+                        <td style="width:40%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
                             {{compteur.numero}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
+                        <td style="width:40%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
                             {{compteur.marque}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{compteur.montant}}
-                        </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{compteur.agenceId}}
-                        </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(compteur)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(compteur)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="find(compteur.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(compteur.id)"></button>
                             </div>
                         </td>
                     </tr>
@@ -74,60 +57,80 @@
             </p-table>
         </div>
 
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Détails Compteur " [modal]="true" class="p-fluid">
+        <p-dialog [(visible)]="compteurDialog" [style]="{width: '450px'}" header="Détails Compteur " [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="numero">Numéro</label>
-                        <input type="text" pInputText id="numero" [(ngModel)]="compteur.numero" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !compteur.numero}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !compteur.numero">Numéro obligatoire.</small>
+                <form [formGroup]="compteurForm">
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="numero">Numéro</label>
+                            <input
+                            type="text"
+                            pInputText
+                            placeholder="Numéro"
+                            required
+                            autofocus
+                            id="numero"
+                            name="marque"
+                            formControlName="numero"
+                            />
+                            <small
+                            class="p-error"
+                            *ngIf="
+                            compteurForm.controls['numero'].dirty &&
+                            compteurForm.hasError('required', 'numero')
+                            "
+                            >* numero obligatoire.</small
+                            >
+                        </div>
+
                     </div>
-                    <div class="field col">
-                        <label for="marque">Marque</label>
-                        <input type="text" pInputText id="marque" [(ngModel)]="compteur.marque" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !compteur.marque}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !compteur.marque">Marque obligatoire.</small>
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="marque">Marque</label>
+                            <input type="text"
+                            pInputText
+                            id="marque"
+                            name="marque"
+                            placeholder="Marque"
+                            required
+                            autofocus
+                            formControlName="marque"
+                            />
+                            <small
+                            class="p-error"
+                            *ngIf="
+                            compteurForm.controls['marque'].dirty &&
+                            compteurForm.hasError('required', 'marque')
+                            "
+                            >* marque obligatoire.</small
+                            >
+                        </div>
                     </div>
-                </div>
-                <div class="formgrid grid">
-                    <div class="field col">
-                        <label for="montant">Montant</label>
-                        <input type="text" pInputText id="montant" [(ngModel)]="compteur.montant" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !compteur.montant}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !compteur.montant">Montant obligatoire.</small>
-                    </div>
-                    <div class="field col">
-                        <label for="agenceId">Agence</label>
-                        <p-dropdown [options]="agences" optionLabel="libelle" placeholder="Select a City" [showClear]="true" appendTo="body"
-                        id="agenceId" [(ngModel)]="compteur.agenceId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !compteur.agenceId}"></p-dropdown>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !compteur.agenceId">Agence obligatoire.</small>
-                    </div>
-                </div>
+                </form>
             </ng-template>
 
             <ng-template pTemplate="footer">
-                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="create()"></button>
+                <button pButton pRipple
+                label="Fermer"
+                icon="pi pi-times"
+                class="p-button-text"
+                (click)="hideDialog()"></button>
+                <button pButton
+                pRipple label="Enregistrer"
+                icon="pi pi-check"
+                class="p-button-text"
+                (click)="save()"></button>
             </ng-template>
         </p-dialog>
 
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'350px'}">
+        <p-dialog [(visible)]="deleteCompteurDialog" header="Confirm" [modal]="true" [style]="{width:'350px'}">
             <div class="flex align-items-center justify-content-center">
                 <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
                 <span *ngIf="compteur">Voulez-vous supprimer <b>{{compteur.numero}}</b> ?</span>
             </div>
             <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="hideSelect()"></button>
                 <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(compteur.id)"></button>
-            </ng-template>
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
             </ng-template>
         </p-dialog>
     </div>

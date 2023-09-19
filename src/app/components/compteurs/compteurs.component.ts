@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
@@ -7,6 +8,7 @@ import { ProductService } from 'src/app/demo/service/productservice';
 import { Compteur } from 'src/app/models/models';
 import { AgencesService } from 'src/app/services/agences/agences.service';
 import { CompteursService } from 'src/app/services/compteurs/compteurs.service';
+import { RueService } from 'src/app/services/rue/rue.service';
 
 @Component({
     selector: 'app-compteurs',
@@ -16,54 +18,48 @@ import { CompteursService } from 'src/app/services/compteurs/compteurs.service';
 })
 export class CompteursComponent {
     
-    productDialog: boolean = false;
+    compteurDialog: boolean = false;
     
-    deleteProductDialog: boolean = false;
-    
-    deleteProductsDialog: boolean = false;
-    
-    products: Product[] = [];
-    
-    product: Product = {};
-    
-    selectedProducts: Product[] = [];
+    deleteCompteurDialog: boolean = false;
     
     submitted: boolean = false;
     
     cols: any[] = [];
     
-    statuses: any[] = [];
-    
     rowsPerPageOptions = [5, 10, 20];
     
-    cities: SelectItem[];
+    compteurs: any = [];
     
-    compteurs: any;
+    compteur: any ={};
     
-    agences: any = {};
+    compteurForm: FormGroup;
     
-    compteur: Compteur={ id: undefined,numero: undefined,marque: undefined,montant: undefined,agenceId: undefined};
-    
-    constructor(private productService: ProductService, private messageService: MessageService,
-        private confirmationService: ConfirmationService,private compteurService: CompteursService, private breadcrumbService: BreadcrumbService, private agenceService: AgencesService) {
+    constructor(
+        private messageService: MessageService,
+        private breadcrumbService: BreadcrumbService,
+        private service: CompteursService,
+        ) {
             this.breadcrumbService.setItems([
                 {label: 'Eléments'},
-                {label: 'Compteurs'}
+                {label: 'Compteur'}
             ]);
         }
         
         ngOnInit() {
+            this.compteurForm = new FormGroup({
+                numero: new FormControl('', Validators.required),
+                marque: new FormControl('', Validators.required),
+            })
+            
             this.cols = [
                 { field: 'numero', header: 'numero' },
                 { field: 'marque', header: 'marque' },
-                { field: 'montant', header: 'montant' },
-                { field: 'agence', header: 'agence' }
             ];
             this.getAll();
-            this.getAgences();
         }
+        
         getAll() {
-            this.compteurService.getAll()
+            this.service.getAll()
             .subscribe({
                 next: (response) => {
                     this.compteurs = response;
@@ -74,160 +70,162 @@ export class CompteursComponent {
             });
         }
         
-        getAgences() {
-            this.agenceService.getAll()
-            .subscribe({
-                next: (response) => {
-                    this.agences = response;
-                },
-                error: (errors) => {
-                    console.log(errors);
+        
+        save() {
+            if (this.compteurForm.valid)
+            {
+                if(this.compteur.id){
+                    this.update();
+                    this.reset();
+                    this.compteurDialog = false;
+                }else{
+                    this.add();
+                    this.reset();
+                    this.compteurDialog = false;
                 }
-            });
+            } else {
+                this.validateAllFields(this.compteurForm);
+            }
+            
         }
         
         add() {
+            const request = {
+                numero: this.numeroValue.value,
+                marque: this.marqueValue.value,
+            }
             this.submitted = true;
-            this.compteur.agenceId = this.compteur.agenceId.id;
-            this.compteurService.add(this.compteur)
+            this.service.add(request)
             .subscribe({
                 next: (response) => {
-                    
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                    this.getAll();
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 }); this.getAll(); },
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 }); this.getAll(); }
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 });
+                    this.getAll();
+                }
             });
         }
         
         update() {
+            const request = {
+                numero: this.numeroValue.value,
+                marque: this.marqueValue.value,
+            }
             this.submitted = true;
-            this.compteur.agenceId = this.compteur.agenceId.id;
-            console.log(this.compteur.id, this.compteur);
-            this.compteurService.update(this.compteur.id, this.compteur)
+            this.service.update(this.compteur.id, request)
             .subscribe({
                 next: (response) => {
-                    
+                    this.getAll();
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 }); this.getAll(); },
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 }); this.getAll(); }
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: 'Modifier avec succès', life: 3000 });
+                    this.getAll();
+                }
             })
         }
         
-        edit(compteur: Compteur) {
-            this.compteur = compteur;
-            this.productDialog = true;
-        }
-        
-        create() {
-            this.submitted = true;
-            if (this.compteur.id) {
-                this.update();
-            } else {
-                this.add();
-            }
+        find(id:any):any {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.compteur = response;
+                    this.compteurDialog = true;
+                    this.compteurForm.get("numero")?.patchValue(this.compteur.numero);
+                    this.compteurForm.get("marque")?.patchValue(this.compteur.marque);
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
         }
         
         delete(id: any) {
-            this.compteurService.delete(id)
+            this.service.delete(id)
             .subscribe({
                 next: (response) => {
-                    
+                    this.reset();
                 },
-                complete: () => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;},
-                error: (e) => { this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 }); this.getAll();  this.deleteProductDialog = false;}
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteCompteurDialog = false;
+                    this.reset();
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteCompteurDialog = false;
+                    this.reset();
+                }
             });
         }
         
         openNew() {
-            this.product = {};
             this.submitted = false;
-            this.productDialog = true;
+            this.compteurDialog = true;
         }
         
-        deleteSelected(compteur: Compteur) {
-            this.compteur = compteur;
-            this.deleteProductDialog = true;
-        }
-        
-        deleteSelectedProducts() {
-            this.deleteProductsDialog = true;
-        }
-        editProduct(product: Product) {
-            this.product = { ...product };
-            this.productDialog = true;
-        }
-        
-        deleteProduct(product: Product) {
-            this.deleteProductDialog = true;
-            this.product = { ...product };
-        }
-        
-        confirmDeleteSelected() {
-            this.deleteProductsDialog = false;
-            this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-            this.selectedProducts = [];
-        }
-        
-        confirmDelete() {
-            this.deleteProductDialog = false;
-            this.products = this.products.filter(val => val.id !== this.product.id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-            this.product = {};
+        deleteSelected(id: any) {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.compteur = response;
+                    this.deleteCompteurDialog = true;
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
         }
         
         hideDialog() {
-            this.productDialog = false;
+            this.compteurDialog = false;
             this.submitted = false;
+            this.reset();
         }
         
-        saveProduct() {
-            this.submitted = true;
-            if (this.product.name?.trim()) {
-                if (this.product.id) {
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                    this.products[this.findIndexById(this.product.id)] = this.product;
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-                } else {
-                    this.product.id = this.createId();
-                    this.product.code = this.createId();
-                    this.product.image = 'product-placeholder.svg';
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                    this.products.push(this.product);
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-                }
-                
-                this.products = [...this.products];
-                this.productDialog = false;
-                this.product = {};
-            }
+        hideSelect() {
+            this.deleteCompteurDialog = false;
+            this.reset();
         }
         
-        findIndexById(id: string): number {
-            let index = -1;
-            for (let i = 0; i < this.products.length; i++) {
-                if (this.products[i].id === id) {
-                    index = i;
-                    break;
-                }
-            }
-            
-            return index;
+        reset() {
+            this.compteurForm.get("numero")?.patchValue('');
+            this.compteurForm.get("marque")?.patchValue('');
+            this.compteur = {};
         }
-        
-        createId(): string {
-            let id = '';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 5; i++) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return id;
-        }
-        
         onGlobalFilter(table: Table, event: Event) {
             table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+        }
+        
+        private validateAllFields(formGroup: FormGroup) {
+            Object.keys(formGroup.controls).forEach((field) => {
+                const control = formGroup.get(field)
+                
+                if (control instanceof FormControl) {
+                    control.markAsDirty({ onlySelf: true })
+                } else if (control instanceof FormGroup) {
+                    this.validateAllFields(control)
+                }
+            })
+        }
+        
+        get numeroValue() {
+            return this.compteurForm.get('numero')
+        }
+        
+        get marqueValue() {
+            return this.compteurForm.get('marque')
         }
     }
     

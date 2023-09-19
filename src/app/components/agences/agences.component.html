@@ -6,20 +6,19 @@
                 <ng-template pTemplate="left">
                     <div class="my-2">
                         <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-primary mr-2" (click)="openNew()"></button>
-                        <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
                     </div>
                 </ng-template>
-                
+
                 <ng-template pTemplate="right">
                     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
-            
-            <p-table #dt [value]="agences" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+
+            <p-table #dt [value]="agences" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['id','libelle']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"  selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Liste Agences</h5>
+                        <h5 class="m-0">Liste des agences</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
@@ -28,112 +27,157 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th pSortableColumn="code">Code <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Libellé <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="price">Site <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="category">Secteur <p-sortIcon field="category"></p-sortIcon></th>
-                        <th pSortableColumn="category">Commune <p-sortIcon field="category"></p-sortIcon></th>
+                        <th pSortableColumn="id"># <p-sortIcon field="index"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Quartier <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Site <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Secteur <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Libellé <p-sortIcon field="libelle"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-agence>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="agence"></p-tableCheckbox>
+                        <td style="width:10%; min-width:10rem;"><span class="p-column-title">id</span>
+                            {{agence.id }}
                         </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Code</span>
-                            {{agence.code || agence.code}}
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">quartierId</span>
+                            {{agence.quartier}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Name</span>
-                            {{agence.libelle}}
-                        </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">libelle</span>
                             {{agence.site}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">libelle</span>
                             {{agence.secteur}}
                         </td>
-                        <td style="width:20%; min-width:10rem;">
-                            <span class="p-column-title">Category</span>
-                            {{agence.commune}}
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">libelle</span>
+                            {{agence.libelle}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="edit(agence)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteClicked(agence)"></button>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="find(agence.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(agence.id)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-        
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Détails Agence " [modal]="true" class="p-fluid">
-            <ng-template pTemplate="content">  
-                
+
+        <p-dialog [(visible)]="agenceDialog" [style]="{width: '450px'}" header="Détails Agence " [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <form [formGroup]="agenceForm">
+                    <div class="field">
+                        <label for="quartierId">Quartier </label>
+                        <p-dropdown inputId="dropdown"
+                        [autoDisplayFirst]="true"
+                        [options]="quartiers"
+                        [filter]="true"
+                        filterBy="libelle"
+                        [showClear]="true"
+                        optionLabel="libelle"
+                        id="quartierId"
+                        name="quartierId"
+                        formControlName="quartierId"
+                        appendTo="body">
+                    </p-dropdown>
+                    <small
+                    class="p-error"
+                    *ngIf="
+                    agenceForm.controls['quartierId'].dirty &&
+                    agenceForm.hasError('required', 'quartierId')
+                    "
+                    >* Quartier obligatoire.</small
+                    >
+                </div>
+
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="name">Code</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="agence.code" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.code}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.code">Libellé obligatoire.</small>
-                    </div>
-                    <div class="field col">
-                        <label for="name">Libellé</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="agence.libelle" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.libelle}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.libelle">Libellé obligatoire.</small>
+                        <label for="site">Site</label>
+                        <input type="text" pInputText
+                        placeholder="site"
+                        id="site"
+                        name="site"
+                        formControlName="site"
+                        required
+                        autofocus
+                        />
+                        <small
+                        class="p-error"
+                        *ngIf="
+                        agenceForm.controls['site'].dirty &&
+                        agenceForm.hasError('required', 'site')
+                        "
+                        >* site  obligatoire.</small
+                        >
                     </div>
                 </div>
+
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="name">Site</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="agence.site" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.site}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.site">Site obligatoire.</small>
+                        <label for="secteur">Secteur</label>
+                        <input type="text" pInputText
+                        placeholder="secteur"
+                        id="secteur"
+                        name="secteur"
+                        formControlName="secteur"
+                        required
+                        autofocus
+                        />
+                        <small
+                        class="p-error"
+                        *ngIf="
+                        agenceForm.controls['secteur'].dirty &&
+                        agenceForm.hasError('required', 'secteur')
+                        "
+                        >* libelle  obligatoire.</small
+                        >
                     </div>
+                </div>
+
+                <div class="formgrid grid">
                     <div class="field col">
-                        <label for="name">Secteur</label>
-                        <input type="text" pInputText id="name" [(ngModel)]="agence.secteur" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agences.secteur}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.secteur">Secteur obligatoire.</small>
+                        <label for="libelle">Designation</label>
+                        <input type="text" pInputText
+                        placeholder="Designation"
+                        id="libelle"
+                        name="libelle"
+                        formControlName="libelle"
+                        required
+                        autofocus
+                        />
+                        <small
+                        class="p-error"
+                        *ngIf="
+                        agenceForm.controls['libelle'].dirty &&
+                        agenceForm.hasError('required', 'libelle')
+                        "
+                        >* libelle  obligatoire.</small
+                        >
                     </div>
-                </div>                                         
-                <div class="field">
-                    <label for="name">Commune</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="agence.commune" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !agence.commune}"/>
-                    <small class="ng-dirty ng-invalid" *ngIf="submitted && !agence.commune">Secteur obligatoire.</small>
-                </div>                             
-            </ng-template>
-            
-            <ng-template pTemplate="footer">
-                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="Enregistrer()"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirmation" [modal]="true" [style]="{width:'300px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="agence">Voulez-vous supprimer <b>{{agence.libelle}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(agence.id)"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirmation" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
-    </div>
+                </div>
+
+            </form>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="deleteAgenceDialog" header="Confirmation" [modal]="true" [style]="{width:'350px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span *ngIf="agence">Voulez-vous supprimer l'agence <b>{{agence.libelle}}</b> ?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="hideSelect()"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(agence.id)"></button>
+        </ng-template>
+    </p-dialog>
+</div>
 </div>

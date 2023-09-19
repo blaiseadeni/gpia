@@ -1,19 +1,121 @@
 <div class="login-body">
     <div class="login-panel"></div>
-
+    <p-toast></p-toast>
     <div class="login-content">
         <!-- <img src="assets/layout/images/logo-black.png" alt="babylon-layout"/> -->
-
+        
         <h1><span>CONNEXION</span> A GPIA</h1>
         <!-- <p>Bienvenue, veuillez utiliser le formulaire pour vous connecter.</p> -->
         <div class="login-input-wrapper">
-            <input type="text" autocomplete="off" placeholder="Username" pInputText>
+            <input type="text"
+            autocomplete="off"
+            placeholder="Username"
+            [(ngModel)]="data.user"
+            pInputText>
             <i class="pi pi-user"></i>
         </div>
         <div class="login-input-wrapper">
-            <input type="password" autocomplete="off" placeholder="Password" pInputText>
+            <input type="password"
+            autocomplete="off"
+            placeholder="Password"
+            [(ngModel)]="data.password"
+            pInputText>
             <i class="pi pi-lock"></i>
         </div>
-        <button [routerLink]="['/admin']"  pButton type="button" label="Connexion"></button>
+        <button (click)="login()"  pButton type="button" label="Connexion"></button>
     </div>
 </div>
+
+<p-dialog [(visible)]="loginDialog" [style]="{width: '400px'}" header="Modification" [modal]="true"
+class="p-fluid">
+<ng-template pTemplate="content">
+    <form  [formGroup]="loginForm">
+        <div class="grid p-fluid mt-1">
+            <div class="field col-12 md:col-12">
+                <span class="p-float-label">
+                    <input type="text"
+                    pInputText
+                    id="user"
+                    name="user"
+                    required
+                    autofocus
+                    formControlName="user"
+                    />
+                    <label for="inputtext">Nouveau nom d'utilisateur</label>
+                </span>
+                <small
+                class="p-error"
+                *ngIf="
+                loginForm.controls['user'].dirty &&
+                loginForm.hasError('required', 'user')
+                "
+                >* utilisateur obligatoire.</small
+                >
+            </div>
+        </div>
+        <div class="grid p-fluid mt-1">
+            <div class="field col-12 md:col-12">
+                <span class="p-float-label">
+                    <input type="password" id="inputtext"
+                    pInputText
+                    id="password"
+                    name="password"
+                    required
+                    autofocus
+                    formControlName="password"
+                    />
+                    <label for="inputtext">Nouveau mot de passe</label>
+                </span>
+                <small
+                class="p-error"
+                *ngIf="
+                loginForm.controls['password'].dirty &&
+                loginForm.hasError('required', 'password')
+                "
+                >* mot de passe obligatoire.</small
+                >
+            </div>
+        </div>
+        <div class="grid p-fluid mt-1">
+            <div class="field col-12 md:col-12">
+                <span class="p-float-label">
+                    <input type="password"
+                    pInputText
+                    id="passwordConfirm"
+                    required
+                    autofocus
+                    name="passwordConfirm"
+                    formControlName="passwordConfirm"
+                    />
+                    <label for="inputtext">Confirmation de nouveau mot de passe </label>
+                </span>
+                <small
+                class="p-error"
+                *ngIf="
+                loginForm.controls['passwordConfirm'].dirty &&
+                loginForm.hasError('required', 'passwordConfirm')
+                ">* mot de passe obligatoire.</small>
+            </div>
+        </div>
+    </form>
+    
+</ng-template>
+
+<ng-template pTemplate="footer">
+    <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text"
+    (click)="hide()"></button>
+    <button pButton pRipple label="Valider" icon="pi pi-check" class="p-button-text"
+    (click)="update()"></button>
+</ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="infoDialog" header="Avertissement" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span >C'est votre première connexion, prière de modifier le compte utilisateur !</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="infoDialog = false"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="openInfoDialog()"></button>
+    </ng-template>
+</p-dialog>

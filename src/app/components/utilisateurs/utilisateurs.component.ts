@@ -1,161 +1,338 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService, ConfirmationService, SelectItem } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { BreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { Product } from 'src/app/demo/domain/product';
 import { ProductService } from 'src/app/demo/service/productservice';
+import { UtilisateursService } from 'src/app/services/users/utilisateurs.service';
 
 @Component({
-  selector: 'app-utilisateurs',
-  templateUrl: './utilisateurs.component.html',
-    styleUrls: ['./utilisateurs.component.scss'],  
+    selector: 'app-utilisateurs',
+    templateUrl: './utilisateurs.component.html',
+    styleUrls: ['./utilisateurs.component.scss'],
     providers: [MessageService, ConfirmationService]
 })
 export class UtilisateursComponent {
 
-     productDialog: boolean = false;
-    
-    deleteProductDialog: boolean = false;
-    
-    deleteProductsDialog: boolean = false;
-    
-    products: Product[] = [];
-    
-    product: Product = {};
-    
-    selectedProducts: Product[] = [];
-    
+    userDialog: boolean = false;
+
+    deleteUserDialog: boolean = false;
+
     submitted: boolean = false;
-    
+
+    checked: boolean = true;
+
     cols: any[] = [];
-    
-    statuses: any[] = [];
-    
+
     rowsPerPageOptions = [5, 10, 20];
-    
-    cities: SelectItem[];
-    
-    constructor(private productService: ProductService, private messageService: MessageService,
-        private confirmationService: ConfirmationService, private breadcrumbService: BreadcrumbService) {
+
+    users: any = [];
+    user: any = {};
+    roles: any[] = [];
+    userForm: FormGroup;
+    activeForm: FormGroup;
+
+    constructor(
+        private messageService: MessageService,
+        private service: UtilisateursService,
+        private breadcrumbService: BreadcrumbService) {
             this.breadcrumbService.setItems([
                 {label: 'Configurations'},
                 {label: 'Utilisateur'}
             ]);
         }
-        
+
         ngOnInit() {
-            this.productService.getProducts().then(data => this.products = data);
-            
-            this.cols = [
-                { field: 'product', header: 'Product' },
-                { field: 'price', header: 'Price' },
-                { field: 'category', header: 'Category' },
-                { field: 'rating', header: 'Reviews' },
-                { field: 'inventoryStatus', header: 'Status' }
+            this.userForm = new FormGroup({
+                nom: new FormControl('', Validators.required),
+                postnom: new FormControl('', Validators.required),
+                mail: new FormControl(''),
+                contact: new FormControl('', Validators.required),
+                user: new FormControl('', Validators.required),
+                role: new FormControl('', Validators.required),
+            })
+
+            this.getAll();
+
+            this.roles = [
+                { label: 'Administrateur', value: 'admin' },
+                { label: 'Facturier', value: 'facturier' },
+                { label: 'Preleveur', value: 'preleveur' }
             ];
-            
-            this.statuses = [
-                { label: 'INSTOCK', value: 'instock' },
-                { label: 'LOWSTOCK', value: 'lowstock' },
-                { label: 'OUTOFSTOCK', value: 'outofstock' }
-            ];
-            
-            this.cities = [
-                {label: 'New York', value: {id: 1, name: 'New York', code: 'NY'}},
-                {label: 'Rome', value: {id: 2, name: 'Rome', code: 'RM'}},
-                {label: 'London', value: {id: 3, name: 'London', code: 'LDN'}},
-                {label: 'Istanbul', value: {id: 4, name: 'Istanbul', code: 'IST'}},
-                {label: 'Paris', value: {id: 5, name: 'Paris', code: 'PRS'}}
-            ];
+
+
         }
-        
+
+
+        getAll() {
+            this.service.getAll()
+            .subscribe({
+                next: (response) => {
+                    this.users = response;
+                    console.log(this.users);
+                },
+                error: (errors) => {
+                    console.log(errors);
+                }
+            });
+        }
+
+
         openNew() {
-            this.product = {};
             this.submitted = false;
-            this.productDialog = true;
+            this.userDialog = true;
         }
-        
-        deleteSelectedProducts() {
-            this.deleteProductsDialog = true;
+
+        confirmDelete(id: any) {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.user = response;
+                    this.deleteUserDialog = true;
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
         }
-        
-        editProduct(product: Product) {
-            this.product = { ...product };
-            this.productDialog = true;
-        }
-        
-        deleteProduct(product: Product) {
-            this.deleteProductDialog = true;
-            this.product = { ...product };
-        }
-        
-        confirmDeleteSelected() {
-            this.deleteProductsDialog = false;
-            this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-            this.selectedProducts = [];
-        }
-        
-        confirmDelete() {
-            this.deleteProductDialog = false;
-            this.products = this.products.filter(val => val.id !== this.product.id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-            this.product = {};
-        }
-        
+
         hideDialog() {
-            this.productDialog = false;
+            this.userDialog = false;
             this.submitted = false;
         }
-        
-        saveProduct() {
-            this.submitted = true;
-            
-            if (this.product.name?.trim()) {
-                if (this.product.id) {
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                    this.products[this.findIndexById(this.product.id)] = this.product;
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+
+        save() {
+            if (this.userForm.valid) {
+                if (this.user.id) {
+                    this.update();
                 } else {
-                    this.product.id = this.createId();
-                    this.product.code = this.createId();
-                    this.product.image = 'product-placeholder.svg';
-                    // @ts-ignore
-                    this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                    this.products.push(this.product);
-                    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+                    this.add();
                 }
-                
-                this.products = [...this.products];
-                this.productDialog = false;
-                this.product = {};
+            } else {
+                this.validateAllFields(this.userForm)
             }
         }
-        
-        findIndexById(id: string): number {
-            let index = -1;
-            for (let i = 0; i < this.products.length; i++) {
-                if (this.products[i].id === id) {
-                    index = i;
-                    break;
+
+
+        add() {
+
+            if (this.userForm.valid) {
+                this.submitted = true;
+                const request = {
+                    nom: this.nomValue.value,
+                    postnom: this.postnomValue.value,
+                    mail: this.mailValue.value,
+                    contact: this.contactValue.value,
+                    user: this.userValue.value,
+                    role: this.roleValue.value,
                 }
+                this.service.add(request)
+                .subscribe({
+                    next: (response) => {
+                        this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                        this.user = '';
+                        this.getAll();
+                        this.userDialog = false;
+                        this.userForm.get("nom")?.patchValue('');
+                        this.userForm.get("postnom")?.patchValue('');
+                        this.userForm.get("mail")?.patchValue('');
+                        this.userForm.get("contact")?.patchValue('');
+                        this.userForm.get("user")?.patchValue('');
+                        this.userForm.get("role")?.patchValue('');
+                    },
+                    complete: () => {
+                        this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: ' Enregistrer avec succès', life: 3000 });
+                        this.user = '';
+                        this.getAll();
+                        this.userDialog = false;
+                        this.userForm.get("nom")?.patchValue('');
+                        this.userForm.get("postnom")?.patchValue('');
+                        this.userForm.get("mail")?.patchValue('');
+                        this.userForm.get("contact")?.patchValue('');
+                        this.userForm.get("user")?.patchValue('');
+                        this.userForm.get("role")?.patchValue('');
+                    },
+                    error: (e) => {
+                        this.messageService.add({ severity: 'success', summary: 'Enregistrement', detail: 'Enregistrer avec succès', life: 3000 });
+                        this.user = '';
+                        this.getAll();
+                        this.userDialog = false;
+                        this.userForm.get("nom")?.patchValue('');
+                        this.userForm.get("postnom")?.patchValue('');
+                        this.userForm.get("mail")?.patchValue('');
+                        this.userForm.get("contact")?.patchValue('');
+                        this.userForm.get("user")?.patchValue('');
+                        this.userForm.get("role")?.patchValue('');
+                    }
+                });
+            } else {
+                this.validateAllFields(this.userForm)
             }
-            
-            return index;
         }
-        
-        createId(): string {
-            let id = '';
-            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            for (let i = 0; i < 5; i++) {
-                id += chars.charAt(Math.floor(Math.random() * chars.length));
+
+        update() {
+            this.submitted = true;
+            const request = {
+                nom: this.nomValue.value,
+                postnom: this.postnomValue.value,
+                mail: this.mailValue.value,
+                contact: this.contactValue.value,
+                user: this.userValue.value,
+                role: this.roleValue.value,
             }
-            return id;
+            this.service.update(this.user.id, request)
+            .subscribe({
+                next: (response) => {
+                    this.user = '';
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                    this.userDialog = false;
+                    this.userForm.get("nom")?.patchValue('');
+                    this.userForm.get("postnom")?.patchValue('');
+                    this.userForm.get("mail")?.patchValue('');
+                    this.userForm.get("contact")?.patchValue('');
+                    this.userForm.get("user")?.patchValue('');
+                    this.userForm.get("role")?.patchValue('');
+                },
+                complete: () => {
+                    this.user = '';
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                    this.userDialog = false;
+                    this.userForm.get("nom")?.patchValue('');
+                    this.userForm.get("postnom")?.patchValue('');
+                    this.userForm.get("mail")?.patchValue('');
+                    this.userForm.get("contact")?.patchValue('');
+                    this.userForm.get("user")?.patchValue('');
+                    this.userForm.get("role")?.patchValue('');
+                },
+                error: (e) => {
+                    this.user = '';
+                    this.messageService.add({ severity: 'success', summary: 'Modification', detail: ' Modifier avec succès', life: 3000 });
+                    this.getAll();
+                    this.userDialog = false;
+                    this.userForm.get("nom")?.patchValue('');
+                    this.userForm.get("postnom")?.patchValue('');
+                    this.userForm.get("mail")?.patchValue('');
+                    this.userForm.get("contact")?.patchValue('');
+                    this.userForm.get("user")?.patchValue('');
+                    this.userForm.get("role")?.patchValue('');
+                }
+            })
         }
-        
+
+        find(id:any):any {
+            this.service.get(id)
+            .subscribe({
+                next: (response) => {
+                    this.user = response;
+                    this.userDialog = true;
+                    this.userForm.get("nom")?.patchValue(this.user.nom);
+                    this.userForm.get("postnom")?.patchValue(this.user.postnom);
+                    this.userForm.get("mail")?.patchValue(this.user.mail);
+                    this.userForm.get("contact")?.patchValue(this.user.contact);
+                    this.userForm.get("user")?.patchValue(this.user.user);
+                    this.userForm.get("role")?.patchValue(this.user.role);
+                },
+                error: (response) => {
+                    console.log(response);
+                }
+            })
+        }
+
+        delete(id: any) {
+            this.service.delete(id)
+            .subscribe({
+                next: (response) => {
+
+                },
+                complete: () => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: ' Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteUserDialog = false;
+                },
+                error: (e) => {
+                    this.messageService.add({ severity: 'success', summary: 'Reussi', detail: 'Supprimer avec succès', life: 3000 });
+                    this.getAll();
+                    this.deleteUserDialog = false;
+                }
+            });
+        }
+
+
+        get nomValue() {
+            return this.userForm.get('nom')
+        }
+        get postnomValue() {
+            return this.userForm.get('postnom')
+        }
+        get mailValue() {
+            return this.userForm.get('mail')
+        }
+        get contactValue() {
+            return this.userForm.get('contact')
+        }
+        get userValue() {
+            return this.userForm.get('user')
+        }
+        get roleValue() {
+            return this.userForm.get('role')
+        }
+
+
+
+
+
         onGlobalFilter(table: Table, event: Event) {
             table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
         }
 
-}
+        private validateAllFields(formGroup: FormGroup) {
+            Object.keys(formGroup.controls).forEach((field) => {
+                const control = formGroup.get(field)
+
+                if (control instanceof FormControl) {
+                    control.markAsDirty({ onlySelf: true })
+                } else if (control instanceof FormGroup) {
+                    this.validateAllFields(control)
+                }
+            })
+        }
+
+        active(event: any,index:any) {
+            const request = {
+                active: event.checked
+            }
+            const id = this.users[index].id
+
+            this.service.activateCompte(id, request)
+            .subscribe({
+                next: (response) => {
+
+                },
+                complete: () => {
+                    if (request.active === true) {
+                        this.messageService.add({ severity: 'success', summary: 'Activation', detail: ' Compte activer avec succès', life: 3000 });
+
+                    } else {
+                        this.messageService.add({ severity: 'success', summary: 'Desactivation', detail: ' Compte desactiver avec succès', life: 3000 });
+
+                    }
+                },
+                error: (e) => {
+                    if (request.active === true) {
+                        this.messageService.add({ severity: 'success', summary: 'Activation', detail: ' Compte activer avec succès', life: 3000 });
+
+                    } else {
+                        this.messageService.add({ severity: 'success', summary: 'Desactivation', detail: ' Compte desactiver avec succès', life: 3000 });
+
+                    }
+                }
+            })
+
+
+        }
+
+
+    }

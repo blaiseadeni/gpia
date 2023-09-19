@@ -1,0 +1,127 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-primary mr-2" (click)="openNew()"></button>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="rues" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['id','libelle']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"  selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Liste des rues</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="id"># <p-sortIcon field="index"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Quartier <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Rue <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rue>
+                    <tr>
+                        <td style="width:20%; min-width:10rem;"><span class="p-column-title">id</span>
+                            {{rue.id }}
+                        </td>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">quartierId</span>
+                            {{rue.quartier}}
+                        </td>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">libelle</span>
+                            {{rue.libelle}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="find(rue.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(rue.id)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="rueDialog" [style]="{width: '450px'}" header="Détails Rue " [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <form [formGroup]="rueForm">
+                    <div class="field">
+                        <label for="quartierId">Quartier </label>
+                        <p-dropdown inputId="dropdown"
+                        [autoDisplayFirst]="true"
+                        [options]="quartiers"
+                        [filter]="true"
+                        filterBy="libelle"
+                        [showClear]="true"
+                        optionLabel="libelle"
+                        id="quartierId"
+                        name="quartierId"
+                        formControlName="quartierId"
+                        appendTo="body">
+                    </p-dropdown>
+                    <small
+                    class="p-error"
+                    *ngIf="
+                    rueForm.controls['quartierId'].dirty &&
+                    rueForm.hasError('required', 'quartierId')
+                    ">* Quartier obligatoire.
+                </small>
+            </div>
+
+            <div class="formgrid grid">
+                <div class="field col">
+                    <label for="libelle">Designation</label>
+                    <input type="text" pInputText
+                    placeholder="Designation"
+                    id="libelle"
+                    name="libelle"
+                    formControlName="libelle"
+                    required
+                    autofocus
+                    />
+                    <small
+                    class="p-error"
+                    *ngIf="
+                    rueForm.controls['libelle'].dirty &&
+                    rueForm.hasError('required', 'libelle')
+                    "
+                    >* libelle  obligatoire.</small
+                    >
+                </div>
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="deleteRueDialog" header="Confirmation" [modal]="true" [style]="{width:'350px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="rue">Voulez-vous supprimer le quartier <b>{{rue.libelle}}</b> ?</span>
+    </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="hideSelect()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(rue.id)"></button>
+    </ng-template>
+</p-dialog>
+</div>
+</div>

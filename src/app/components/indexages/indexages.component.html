@@ -1,3 +1,4 @@
+
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
@@ -5,21 +6,25 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
                     <div class="my-2">
-                        <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-primary mr-2" (click)="openNew()"></button>
-                        <button pButton pRipple label="Supprimer" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                        <button pButton pRipple
+                        label="Nouveau"
+                        con="pi pi-plus"
+                        class="p-button-primary mr-2"
+                        (click)="openNew()"></button>
                     </div>
+
                 </ng-template>
-                
+
                 <ng-template pTemplate="right">
                     <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
                     <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
                 </ng-template>
             </p-toolbar>
-            
-            <p-table #dt [value]="indexages" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,14,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+
+            <p-table #dt [value]="indexages" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,14,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Liste Indexages</h5>
+                        <h5 class="m-0">Liste des prelevements</h5>
                         <span class="block mt-2 md:mt-0 p-input-icon-left">
                             <i class="pi pi-search"></i>
                             <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
@@ -28,100 +33,168 @@
                 </ng-template>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th pSortableColumn="code">Numéro <p-sortIcon field="code"></p-sortIcon></th>
-                        <th pSortableColumn="name">Abonné <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="name">No Compteur <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="code"># <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="name">Pa <p-sortIcon field="name"></p-sortIcon></th>
                         <th pSortableColumn="name">Date <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="price">Quantité <p-sortIcon field="price"></p-sortIcon></th>
-                        <th pSortableColumn="price">Etat <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="name">Periode <p-sortIcon field="name"></p-sortIcon></th>
+                        <th pSortableColumn="price">Ancien index <p-sortIcon field="price"></p-sortIcon></th>
+                        <th pSortableColumn="price">Nouvel index <p-sortIcon field="price"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-indexage>
                     <tr>
-                        <td>
-                            <p-tableCheckbox [value]="indexage"></p-tableCheckbox>
+
+                        <td style="width:20%; min-width:5rem;">
+                            <span class="p-column-title">Name</span>
+                            {{indexage.id}}
                         </td>
+
                         <td style="width:20%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
-                            {{indexage.numero}}
+                            {{indexage.pa}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{indexage.date | date}}
+                            {{indexage.date | date:"dd-MM-yyyy"}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{indexage.compteurId}}
+                            {{indexage.periode}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{indexage.date | date:'shortDate'}}
+                            {{indexage.ancIndex}}
                         </td>
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Category</span>
-                            {{indexage.quantite}}
+                            {{indexage.nouvIndex}}
                         </td>
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editProduct(product)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteProduct(product)"></button>
+                                <button pButton pRipple
+                                icon="pi pi-pencil"
+                                class="p-button-rounded p-button-success mr-2"
+                                (click)="find(indexage.id)"></button>
+                                <button pButton pRipple
+                                icon="pi pi-trash"
+                                class="p-button-rounded p-button-warning"
+                                (click)="deleteSelected(indexage.clientId)"></button>
                             </div>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
-        
-        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Détails Indexage " [modal]="true" class="p-fluid">
+
+        <p-dialog [(visible)]="indexDialog" [style]="{width: '450px'}" header="Détails Indexage " [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
+                <form [formGroup]="indexForm">
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="name">Pa</label>
+                            <p-dropdown [options]="abonnes"
+                            (onChange)='getIndexage($event)'
+                            optionLabel="pa"
+                            [autoDisplayFirst]="true"
+                            [filter]="true"
+                            filterBy="pa"
+                            [showClear]="true" appendTo="body"
+                            id="clientId"
+                            required
+                            autofocus
+                            formControlName="clientId"
+                            ></p-dropdown>
+                            <small
+                            class="p-error"
+                            *ngIf="
+                            indexForm.controls['clientId'].dirty &&
+                            indexForm.hasError('required', 'clientId')
+                            "
+                            >* pa  obligatoire.</small>
+                        </div>
+
+                        <div class="field">
+                            <label for="description">Periode</label>
+                            <p-calendar
+                            [showIcon]="true"
+                            appendTo="body"
+                            id="periode"
+                            required
+                            autofocus
+                            placeholder="periode"
+                            dateFormat="mmyy"
+                            view="month"
+                            dataType="string"
+                            formControlName="periode">
+                        </p-calendar>
+                        <small
+                        class="p-error"
+                        *ngIf="
+                        indexForm.controls['periode'].dirty &&
+                        indexForm.hasError('required', 'periode')
+                        "
+                        >* periode  obligatoire.</small>
+                    </div>
+
+                </div>
+
                 <div class="formgrid grid">
                     <div class="field col">
-                        <label for="name">Abonné</label>
-                        <p-dropdown [options]="abonnes" (onChange)='getCompteur($event)' [(ngModel)]="indexage.compteurId" optionLabel="nom" placeholder="Select a City" [showClear]="true" appendTo="body"
-                        id="compteurId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !indexage.compteurId}"></p-dropdown>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !indexage.compteurId">Abonné obligatoire.</small>
-                    </div>
-                    <div class="field col">
-                        <label >Compteur</label>
-                        <input type="text" pInputText  [(ngModel)]="compteur.numero" disabled/>
-                    </div>
+                        <label for="description">Ancien index</label>
+                        <p-inputNumber
+                        inputId="ancIndex"
+                        placeholder="0"
+                        [inputStyle]="{'text-align': 'right'}"
+                        id="ancIndex"
+                        formControlName="ancIndex">
+                    </p-inputNumber>
+                    <small
+                    class="p-error"
+                    *ngIf="
+                    indexForm.controls['ancIndex'].dirty &&
+                    indexForm.hasError('required', 'ancIndex')
+                    "
+                    >* ancien index obligatoire.</small>
                 </div>
-                <div class="field">
-                    <label for="description">Quantité</label>
-                    <input type="text" pInputText id="name" [(ngModel)]="product.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.name}"/>
-                </div>
-            </ng-template>
-            
-            <ng-template pTemplate="footer">
-                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-                <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
+
+                <div class="field col">
+                    <label for="description">Nouvel index</label>
+                    <p-inputNumber
+                    inputId="nouvIndex"
+                    placeholder="0"
+                    [inputStyle]="{'text-align': 'right'}"
+                    id="nouvIndex"
+                    formControlName="nouvIndex">
+                </p-inputNumber>
+                <small
+                class="p-error"
+                *ngIf="
+                indexForm.controls['nouvIndex'].dirty &&
+                indexForm.hasError('required', 'nouvIndex')
+                "
+                >* nouvel index obligatoire.</small>
             </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-        
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template pTemplate="footer">
+    <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+    <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+</ng-template>
+</p-dialog>
+
+<p-dialog [(visible)]="deleteIndexDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <div class="flex align-items-center justify-content-center">
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="indexage">Voulez-vous supprimer le prelevement <b>{{indexage.id}}</b> ?</span>
     </div>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="hideSelect()"></button>
+        <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(indexage.id)"></button>
+    </ng-template>
+</p-dialog>
+
+</div>
 </div>

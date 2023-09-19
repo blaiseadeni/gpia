@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -156,10 +156,19 @@ import { PaiementsComponent } from './components/paiements/paiements.component';
 import { UtilisateursComponent } from './components/utilisateurs/utilisateurs.component';
 import { ApurementComponent } from './components/paiements/apurement/apurement.component';
 import { SocietesComponent } from './components/societes/societes.component';
+import { CommuneComponent } from './components/commune/commune/commune.component';
+import { QuartierComponent } from './components/quartier/quartier/quartier.component';
+import { RueComponent } from './components/rue/rue/rue.component';
+import { TypeClientComponent } from './components/type-client/type-client.component';
+import { PrintFactureComponent } from './components/print-facture/print-facture.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PrintListingComponent } from './components/print-listing/print-listing.component';
 
 @NgModule({
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
+        NgxExtendedPdfViewerModule,
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
@@ -298,6 +307,12 @@ import { SocietesComponent } from './components/societes/societes.component';
         UtilisateursComponent,
         ApurementComponent,
         SocietesComponent,
+        CommuneComponent,
+        QuartierComponent,
+        RueComponent,
+        TypeClientComponent,
+        PrintFactureComponent,
+        PrintListingComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

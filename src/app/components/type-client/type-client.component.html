@@ -1,0 +1,124 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nouveau" icon="pi pi-plus" class="p-button-primary mr-2" (click)="openNew()"></button>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="types" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['id','libelle']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"  selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Liste de type client</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="id"># <p-sortIcon field="index"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Designation <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="libelle">Tarif <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-type>
+                    <tr>
+                        <td style="width:20%; min-width:10rem;"><span class="p-column-title">id</span>
+                            {{type.id }}
+                        </td>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">libelle</span>
+                            {{type.libelle}}
+                        </td>
+                        <td style="width:40%; min-width:10rem;">
+                            <span class="p-column-title">tarif</span>
+                            {{type.tarif}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="find(type.id)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteSelected(type.id)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <p-dialog [(visible)]="typeDialog" [style]="{width: '450px'}" header="Détails Type client " [modal]="true" class="p-fluid">
+            <ng-template pTemplate="content">
+                <form [formGroup]="typeForm">
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="libelle">libelle</label>
+                            <input type="text" pInputText
+                            placeholder="Designation"
+                            id="libelle"
+                            name="libelle"
+                            formControlName="libelle"
+                            autofocus
+                            required/>
+                            <small
+                            class="p-error"
+                            *ngIf="
+                            typeForm.controls['libelle'].dirty &&
+                            typeForm.hasError('required', 'libelle')
+                            "
+                            >* libelle est obligatoire.</small
+                            >
+                        </div>
+                    </div>
+                    <div class="formgrid grid">
+                        <div class="field col">
+                            <label for="tarif">Tarif</label>
+                            <p-inputNumber
+                            inputId="tarif"
+                            placeholder="0"
+                            [disabled]="true"
+                            [inputStyle]="{'text-align': 'right'}"
+                            id="tarif"
+                            formControlName="tarif">
+                        </p-inputNumber>
+                        <small
+                        class="p-error"
+                        *ngIf="
+                        typeForm.controls['tarif'].dirty &&
+                        typeForm.hasError('required', 'tarif')
+                        "
+                        >* tarif obligatoire.</small
+                        >
+                    </div>
+                </div>
+            </form>
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Enregistrer" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="deleteTypeDialog" header="Confirmation" [modal]="true" [style]="{width:'350px'}">
+        <div class="flex align-items-center justify-content-center">
+            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+            <span *ngIf="type">Voulez-vous supprimer le type <b>{{type.libelle}}</b> ?</span>
+        </div>
+        <ng-template pTemplate="footer">
+            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="Non" (click)="hideSelect()"></button>
+            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Oui" (click)="delete(type.id)"></button>
+        </ng-template>
+    </p-dialog>
+</div>
+</div>

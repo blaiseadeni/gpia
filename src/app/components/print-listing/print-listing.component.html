@@ -1,0 +1,63 @@
+<div class="grid-nogutter">
+    <p-toast></p-toast>
+    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+        <div></div>
+        
+        <form [formGroup]="factureForm">
+            
+            <div>
+                <label id="label">Imprimer par :  </label>
+                <p-dropdown
+                [options]="values"
+                (onChange)="getcritere($event)"
+                optionLabel="libelle"
+                [showClear]="true"
+                placeholder="Select value"
+                appendTo="body">
+            </p-dropdown>
+            
+            <label id="label">Periode :  </label>
+            <p-dropdown
+            [options]="periodes"
+            optionLabel="periode"
+            [showClear]="true"
+            formControlName="periode"
+            placeholder="Select periode"
+            appendTo="body">
+        </p-dropdown>
+        
+        <label id="label">Critere :  </label>
+        <p-dropdown
+        [options]="criteres"
+        optionLabel="libelle"
+        [showClear]="true"
+        formControlName="id"
+        [hidden]="critere === true"
+        placeholder="Select value"
+        appendTo="body">
+    </p-dropdown>
+    
+    <button pButton pRipple
+    label="Imprimer"
+    icon="pi pi-print"
+    id="print"
+    class="p-button-primary mr-2"
+    (click)="printListing()"
+    ></button>
+</div>
+</form>
+</div>
+
+
+<div class="col-12" id="pdf" >
+    <div >
+        <ngx-extended-pdf-viewer
+        [src]="url"
+        [height]="'150vh'"
+        [useBrowserLocale]="true"
+        [textLayer]="true"
+        [showHandToolButton]="true">
+    </ngx-extended-pdf-viewer>
+</div>
+</div>
+</div>

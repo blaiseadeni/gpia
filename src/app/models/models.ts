@@ -1,3 +1,9 @@
+export interface Commune { id: any; libelle: any }
+
+export interface Quartier { id: any; libelle: any, communeId: any }
+
+export interface RueId { id: any; libelle: any, quartierId:any }
+
 export interface Agence { id: any; code: any; libelle: any; site: any; secteur: any; commune: any; }
 
 export interface Compteur{ id: any; numero: any; marque: any; montant: any; agenceId: any; }

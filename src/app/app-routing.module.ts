@@ -1,8 +1,6 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
-import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
 import {OverlaysDemoComponent} from './demo/view/overlaysdemo.component';
@@ -40,6 +38,12 @@ import { PaiementsComponent } from './components/paiements/paiements.component';
 import { UtilisateursComponent } from './components/utilisateurs/utilisateurs.component';
 import { ApurementComponent } from './components/paiements/apurement/apurement.component';
 import { SocietesComponent } from './components/societes/societes.component';
+import { CommuneComponent } from './components/commune/commune/commune.component';
+import { QuartierComponent } from './components/quartier/quartier/quartier.component';
+import { RueComponent } from './components/rue/rue/rue.component';
+import { TypeClientComponent } from './components/type-client/type-client.component';
+import { PrintFactureComponent } from './components/print-facture/print-facture.component';
+import { PrintListingComponent } from './components/print-listing/print-listing.component';
 
 @NgModule({
     imports: [
@@ -53,11 +57,17 @@ import { SocietesComponent } from './components/societes/societes.component';
                 path: '', component: AppMainComponent,
                 children: [
                     {path: 'admin', component: DashboardDemoComponent},
-                    {path: 'base/agences', component: AgencesComponent},
+                    {path: 'base/communes', component: CommuneComponent},
+                    {path: 'base/quartiers', component: QuartierComponent},
+                    {path: 'base/rues', component: RueComponent},
                     {path: 'base/compteurs', component: CompteursComponent},
+                    {path: 'base/type', component: TypeClientComponent},
+                    {path: 'base/agences', component: AgencesComponent},
                     {path: 'base/abonnes', component: AbonnesComponent},
                     {path: 'base/indexages', component: IndexagesComponent},
                     {path: 'base/facturation', component: FacturesComponent},
+                    {path: 'base/facture', component: PrintFactureComponent},
+                    {path: 'base/listing', component: PrintListingComponent},
                     {path: 'base/paiement', component: PaiementsComponent},
                     {path: 'base/apurement', component: ApurementComponent},
                     {path: 'configurations/utilisateurs', component: UtilisateursComponent},
